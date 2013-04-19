@@ -1,3 +1,8 @@
+About project
+=============
+
+Lenders compete to provide financing to small businesses on best terms.
+
 Database setup
 ==============
 Now, edit mysite/settings.py. It’s a normal Python module with module-level variables representing Django settings. Change the following keys in the DATABASES 'default' item to match your database connection settings.
@@ -22,7 +27,11 @@ Let’s verify this worked. Change into the outer mysite directory, if you haven
 Validating models...
 
 0 errors found
+
 April 19, 2013 - 15:50:53
+
 Django version 1.5, using settings 'mysite.settings'
+
 Development server is running at http://127.0.0.1:8000/
+
 Quit the server with CONTROL-C.
