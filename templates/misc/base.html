@@ -26,23 +26,8 @@
         <span class="head-info">Lenders compete to provide financing to small businesses on best terms</span>
         <strong class="logo"><a href="/">SmallCreditExchange</a></strong>
         <strong class="num">1.888.123.4567</strong>
-        <form action="#" class="form-user">
-          <fieldset>
-            <div class="holder">
-              <div class="input-holder" style="width: 121px;">
-                <span class="input"><input type="text" value="email" /></span>
-              </div>
-              <div class="input-holder" style="width: 121px;">
-                <span class="input"><input type="password" value="password" /></span>
-              </div>
-              <input type="button" class="btn-form" value="Sign in" />
-            </div>
-            <div class="row-link">
-              <span class="link-holder"><a class="register-popup" href="#">Sign up for free</a></span>
-              <span class="link-holder"><a href="#" id="btn-popup1">Forgot ID/Password</a></span>
-            </div>
-          </fieldset>
-        </form>
+        {% load get_header %} 
+        {% get_header_right %} 
       </header>
     </div>
   {% block content %}

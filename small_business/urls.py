@@ -8,6 +8,8 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'main.views.home', name='home'),
     url(r'^login/$', 'main.views.login', name='login'),
+    url(r'^logout/$', 'main.views.logout', name='logout'),   
+    url(r'^profile/$', 'client.views.profile', name='profile'),
     url(r'^register/$', 'main.views.register', name='register'),
 
     # url(r'^small_business/', include('small_business.foo.urls')),

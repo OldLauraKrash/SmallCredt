@@ -24,8 +24,18 @@ $(document).ready(function(){
 
 	$('#form-sign-submit').live("click", function(){
 		if ($("#form-sign-up").validationEngine('validate')) {
-            $.post('/register/', $("#form-sign-up").serialize() ,function(data) {
-                alert(data);
+            $.getJSON('/register/', {'email': $('#form-sign-up-email').val(), 'password':$('#form-sign-up-confirm-password').val()} ,function(data) {
+                if (data['result']=='ok') {
+                    $('.form-user').hide();
+                    $('.welcom-block').show();
+                    $('.welcome').html(data['username']);
+                }
+            });
+            $(this).parents('.popup-holder').fadeOut(300, function(){
+                $('.formError').remove();
+                $('.popup-holder').css({"left": "-9999px"});
+                $('.popup-holder').height(0);
+                $('.popup-holder').show();
             });
 		}
 		return false;
