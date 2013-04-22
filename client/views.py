@@ -7,4 +7,17 @@ import simplejson as json
 
 @render_to('profile/apply.html')
 def profile(request):
-	return {}
+	return {'request': request}
+
+@render_to('profile/credit-offers.html')
+def credit_offers(request):
+	return {'request': request}	
+
+@render_to('profile/account.html')
+def account(request):
+	return {'request': request}	
+
+@render_to('profile/statements.html')
+def statements(request):
+	return {'request': request}	
+	

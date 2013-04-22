@@ -1,25 +1,25 @@
         <span id="header-username">
         {% if flag %}
-        <div class="welcom-block" style="display:none;">
-            <a class="welcome" href="#"></a>
+        <div class="welcom-block">
+            <a class="welcome" href="/profile">{{username}}</a>
               <div class="welcom-drop">
                   <ul>
-                    <li><a class="item01" href="#">Logout</a></li>
-                    <li><a class="item02" href="#">Account Settings</a></li>
+                    <li><a class="item02" href="/profile">Account Settings</a></li>
+                    <li><a class="item01" href="/logout">Logout</a></li>
                   </ul>
               </div>
         </div>
         {% else %}
-        <form action="#" class="form-user">
+        <form action="#" class="form-user" id="form-auth-main">
           <fieldset>
             <div class="holder">
               <div class="input-holder" style="width: 121px;">
-                <span class="input"><input type="text" value="email" /></span>
+                <span class="input"><input type="text" value="email" class="validate[required,custom[email]]"  id="form-auth-main-email"  /></span>
               </div>
               <div class="input-holder" style="width: 121px;">
-                <span class="input"><input type="password" value="password" /></span>
+                <span class="input"><input type="password" value="password" class="validate[required]" id="form-auth-main-password" /></span>
               </div>
-              <input type="button" class="btn-form" value="Sign in" />
+              <input type="submit" class="btn-form" value="Sign in" id="form-auth-main-submit" />
             </div>
             <div class="row-link">
               <span class="link-holder"><a class="register-popup" href="#">Sign up for free</a></span>

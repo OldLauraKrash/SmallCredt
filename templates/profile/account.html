@@ -1,0 +1,130 @@
+{% extends 'misc/base.html' %}
+{% block content %}
+		<div class="main-holder">
+			<nav class="nav-holder">
+				<div class="frame">
+					<ul class="menu">
+						<li><a href="/">Home</a></li>
+						<li><a href="/profile/">Apply</a></li>
+						<li><a href="/account/" class="active">My Account</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div id="main">
+				<a href="#" class="link-exit">Edit</a>
+				<ul class="main-list">
+					<li>
+						<div>
+							<a href="/account/credit-offers/" >Credit Offers</a>
+						</div>
+					</li>
+					<li>
+						<div>
+							<a href="/account/statements/">Statements</a>
+						</div>
+					</li>
+					<li class="last-child">
+						<div>
+							<a href="/account/" class="active">Account</a>
+						</div>
+					</li>
+				</ul>
+				<div class="table-content">
+					<h2 class="title-table">Personal</h2>
+					<div class="table-info">
+						<table>
+							<tbody>
+								<tr>
+									<td class="col01">Your name</td>
+									<td class="col02">John Johnson</td>
+								</tr>
+								<tr>
+									<td class="col01">Personal address</td>
+									<td class="col02">1 Hight Street, New York, NY, 10012</td>
+								</tr>
+								<tr>
+									<td class="col01">Personal phone</td>
+									<td class="col02">212 345 67 89</td>
+								</tr>
+								<tr>
+									<td class="col01">Email</td>
+									<td class="col02"><a href="mailto:john@mac.com" class="link-mail">john@mac.com</a></td>
+								</tr><tr>
+									<td class="col01">Social Security #</td>
+									<td class="col02">123 45 67 89</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<h2 class="title-table">Business</h2>
+					<div class="table-info">
+						<table>
+							<tbody>
+								<tr>
+									<td class="col01">Business name</td>
+									<td class="col02">John & Associates LLC</td>
+								</tr>
+								<tr>
+									<td class="col01">Business address</td>
+									<td class="col02">1 Exchange Pl, New York, NY, 10032</td>
+								</tr>
+								<tr>
+									<td class="col01">Business phone</td>
+									<td class="col02">212 567 89 34</td>
+								</tr>
+								<tr>
+									<td class="col01">Industry</td>
+									<td class="col02">Legal</td>
+								</tr>
+								<tr>
+									<td class="col01">EIN</td>
+									<td class="col02">234567890</td>
+								</tr>
+								<tr>
+									<td class="col01">Monthly sales</td>
+									<td class="col02">$300,000</td>
+								</tr>
+								<tr>
+									<td class="col01">Revenue 2012</td>
+									<td class="col02">$5,000,000</td>
+								</tr>
+								<tr>
+									<td class="col01">Net profit 2012</td>
+									<td class="col02">$1,000,000</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<h2 class="title-table">Bank Account</h2>
+					<div class="statement-statistics">
+						<div class="visual">
+							<a href="#"><img src="images/img03.jpg" alt="" width="526" height="316" /></a>
+						</div>
+						<div class="statistics-block">
+							<h3>Statement Statistics</h3>
+							<table>
+								<tbody>
+									<tr class="odd">
+										<td class="col01">Average monthly chatgebacks</td>
+										<td class="col02">$200</td>
+									</tr>
+									<tr>
+										<td class="col01">Average monthly sales</td>
+										<td class="col02">$100,000</td>
+									</tr>
+									<tr class="odd">
+										<td class="col01">Average monthly credit card sales</td>
+										<td class="col02">$50,000</td>
+									</tr>
+									<tr>
+										<td class="col01">Balance, 2/2/2013</td>
+										<td class="col02">$45,900</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}

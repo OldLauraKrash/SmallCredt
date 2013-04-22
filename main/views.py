@@ -4,13 +4,24 @@ from annoying.decorators import render_to
 from client.models import *
 import hashlib
 import simplejson as json
+from django.http import HttpResponseRedirect
 
 @render_to('main/index.html')
 def home(request):
-	return {}
+	return {'request': request}
 
 def login(request):
-	return {}
+	result = 'error'
+	hsh = hashlib.md5()
+	hsh.update(request.GET['password'])
+	client = Client.objects.filter(email=request.GET['email'], password=hsh.hexdigest())	
+	try: 
+		if client.email!='':
+			request.session['username'] = client.email
+			result = 'ok'
+	except:
+		result = 'error'
+	return HttpResponse( json.dumps({'result':result}), mimetype="application/json" )
 
 def register(request):
 	hsh = hashlib.md5()
@@ -21,4 +32,5 @@ def register(request):
 	return HttpResponse( json.dumps({'result':'ok', 'username':client.email}), mimetype="application/json" )
 
 def logout(request):
-	return {}
+	request.session['username']=''
+	return HttpResponseRedirect("/")

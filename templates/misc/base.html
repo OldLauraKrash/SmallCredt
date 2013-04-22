@@ -27,7 +27,7 @@
         <strong class="logo"><a href="/">SmallCreditExchange</a></strong>
         <strong class="num">1.888.123.4567</strong>
         {% load get_header %} 
-        {% get_header_right %} 
+        {% get_header_right request %} 
       </header>
     </div>
   {% block content %}
@@ -99,7 +99,7 @@
               <div class="btn-form" style="width: 137px;">
                 <span>
                   Go!
-                  <input type="submit" value="Go!" />
+                  <input type="submit" value="Go!"  id="form-auth-submit" />
                 </span>
               </div>
             </div>
