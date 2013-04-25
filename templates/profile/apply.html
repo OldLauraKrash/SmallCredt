@@ -15,45 +15,45 @@
 				<div class="progress">
 					<span class="line-progress" style="width: 1%;">&nbsp;</span>
 				</div>
-				<form action="#" class="general-form border-none">
+				<form action="#" class="general-form border-none" id="general-form-profile">
 					<fieldset>
 						<div class="row">
 							<label>Your name*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 52px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 120px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 162px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 204px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 50px; margin:0;"><input type="text" /></span>
+								<span class="input" style="width: 52px;"><input type="text" value="" id="general-form-profile-your-name-first" name="general-form-profile-your-name-first" /></span>
+								<span class="input" style="width: 120px;"><input type="text" value="" class="validate[required]" id="general-form-profile-your-name-second" name="general-form-profile-your-name-second" /></span>
+								<span class="input" style="width: 162px;"><input type="text" value="" class="validate[required]" id="general-form-profile-your-name-third" name="general-form-profile-your-name-third" /></span>
+								<span class="input" style="width: 204px;"><input type="text" value="" class="validate[required]" id="general-form-profile-your-name-four"  name="general-form-profile-your-name-four" /></span>
+								<span class="input" style="width: 50px; margin:0;"><input type="text" four  name="general-form-profile-your-name-five"  /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Personal address*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 107px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 59px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 103px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 76px;"><input type="text" value="USA" /></span>
+								<span class="input" style="width: 209px;"><input type="text" value="" class="validate[required]" id="general-form-profile-address-first"  name="general-form-profile-address-first" /></span>
+								<span class="input" style="width: 107px;"><input type="text" value="" class="validate[required]" id="general-form-profile-addresse-second" name="general-form-profile-address-second" /></span>
+								<span class="input" style="width: 59px;"><input type="text" value="" class="validate[required]" id="general-form-profile-addresse-third" name="general-form-profile-address-third" /></span>
+								<span class="input" style="width: 103px;"><input type="text" value="" class="validate[required]" id="general-form-profile-addresse-four"  name="general-form-profile-address-four"  /></span>
+								<span class="input" style="width: 76px;"><input type="text" value="USA" name="general-form-profile-address-five" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Personal phone*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 204px;"><input type="text" value="" /></span>
+								<span class="input" style="width: 209px;"><input type="text" value="" class="validate[required,custom[phone]]" id="general-form-profile-phone" name="general-form-profile-phone" /></span>
+								<span class="input" style="width: 204px;"><input type="text" value="" id="general-form-profile-second" name="general-form-profile-phone-second" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Date of birth*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 132px;"><input type="text" value="" /></span>
+								<span class="input" style="width: 132px;"><input type="text" value="" class="validate[required, custom[date]]" id="general-form-profile-date" name="general-form-profile-date" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Email*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="kal1sha.ua@gmail.com" /></span>
+								<span class="input" style="width: 209px;"><input type="text" value="{{client.email}}" class="validate[required, custom[email]]" id="general-form-profile-email" name="general-form-profile-email" /></span>
 								<div class="btn-form" style="width: 177px;">
 									<span>
 										Save
@@ -64,30 +64,30 @@
 						</div>
 					</fieldset>
 				</form>
-				<form action="#" class="general-form">
+				<form action="#" class="general-form" id="general-form-profile-business">
 					<fieldset>
 						<div class="row">
 							<label>Business name*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 163px;"><input type="text" value="" /></span>
+								<span class="input" style="width: 209px;"><input type="text" value="" class="validate[required]" id="general-form-profile-business-name-first" /></span>
+								<span class="input" style="width: 163px;"><input type="text" value="" class="validate[required]" id="general-form-profile-business-name-second"/></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Legal form*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 136px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 207px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 132px;"><input type="text" value="" /></span>
+								<span class="input" style="width: 136px;"><input type="text" value="" class="validate[required]" id="general-form-profile-business-legal-first"  /></span>
+								<span class="input" style="width: 207px;"><input type="text" value="" class="validate[required]" id="general-form-profile-business-legal-second" /></span>
+								<span class="input" style="width: 132px;"><input type="text" value="" class="validate[required]" id="general-form-profile-business-legal-third" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Business address*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 104px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 66px;"><input type="text" value="" /></span>
-								<span class="input" style="width: 101px;"><input type="text" value="" /></span>
+								<span class="input" style="width: 209px;"><input type="text" value="" class="validate[required]" id="general-form-profile-business-address-first" /></span>
+								<span class="input" style="width: 104px;"><input type="text" value="" class="validate[required]" id="general-form-profile-business-address-second" /></span>
+								<span class="input" style="width: 66px;"><input type="text" value="" class="validate[required]" id="general-form-profile-business-address-third" /></span>
+								<span class="input" style="width: 101px;"><input type="text" value=""  class="validate[required]" id="general-form-profile-business-address-four" /></span>
 								<span class="input" style="width: 75px;"><input type="text" value="USA" /></span>
 							</div>
 						</div>
@@ -111,24 +111,24 @@
 						</div>
 					</fieldset>
 				</form>
-				<form action="#" class="general-form">
+				<form action="#" class="general-form" id="general-form-profile-credit">
 					<fieldset>
 						<div class="row">
 							<label>Loan amount*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209 px;"><input type="text" value="" /></span>
+								<span class="input" style="width: 209 px;"><input type="text" value="" class="validate[required]" id="general-form-profile-credit-loan-amount"  /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Monthly sales*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="" /></span>
+								<span class="input" style="width: 209px;"><input type="text" value=""  class="validate[required]" id="general-form-profile-credit-monthly-sales" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Revenue 2012*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="" /></span>
+								<span class="input" style="width: 209px;"><input type="text" value="" class="validate[required]" id="general-form-profile-credit-revenue" /></span>
 							</div>
 						</div>
 						<div class="row">

@@ -25,4 +25,6 @@ urlpatterns = patterns('',
 
     url(r'^.uploads/(?P<path>.*)$', 'django.views.static.serve', {'document_root':'.uploads/'}),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root':'./media/'}),
+
+    ('^pages/', include('django.contrib.flatpages.urls')),
 )

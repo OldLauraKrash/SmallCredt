@@ -65,4 +65,11 @@ $(document).ready(function(){
         return false;
     });
 
+    // include validate for forms profile
+    $('#general-form-profile').validationEngine();
+    $('#general-form-profile-business').validationEngine();
+    $('#general-form-profile-credit').validationEngine();
+
+    
+
 });
