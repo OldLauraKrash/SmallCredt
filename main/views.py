@@ -5,7 +5,6 @@ from client.models import *
 import hashlib
 import simplejson as json
 from django.http import HttpResponseRedirect
-from django.db.models import Q
 
 @render_to('main/index.html')
 def home(request):
@@ -15,10 +14,10 @@ def login(request):
 	result = 'error'
 	hsh = hashlib.md5()
 	hsh.update(request.GET['password'])
-	client = Client.objects.get(email__exact=request.GET['email'], password__exact=hsh.hexdigest())
+	client = Client.objects.filter(email=request.GET['email'], password=hsh.hexdigest())	
 	try: 
-		if client.email!='':
-			request.session['username'] = client.email
+		if client[0].email!='' and len(client)==1:
+			request.session['username'] = client[0].email
 			result = 'ok'
 	except:
 		result = 'error'

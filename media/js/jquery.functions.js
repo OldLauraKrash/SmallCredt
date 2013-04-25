@@ -26,40 +26,41 @@ $(document).ready(function(){
     // register
 	$('#form-sign-submit').live("click", function(){
 		if ($("#form-sign-up").validationEngine('validate')) {
-            $.getJSON('/register/', {'email': $('#form-sign-up-email').val(), 'password':$('#form-sign-up-confirm-password').val()} ,function(data) {
+            var jqxhr = $.getJSON('/register/', {'email': $('#form-sign-up-email').val(), 'password':$('#form-sign-up-confirm-password').val()} ,function(data) {
                 if (data['result']=='ok') {
                     window.location.href = '/profile';
+                } else {
+                    $("#form-sign-submit").validationEngine('showPrompt', 'Problem register', 'error');
                 }
-            });
-		} else {
-            //$("#form-sign-submit").validationEngine('showPrompt', 'Error!', 'error');
-        }
+            }).fail(function() { $("#form-sign-submit").validationEngine('showPrompt', 'Problem register', 'error'); });
+		}
 		return false;
 	});
 
     // login
     $('#form-auth-main-submit').live("click", function(){
         if ($("#form-auth-main").validationEngine('validate')) {
-            $.getJSON('/login/', {'email': $('#form-auth-main-email').val(), 'password':$('#form-auth-main-password').val()} ,function(data) {
+            var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-main-email').val(), 'password':$('#form-auth-main-password').val()} ,function(data) {
                 if (data['result']=='ok') {
                     window.location.href = '/profile';
+                }  else {
+                    $("#form-auth-main-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error');
                 }
-            });
-        } else {
-            //$("#form-auth-main-submit").validationEngine('showPrompt', 'Error!', 'error');
+            }).fail(function() { $("#form-auth-main-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error'); });
+
         }
         return false;
     });  
 
     $('#form-auth-submit').live("click", function(){
         if ($("#form-auth").validationEngine('validate')) {
-            $.getJSON('/login/', {'email': $('#form-auth-email').val(), 'password':$('#form-auth-password').val()} ,function(data) {
+            var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-main-email').val(), 'password':$('#form-auth-main-password').val()} ,function(data) {
                 if (data['result']=='ok') {
                     window.location.href = '/profile';
+                }  else {
+                   $("#form-auth-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error');
                 }
-            });
-        } else {
-            //$("#form-auth-submit").validationEngine('showPrompt', 'Error!', 'error');
+            }).fail(function() { $("#form-auth-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error'); });
         }
         return false;
     });
