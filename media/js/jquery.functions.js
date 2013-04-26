@@ -25,14 +25,15 @@ $(document).ready(function(){
 
     // register
 	$('#form-sign-submit').live("click", function(){
+
 		if ($("#form-sign-up").validationEngine('validate')) {
             var jqxhr = $.getJSON('/register/', {'email': $('#form-sign-up-email').val(), 'password':$('#form-sign-up-confirm-password').val()} ,function(data) {
                 if (data['result']=='ok') {
                     window.location.href = '/profile';
                 } else {
-                    $("#form-sign-submit").validationEngine('showPrompt', 'Problem register', 'error');
+                    $("#form-sign-submit").validationEngine('showPrompt', 'This email is busy', 'error');
                 }
-            }).fail(function() { $("#form-sign-submit").validationEngine('showPrompt', 'Problem register', 'error'); });
+            }).fail(function() { $("#form-sign-submit").validationEngine('showPrompt', 'This email is busy', 'error'); });
 		}
 		return false;
 	});
@@ -54,7 +55,7 @@ $(document).ready(function(){
 
     $('#form-auth-submit').live("click", function(){
         if ($("#form-auth").validationEngine('validate')) {
-            var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-main-email').val(), 'password':$('#form-auth-main-password').val()} ,function(data) {
+            var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-email').val(), 'password':$('#form-auth-password').val()} ,function(data) {
                 if (data['result']=='ok') {
                     window.location.href = '/profile';
                 }  else {

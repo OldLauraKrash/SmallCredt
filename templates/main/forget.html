@@ -1,0 +1,30 @@
+{% extends 'misc/base.html' %}
+{% block content %}
+    <div class="main-holder">
+      <nav class="nav-holder">
+        <div class="frame">
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile/">Apply</a></li>
+            <li><a href="/account/" class="active">My Account</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="main">
+        <form action="#" class="form-user form-user-content">
+          <fieldset>
+            <div class="holder">
+              <div class="input-holder" style="width: 149px;">
+                <span class="input"><input type="password" value="password" /></span>
+              </div>
+              <div class="input-holder" style="width: 149px;">
+                <span class="input"><input type="password" value="confirm" /></span>
+              </div>
+              <input type="Submit" class="btn-form" value="Change" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
