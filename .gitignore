@@ -1,1 +1,5 @@
-*.pyc
+*.pyc[co]
+*.egg
+*.egg-info
+*.project
+*.settings
