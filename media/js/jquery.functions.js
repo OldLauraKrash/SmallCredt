@@ -20,8 +20,8 @@ $(document).ready(function(){
     // include validate for forms
 	$('#form-sign-up').validationEngine();
 	$('#form-auth').validationEngine();
-	$('#form-forget').validationEngine();
     $('#form-auth-main').validationEngine();
+
 
     // register
 	$('#form-sign-submit').live("click", function(){
@@ -70,7 +70,7 @@ $(document).ready(function(){
     $('#general-form-profile').validationEngine();
     $('#general-form-profile-business').validationEngine();
     $('#general-form-profile-credit').validationEngine();
-
+    $('#form-password-reset').validationEngine();
     
 
 });

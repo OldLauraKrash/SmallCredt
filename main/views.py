@@ -7,6 +7,7 @@ import simplejson as json
 from django.http import HttpResponseRedirect
 import const
 from django.core.mail import send_mail
+from django.conf import settings
 
 # main page
 @render_to('main/index.html')
@@ -36,13 +37,48 @@ def register(request):
 	client = Client(email=request.GET['email'], password=password.hexdigest(), ticket= ticket.hexdigest())
 	client.save()
 	request.session['username'] = client.email
-	send_mail(const.REGISTER_THEMA_EMAIL, const.REGISTER_TEXT_EMAIL, const.EMAIL_FROM, [client.email], fail_silently=False)
+	if settings.PROD:
+		send_mail(const.REGISTER_THEMA_EMAIL, const.REGISTER_TEXT_EMAIL+client.ticket, const.EMAIL_FROM, [client.email], fail_silently=False)
 	return HttpResponse( json.dumps({'result':'ok', 'username':client.email}), mimetype="application/json" )
+
+# send link on change password
+def forget_send(request):
+	if settings.PROD:
+		try:
+			client = Client.objects.get(email=request.GET['email'])	
+			send_mail(const.FORGET_THEMA_EMAIL, const.FORGET_TEXT_EMAIL+client.ticket, const.EMAIL_FROM, [client.email], fail_silently=False)	
+		except:
+			return HttpResponse( json.dumps({'result':'error'}))		
+	return HttpResponse( json.dumps({'result':'ok'}))
 
 # forget password
 @render_to('main/forget.html')
-def forget(request):
-	return {'request': request}
+def forget(request, ticket):
+	try:
+		client = Client.objects.get(ticket=ticket)
+	except:
+		return HttpResponseRedirect("/")
+			
+	if request.method == 'POST' and request.POST:
+		client = Client.objects.get(ticket=ticket)
+		password = hashlib.md5()
+		password.update(request.POST['password'])
+		client.password = password.hexdigest()
+		client.save()
+		return HttpResponseRedirect("/")
+
+	return {'request': request, 'ticket': ticket}
+
+# active account
+def active_account(request, ticket):
+	try:
+		client = Client.objects.get(ticket=ticket)
+		client.enable=True
+		client.save()
+		request.session['username'] = client.email
+		return HttpResponseRedirect("/profile")
+	except:
+		return HttpResponseRedirect("/")	
 
 # logout for profile
 def logout(request):

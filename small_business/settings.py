@@ -11,6 +11,7 @@ ADMINS = (
    ('Dima Kalinin', 'kal1sha.ua@gmail.com'),
 ) 
 
+PROD = False
 
 MANAGERS = ADMINS
 

@@ -11,16 +11,18 @@
         </div>
       </nav>
       <div id="main">
-        <form action="#" class="form-user form-user-content">
+        <form action="" method="post" id="form-password-reset" class="form-user form-user-content">
+          {% csrf_token %}
           <fieldset>
             <div class="holder">
               <div class="input-holder" style="width: 149px;">
-                <span class="input"><input type="password" value="password" /></span>
+                <span class="input"><input type="password" name="password" value="password" class="validate[required]" id="form-password-reset-first" /></span>
               </div>
               <div class="input-holder" style="width: 149px;">
-                <span class="input"><input type="password" value="confirm" /></span>
+                <span class="input"><input type="password" name="confirm_password" class="validate[required]" id="form-password-reset-second" value="confirm" /></span>
               </div>
-              <input type="Submit" class="btn-form" value="Change" />
+              <input type="hidden" name="ticket" value="{{ ticket }}">
+              <input type="submit" class="btn-form" value="Change" />
             </div>
           </fieldset>
         </form>

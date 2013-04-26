@@ -24,11 +24,15 @@ $(document).ready(function(){
 		return false;
 	});
 	$('#popup1 .btn-form input').click(function(){
-		$('#popup1').fadeOut(300, function(){
-			$('#popup1').css({"left": "-9999px"});
-			$('#popup1').height(0);
-			$('#popup1').show();
+		$.getJSON('/forget_send/',{'email': $('#form-forget-email').val()}, function(data) {
+			$('#popup1').fadeOut(300, function(){
+				$('#popup1').css({"left": "-9999px"});
+				$('#popup1').height(0);
+				$('#popup1').show();
+			});
 		});
+
+
 		popupbg();
 		$('#popup2').css({"left": "-9999px"});
 		$('#popup2').show();
