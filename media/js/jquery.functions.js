@@ -75,28 +75,31 @@ $(document).ready(function(){
     
     // save profile main
     $('#general-form-profile-submit').live("click", function(){
+        $(this).parent().parent().fadeOut();
         if ($("#general-form-profile").validationEngine('validate')) {
-            var jqxhr = $.getJSON('/save-profile-main/', {'forms': $('#general-form-profile').serialize()} ,function(data) {
-            }).fail(function() { });
+            $.get('/save-profile-main/', $('#general-form-profile').serialize());
         }
+        $(this).parent().parent().fadeIn();
         return false;
     });
 
     // save profile business
     $('#general-form-profile-business-submit').live("click", function(){
+        $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-business").validationEngine('validate')) {
-            var jqxhr = $.getJSON('/save-profile-business/', {'forms': $('#general-form-profile-business').serialize()} ,function(data) {
-            }).fail(function() { });
+            $.get('/save-profile-business/', $('#general-form-profile-business').serialize());
         }
+        $(this).parent().parent().fadeIn();
         return false;
     });
 
     // save profile credit
     $('#general-form-profile-credit-submit').live("click", function(){
+        $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-credit").validationEngine('validate')) {
-            var jqxhr = $.getJSON('/save-profile-credit/', {'forms': $('#general-form-profile-credit').serialize()} ,function(data) {
-            }).fail(function() { });
+            $.get('/save-profile-credit/', $('#general-form-profile-credit').serialize());
         }
+        $(this).parent().parent().fadeIn();
         return false;
     });
 

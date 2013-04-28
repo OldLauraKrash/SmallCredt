@@ -30,12 +30,22 @@ def login(request):
 
 # sign up client
 def register(request):
+	# save client
 	password = hashlib.md5()
 	password.update(request.GET['password'])
 	ticket = hashlib.md5()
 	ticket.update(request.GET['password']+request.GET['email'])
 	client = Client(email=request.GET['email'], password=password.hexdigest(), ticket= ticket.hexdigest())
 	client.save()
+	# save param business
+	business = Business()
+	business.client=client
+	business.save()
+	# save param credit
+	credit = Loan_offer()
+	credit.client=client
+	credit.save()
+	# send message on email
 	request.session['username'] = client.email
 	if settings.PROD:
 		send_mail(const.REGISTER_THEMA_EMAIL, const.REGISTER_TEXT_EMAIL+client.ticket, const.EMAIL_FROM, [client.email], fail_silently=False)

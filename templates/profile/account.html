@@ -11,7 +11,7 @@
 				</div>
 			</nav>
 			<div id="main">
-				<a href="#" class="link-exit">Edit</a>
+				<a href="/profile/" class="link-exit">Edit</a>
 				<ul class="main-list">
 					<li>
 						<div>
@@ -36,22 +36,22 @@
 							<tbody>
 								<tr>
 									<td class="col01">Your name</td>
-									<td class="col02">John Johnson</td>
+									<td class="col02">{{client.suffix}} {{client.first_name}} {{client.middle_name}} {{client.last_name}}</td>
 								</tr>
 								<tr>
 									<td class="col01">Personal address</td>
-									<td class="col02">1 Hight Street, New York, NY, 10012</td>
+									<td class="col02">{{client.street}} {{client.city}} {{client.state}} {{ client.zip_code }} {{ client.country }} </td>
 								</tr>
 								<tr>
 									<td class="col01">Personal phone</td>
-									<td class="col02">212 345 67 89</td>
+									<td class="col02">{{ client.home_phone }} {{ client.cell_phone }}</td>
 								</tr>
 								<tr>
 									<td class="col01">Email</td>
-									<td class="col02"><a href="mailto:john@mac.com" class="link-mail">john@mac.com</a></td>
+									<td class="col02"><a href="mailto:{{ client.email }}" class="link-mail">{{ client.email }}</a></td>
 								</tr><tr>
 									<td class="col01">Social Security #</td>
-									<td class="col02">123 45 67 89</td>
+									<td class="col02">None</td>
 								</tr>
 							</tbody>
 						</table>
@@ -62,35 +62,35 @@
 							<tbody>
 								<tr>
 									<td class="col01">Business name</td>
-									<td class="col02">John & Associates LLC</td>
+									<td class="col02">{{ business.business_name }}</td>
 								</tr>
 								<tr>
 									<td class="col01">Business address</td>
-									<td class="col02">1 Exchange Pl, New York, NY, 10032</td>
+									<td class="col02">{{business.street}} {{business.city}} {{business.state}} {{ business.zip_code }} {{ business.country }}</td>
 								</tr>
 								<tr>
 									<td class="col01">Business phone</td>
-									<td class="col02">212 567 89 34</td>
+									<td class="col02">{{ business.business_phone }}</td>
 								</tr>
 								<tr>
 									<td class="col01">Industry</td>
-									<td class="col02">Legal</td>
+									<td class="col02">{{ business.industry }}</td>
 								</tr>
 								<tr>
 									<td class="col01">EIN</td>
-									<td class="col02">234567890</td>
+									<td class="col02">None</td>
 								</tr>
 								<tr>
 									<td class="col01">Monthly sales</td>
-									<td class="col02">$300,000</td>
+									<td class="col02">${{loan_offer.monthly_sales}}</td>
 								</tr>
 								<tr>
 									<td class="col01">Revenue 2012</td>
-									<td class="col02">$5,000,000</td>
+									<td class="col02">${{loan_offer.revenue}}</td>
 								</tr>
 								<tr>
 									<td class="col01">Net profit 2012</td>
-									<td class="col02">$1,000,000</td>
+									<td class="col02">${{loan_offer.net_profit}}</td>
 								</tr>
 							</tbody>
 						</table>

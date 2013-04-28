@@ -20,34 +20,64 @@
 						<div class="row">
 							<label>Your name*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 52px;"><input type="text" value="Suffix" id="general-form-profile-your-name-first" name="general-form-profile-your-name-first" /></span>
-								<span class="input" style="width: 120px;"><input type="text" value="First" class="validate[required]" id="general-form-profile-your-name-second" name="general-form-profile-your-name-second" /></span>
-								<span class="input" style="width: 162px;"><input type="text" value="Middle" class="validate[required]" id="general-form-profile-your-name-third" name="general-form-profile-your-name-third" /></span>
-								<span class="input" style="width: 204px;"><input type="text" value="Last" class="validate[required]" id="general-form-profile-your-name-four"  name="general-form-profile-your-name-four" /></span>
-								<span class="input" style="width: 50px; margin:0;"><input type="text"  name="general-form-profile-your-name-five"  /></span>
+								<span class="input" style="width: 52px;">
+									<input type="text" 
+									value="{% if client.suffix == '' %}Suffix {% else %}{{ client.suffix }} {% endif %}" 
+									id="general-form-profile-your-name-first" name="general-form-profile-your-name-first" />
+								</span>
+								<span class="input" style="width: 120px;">
+									<input type="text" 
+									value="{% if client.first_name == '' %} First {% else %} {{ client.first_name }} {% endif %}"
+									class="validate[required]" id="general-form-profile-your-name-second" name="general-form-profile-your-name-second" /></span>
+								<span class="input" style="width: 162px;">
+									<input type="text" 
+									value="{% if client.middle_name == '' %} Middle {% else %} {{ client.middle_name }} {% endif %}" 
+									class="validate[required]" id="general-form-profile-your-name-third" name="general-form-profile-your-name-third" /></span>
+								<span class="input" style="width: 204px;"><input type="text" 
+									value="{% if client.last_name == '' %} Last {% else %} {{ client.last_name }} {% endif %}" 
+									class="validate[required]" id="general-form-profile-your-name-four"  name="general-form-profile-your-name-four" /></span>
+								<span class="input" style="width: 50px; margin:0;"><input type="text"  name="general-form-profile-your-name-five"  value="{{other_name}}" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Personal address*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="Street" class="validate[required]" id="general-form-profile-address-first"  name="general-form-profile-address-first" /></span>
-								<span class="input" style="width: 107px;"><input type="text" value="City" class="validate[required]" id="general-form-profile-addresse-second" name="general-form-profile-address-second" /></span>
-								<span class="input" style="width: 59px;"><input type="text" value="State" class="validate[required]" id="general-form-profile-addresse-third" name="general-form-profile-address-third" /></span>
-								<span class="input" style="width: 103px;"><input type="text" value="Zip code" class="validate[required]" id="general-form-profile-addresse-four"  name="general-form-profile-address-four"  /></span>
-								<span class="input" style="width: 76px;"><input type="text" value="USA" name="general-form-profile-address-five" /></span>
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{% if client.street == '' %} Street {% else %} {{ client.street }} {% endif %}" 
+									class="validate[required]" id="general-form-profile-address-first"  name="general-form-profile-address-first" /></span>
+								<span class="input" style="width: 107px;"><input type="text"
+								 value="{% if client.city == '' %}City{% else %} {{ client.city }} {% endif %}" 
+								 class="validate[required]" id="general-form-profile-addresse-second" name="general-form-profile-address-second" /></span>
+								<span class="input" style="width: 59px;"><input type="text"
+								 value="{% if client.state == '' %}State{% else %} {{ client.state }} {% endif %}"  
+								 class="validate[required]" id="general-form-profile-addresse-third" name="general-form-profile-address-third" /></span>
+								<span class="input" style="width: 103px;"><input type="text" 
+									value="{% if client.zip_code == '' %}Zip code{% else %} {{ client.zip_code }} {% endif %}" 
+									class="validate[required]" id="general-form-profile-addresse-four"  name="general-form-profile-address-four"  /></span>
+								<span class="input" style="width: 76px;">
+									<input type="text" 
+									value="{% if client.country == '' %}USA{% else %} {{ client.country }} {% endif %}"
+									name="general-form-profile-address-five" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Personal phone*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="Your home phone" class="validate[required,custom[phone]]" id="general-form-profile-phone" name="general-form-profile-phone" /></span>
-								<span class="input" style="width: 204px;"><input type="text" value="Your cell phone" id="general-form-profile-second" name="general-form-profile-phone-second" /></span>
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{% if client.home_phone == '' %}Your home phone{% else %} {{ client.home_phone }} {% endif %}"
+									 class="validate[required,custom[phone]]" id="general-form-profile-phone" name="general-form-profile-phone" /></span>
+								<span class="input" style="width: 204px;"><input type="text" 
+									value="{% if client.cell_phone == '' %}Your cell phone{% else %} {{ client.cell_phone }} {% endif %}"
+									id="general-form-profile-second" name="general-form-profile-phone-second" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Date of birth*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 132px;"><input type="text" value="YYYY-MM-DD" class="validate[required, custom[date]]" id="general-form-profile-date" name="general-form-profile-date" /></span>
+								<span class="input" style="width: 209px;"><input type="text"
+									value="{% if client.date_of_birth == '' %}YYYY-MM-DD{% else %} {{ client.date_of_birth|date:'Y-m-d' }} {% endif %}"
+									class="validate[required, custom[date]]"
+									id="general-form-profile-date" name="general-form-profile-date" /></span>
 							</div>
 						</div>
 						<div class="row">
@@ -69,38 +99,67 @@
 						<div class="row">
 							<label>Business name*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="Business name" class="validate[required]" id="general-form-profile-business-name-first" /></span>
-								<span class="input" style="width: 163px;"><input type="text" value="DBA" class="validate[required]" id="general-form-profile-business-name-second"/></span>
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{% if business.business_name == '' %}Business name{% else %} {{ business.business_name }} {% endif %}" 
+									class="validate[required]" id="general-form-profile-business-name-first" name="general-form-profile-business-name-first" /></span>
+								<span class="input" style="width: 163px;"><input type="text"
+									value="{% if business.dba == '' %}DBA{% else %} {{ business.dba }} {% endif %}" 
+									class="validate[required]" id="general-form-profile-business-name-second" name="general-form-profile-business-name-second" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Legal form*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 136px;"><input type="text" value="Legal form" class="validate[required]" id="general-form-profile-business-legal-first"  /></span>
-								<span class="input" style="width: 207px;"><input type="text" value="State of incorporation" class="validate[required]" id="general-form-profile-business-legal-second" /></span>
-								<span class="input" style="width: 132px;"><input type="text" value="Date founded" class="validate[required]" id="general-form-profile-business-legal-third" /></span>
+								<span class="input" style="width: 136px;"><input type="text" 
+									value="{% if business.legal_form == '' %}Legal form{% else %} {{ business.legal_form }} {% endif %}" 
+									class="validate[required]" id="general-form-profile-business-legal-first" name="general-form-profile-business-legal-first" /></span>
+								<span class="input" style="width: 207px;"><input type="text" 
+									value="{% if business.state_of_incorporation == '' %}State of incorporation{% else %} {{ business.state_of_incorporation }} {% endif %}" 
+									class="validate[required]" id="general-form-profile-business-legal-second" name="general-form-profile-business-legal-second" /></span>
+								<span class="input" style="width: 132px;"><input type="text" 
+									{% if business.date_founded == '' %}
+										value="YYYY-MM-DD" 
+									{% else %}
+										value='{{business.date_founded|date:"Y-m-d"}}'
+									{% endif %}
+									class="validate[required, custom[date]]"
+									id="general-form-profile-business-legal-third" name="general-form-profile-business-legal-third" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Business address*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="Street" class="validate[required]" id="general-form-profile-business-address-first" /></span>
-								<span class="input" style="width: 104px;"><input type="text" value="City" class="validate[required]" id="general-form-profile-business-address-second" /></span>
-								<span class="input" style="width: 66px;"><input type="text" value="State" class="validate[required]" id="general-form-profile-business-address-third" /></span>
-								<span class="input" style="width: 101px;"><input type="text" value="Zip code"  class="validate[required]" id="general-form-profile-business-address-four" /></span>
-								<span class="input" style="width: 75px;"><input type="text" value="USA" /></span>
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{% if business.street == '' %}Street{% else %} {{ business.street }} {% endif %}"
+									class="validate[required]" id="general-form-profile-business-address-first" name="general-form-profile-business-address-first" /></span>
+								<span class="input" style="width: 104px;"><input type="text" 
+									value="{% if business.city == '' %}City{% else %} {{ business.city }} {% endif %}"
+									class="validate[required]" id="general-form-profile-business-address-second" name="general-form-profile-business-address-second" /></span>
+								<span class="input" style="width: 66px;"><input type="text" 
+									value="{% if business.state == '' %}State{% else %} {{ business.state }} {% endif %}"
+									class="validate[required]" id="general-form-profile-business-address-third" name="general-form-profile-business-address-third" /></span>
+								<span class="input" style="width: 101px;"><input type="text" 
+									value="{% if business.zip_code == '' %}Zip code{% else %} {{ business.zip_code }} {% endif %}"
+									class="validate[required]" id="general-form-profile-business-address-four" name="general-form-profile-business-address-four" /></span>
+								<span class="input" style="width: 75px;"><input type="text" name="general-form-profile-business-address-country" 
+									value="{% if business.country == '' %}USA{% else %} {{ business.country }} {% endif %}"
+									 /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Business phone</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="Business phone" /></span>
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{% if business.business_phone == '' %}Business phone{% else %} {{ business.business_phone }} {% endif %}"
+									name="business-phone" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Industry</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="Industry" /></span>
+								<span class="input" style="width: 209px;"><input type="text"
+									value="{% if business.industry == '' %}Industry{% else %} {{ business.industry }} {% endif %}"
+									name="industry" /></span>
 								<div class="btn-form" style="width: 177px;">
 									<span>
 										Save
@@ -116,25 +175,32 @@
 						<div class="row">
 							<label>Loan amount*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209 px;"><input type="text" value="Loan amount" class="validate[required]" id="general-form-profile-credit-loan-amount"  /></span>
+								<span class="input" style="width: 209 px;"><input type="text" 
+									value="{% if loan_offer.amount == '' %}Loan amount{% else %} {{ loan_offer.amount }} {% endif %}"
+									class="validate[required]" id="general-form-profile-credit-loan-amount" name="loan-amount"  /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Monthly sales*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="Monthly sales"  class="validate[required]" id="general-form-profile-credit-monthly-sales" /></span>
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{% if loan_offer.monthly_sales == '' %}Monthly sales{% else %} {{ loan_offer.monthly_sales }} {% endif %}"
+									class="validate[required]" id="general-form-profile-credit-monthly-sales" name="monthly-sales" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Revenue 2012*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="2012 revenue" class="validate[required]" id="general-form-profile-credit-revenue" /></span>
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{% if loan_offer.revenue == '' %}2012 revenue{% else %} {{ loan_offer.revenue }} {% endif %}"
+									name="revenue" class="validate[required]" id="general-form-profile-credit-revenue" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Net profit 2012</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" value="2012 net profit" /></span>
+								<span class="input" style="width: 209px;"><input type="text" name="profit" 
+									value="{% if loan_offer.net_profit == '' %}2012 profit{% else %} {{ loan_offer.net_profit }} {% endif %}" /></span>
 								<div class="btn-form" style="width: 177px;">
 									<span>
 										Save

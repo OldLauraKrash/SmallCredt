@@ -8,6 +8,8 @@ class Client(models.Model):
     suffix = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     middle_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    other_name = models.CharField(max_length=255)
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
@@ -19,7 +21,7 @@ class Client(models.Model):
     enable = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)	
     def __unicode__(self):
-        return self.email
+        return unicode(self.email)
 
 class Business(models.Model):
     business_name = models.CharField(max_length=255)
@@ -36,7 +38,7 @@ class Business(models.Model):
     industry = models.CharField(max_length=255) 
     client = models.ForeignKey(Client)
     def __unicode__(self):
-        return self.client
+        return unicode(self.client)
 
 class Loan_offer(models.Model):
     amount = models.CharField(max_length=255)
@@ -45,4 +47,4 @@ class Loan_offer(models.Model):
     net_profit = models.CharField(max_length=255)
     client = models.ForeignKey(Client)
     def __unicode__(self):
-		return self.client	
+        return unicode(self.client)	
