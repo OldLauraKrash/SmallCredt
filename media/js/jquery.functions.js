@@ -66,11 +66,38 @@ $(document).ready(function(){
         return false;
     });
 
+
     // include validate for forms profile
     $('#general-form-profile').validationEngine();
     $('#general-form-profile-business').validationEngine();
     $('#general-form-profile-credit').validationEngine();
     $('#form-password-reset').validationEngine();
     
+    // save profile main
+    $('#general-form-profile-submit').live("click", function(){
+        if ($("#general-form-profile").validationEngine('validate')) {
+            var jqxhr = $.getJSON('/save-profile-main/', {'forms': $('#general-form-profile').serialize()} ,function(data) {
+            }).fail(function() { });
+        }
+        return false;
+    });
+
+    // save profile business
+    $('#general-form-profile-business-submit').live("click", function(){
+        if ($("#general-form-profile-business").validationEngine('validate')) {
+            var jqxhr = $.getJSON('/save-profile-business/', {'forms': $('#general-form-profile-business').serialize()} ,function(data) {
+            }).fail(function() { });
+        }
+        return false;
+    });
+
+    // save profile credit
+    $('#general-form-profile-credit-submit').live("click", function(){
+        if ($("#general-form-profile-credit").validationEngine('validate')) {
+            var jqxhr = $.getJSON('/save-profile-credit/', {'forms': $('#general-form-profile-credit').serialize()} ,function(data) {
+            }).fail(function() { });
+        }
+        return false;
+    });
 
 });

@@ -29,7 +29,6 @@ def auth(request):
 def profile(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-
 	client = Client.objects.get(email=request.session['username'])
 	return {'request': request, 'client': client}
 
@@ -38,7 +37,6 @@ def profile(request):
 def credit_offers(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-
 	return {'request': request}	
 
 # account for profile
@@ -46,7 +44,6 @@ def credit_offers(request):
 def account(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-
 	return {'request': request}	
 
 # statements for profile
@@ -54,5 +51,16 @@ def account(request):
 def statements(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-
 	return {'request': request}
+
+# save data for profile page
+def save_profile_main(request):
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# save data for profile business page
+def save_profile_business(request):
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# save data for profile credit page
+def save_profile_credit(request):
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )

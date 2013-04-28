@@ -5,7 +5,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
     url(r'^$', 'main.views.home', name='home'),
     url(r'^login/$', 'main.views.login', name='login'),
     url(r'^logout/$', 'main.views.logout', name='logout'), 
@@ -17,18 +16,16 @@ urlpatterns = patterns('',
     url(r'^account/credit-offers/$', 'client.views.credit_offers', name='credit_offers'),
     url(r'^account/$', 'client.views.account', name='account'),
     url(r'^account/statements/$', 'client.views.statements', name='statements'),
+    url(r'^save-profile-main/$', 'client.views.save_profile_main', name='save_profile_main'),
+    url(r'^save-profile-business/$', 'client.views.save_profile_business', name='save_profile_business'),
+    url(r'^save-profile-credit/$', 'client.views.save_profile_credit', name='save_profile_credit'), 
     url(r'^register/$', 'main.views.register', name='register'),
-
     # url(r'^small_business/', include('small_business.foo.urls')),
-
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-
     url(r'^.uploads/(?P<path>.*)$', 'django.views.static.serve', {'document_root':'.uploads/'}),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root':'./media/'}),
-
     ('^pages/', include('django.contrib.flatpages.urls')),
 )
