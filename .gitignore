@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 *.pyc[co]
 *.egg
 *.egg-info
 *.project
 *.settings
+=======
+*.pyc
+
+.DS_Store
+>>>>>>> Eclipse
