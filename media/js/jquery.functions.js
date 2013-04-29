@@ -66,6 +66,10 @@ $(document).ready(function(){
         return false;
     });
 
+    $('.active-user').live("click", function(){
+        window.location.href = '/profile';
+    });
+
 
     // include validate for forms profile
     $('#general-form-profile').validationEngine();
@@ -102,5 +106,7 @@ $(document).ready(function(){
         $(this).parent().parent().fadeIn();
         return false;
     });
+
+    $('input[placeholder]').placeholder();
 
 });

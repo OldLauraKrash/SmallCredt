@@ -6,16 +6,16 @@
   <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/all.css" />
   <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/validationEngine.jquery.css" />
   <script type="text/javascript" src="{{ MEDIA_URL }}js/modernizr.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/clear-form-fields.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/form.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js" ></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.functions.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.touch.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/formValidator/jquery.validationEngine.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/formValidator/languages/jquery.validationEngine-en.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.main.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/input-type-file.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.placeholder.min.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.functions.js"></script>
   <!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/ie.css" /><![endif]-->
   <!--[if lt IE 9]><script type="text/javascript" src="{{ MEDIA_URL }}js/pie.js"></script><![endif]-->
 </head>
@@ -57,7 +57,7 @@
             <span class="info-form">Enter your email address and we will send you an email with instructions for resetting your password.</span>
             <div class="row">
               <label>Email:</label>
-              <span class="input"><input type="text" value="email"  class="validate[required,custom[email]]" id="form-forget-email" /></span>
+              <span class="input"><input type="text" value="" placeholder="Email" class="validate[required,custom[email]]" id="form-forget-email" /></span>
             </div>
             <div class="row">
               <label>&nbsp;</label>
@@ -88,11 +88,11 @@
             <span class="info-form">Set up your account:</span>
             <div class="row row-input">
               <label>Email:</label>
-              <span class="input"><input type="text" value="email" class="validate[required,custom[email]]" id="form-auth-email" /></span>
+              <span class="input"><input type="text" value="" placeholder="Email" class="validate[required,custom[email]]" id="form-auth-email" /></span>
             </div>
             <div class="row">
               <label>Password:</label>
-              <span class="input"><input type="password" value="password"  class="validate[required]" id="form-auth-password" /></span>
+              <span class="input"><input type="password" value="" placeholder="Password"  class="validate[required]" id="form-auth-password" /></span>
             </div>
             <div class="row">
               <label>&nbsp;</label>
@@ -117,15 +117,15 @@
             <p>Sign up for free:</p>
             <div class="row">
               <label>Email:</label>
-              <span class="input"><input type="text" value="email" class="validate[required,custom[email]]" id="form-sign-up-email" /></span>
+              <span class="input"><input type="text" value="" placeholder="Email" class="validate[required,custom[email]]" id="form-sign-up-email" /></span>
             </div>
             <div class="row">
               <label>Password:</label>
-              <span class="input"><input type="password" value="password" class="validate[required]" id="form-sign-up-password" /></span>
+              <span class="input"><input type="password" value="" placeholder="Password" class="validate[required]" id="form-sign-up-password" /></span>
             </div>
             <div class="row">
               <label>Confirm:</label>
-              <span class="input"><input type="password" value="confirm password" class="validate[required,equals[form-sign-up-password]]" id="form-sign-up-confirm-password"/></span>
+              <span class="input"><input type="password" value="" placeholder="Confirm password"" class="validate[required,equals[form-sign-up-password]]" id="form-sign-up-confirm-password"/></span>
             </div>
             <div class="row">
               <label>&nbsp;</label>

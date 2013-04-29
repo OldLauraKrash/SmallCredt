@@ -9,7 +9,7 @@
       <form action="#" class="form-content">
         <fieldset>
           <div class="row">
-            <input type="button" class="btn-apply register-popup" value="Apply" />
+            <input type="button" class="btn-apply {% if active %}active-user{% else %}register-popup{% endif %}" value="Apply" />
           </div>
           <div class="row">
             <input type="checkbox" class="checkbox" id="ch01" />
@@ -66,7 +66,7 @@
             <form action="#" class="form-content">
               <fieldset>
                 <div class="row">
-                  <input type="button" class="btn-apply register-popup" value="Apply" />
+                  <input type="button" class="btn-apply {% if active %}active-user{% else %}register-popup{% endif %}" value="Apply" />
                 </div>
                 <div class="row">
                   <input type="checkbox" class="checkbox" id="ch02" />

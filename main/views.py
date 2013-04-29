@@ -12,7 +12,13 @@ from django.conf import settings
 # main page
 @render_to('main/index.html')
 def home(request):
-	return {'request': request}
+	active = False
+	try:
+		if request.session['username'] != '':
+			active = True
+	except:
+		active = False
+	return {'request': request, 'active':active}
 
 # sign in client
 def login(request):
