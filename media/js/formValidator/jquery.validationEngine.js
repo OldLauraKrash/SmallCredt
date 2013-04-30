@@ -323,7 +323,7 @@
 			
             // thrird, check status and scroll the container accordingly
 			form.trigger("jqv.form.result", [errorFound]);
-			
+		
 		if (errorFound) {				
       		if (options.scroll) {	
 				var destination=first_err.offset().top;

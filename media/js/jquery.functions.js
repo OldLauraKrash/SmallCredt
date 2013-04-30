@@ -67,7 +67,8 @@ $(document).ready(function(){
     });
 
     $('.active-user').live("click", function(){
-        window.location.href = '/profile';
+        var amount = $('.ui-slider-handle').html();
+        window.location.href = '/profile/?amount='+amount.substring(0,amount.length-1);
     });
 
 
@@ -81,7 +82,9 @@ $(document).ready(function(){
     $('#general-form-profile-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile").validationEngine('validate')) {
+            $('.ui-datepicker').hide();
             $.get('/save-profile-main/', $('#general-form-profile').serialize());
+            lineProgress();
         }
         $(this).parent().parent().fadeIn();
         return false;
@@ -91,7 +94,9 @@ $(document).ready(function(){
     $('#general-form-profile-business-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-business").validationEngine('validate')) {
+            $('.ui-datepicker').hide();
             $.get('/save-profile-business/', $('#general-form-profile-business').serialize());
+            lineProgress();
         }
         $(this).parent().parent().fadeIn();
         return false;
@@ -102,11 +107,167 @@ $(document).ready(function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-credit").validationEngine('validate')) {
             $.get('/save-profile-credit/', $('#general-form-profile-credit').serialize());
+            lineProgress();
         }
         $(this).parent().parent().fadeIn();
         return false;
     });
 
     $('input[placeholder]').placeholder();
+
+    function lineProgress() {
+        var width = 20;
+        var countInput = 0;
+        $( "#general-form-profile input" ).each(function( index ) {
+            if ($(this).val()!="") 
+                countInput++;
+        });
+
+        if (countInput > 10)
+           width +=50; 
+
+        var countInput = 0;
+        $( "#general-form-profile-business input" ).each(function( index ) {
+            if ($(this).val()!="") 
+                countInput++;
+        });
+        if (countInput > 8)
+           width +=20; 
+
+        var countInput = 0;
+        $( "#general-form-profile-credit input" ).each(function( index ) {
+            if ($(this).val()!="") 
+                countInput++;
+        });
+        if (countInput > 1)
+           width +=10; 
+
+        $('.line-progress').css('width', width+'%')
+    }
+    lineProgress();
+
+    $('#general-form-profile-date').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#general-form-profile-business-legal-third').datepicker({dateFormat: 'yy-mm-dd'});
+
+    // autocomplete
+    var suffix = [
+      "Mr.",
+      "Ms.",
+      "Mrs.",
+      "Miss.",
+      "Dr."
+    ];
+    $( "#general-form-profile-your-name-first" ).autocomplete({
+      source: suffix
+    });
+
+
+    $("#general-form-profile-business-legal-first").autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-legal-form",
+            dataType: "json",
+            data: {'term': $( "#general-form-profile-business-legal-first" ).val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+            }});
+        },
+        minLength: 0,
+    });
+
+    $('#general-form-profile-business-address-third').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-state",
+            dataType: "json",
+            data: {'term': $('#general-form-profile-business-address-third').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    });
+
+    $('#general-form-profile-addresse-third').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-state",
+            dataType: "json",
+            data: {'term': $('#general-form-profile-addresse-third').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    });
+
+    $('#general-form-profile-addresse-country').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-country",
+            dataType: "json",
+            data: {'term': $('#general-form-profile-addresse-country').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    });
+
+    $('#general-form-profile-business-address-country').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-country",
+            dataType: "json",
+            data: {'term': $('#general-form-profile-business-address-country').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    });
+
+    $('.input-industry').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-industry",
+            dataType: "json",
+            data: {'term': $('.input-industry').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    });
 
 });

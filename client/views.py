@@ -32,6 +32,11 @@ def profile(request):
 	client = Client.objects.get(email=request.session['username'])
 	business = Business.objects.get(client=client.id)
 	loan_offer = Loan_offer.objects.get(client=client.id)
+	try:
+		loan_offer.amount = request.GET['amount'] + "000"
+		loan_offer.save()
+	except:
+		loan_offer = Loan_offer.objects.get(client=client.id)
 	return {'request': request, 'client': client, 'business':business, 'loan_offer':loan_offer}
 
 # credit offers for profile
@@ -106,3 +111,35 @@ def save_profile_credit(request):
 	loan_offer.net_profit = request.GET['profit']
 	loan_offer.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# get legal legal_form
+def get_legal_form(request):
+	result = Legal.objects.filter(name__contains=request.GET['term']).distinct()
+	categories = []
+	for category in result:
+		categories.append(category.name)	
+	return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )	
+
+# get state
+def get_state(request):
+	result = State.objects.filter(name__contains=request.GET['term']).distinct()
+	categories = []
+	for category in result:
+		categories.append(category.name)	
+	return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )	
+
+# get country
+def get_country(request):
+	result = Country.objects.filter(name__contains=request.GET['term']).distinct()
+	categories = []
+	for category in result:
+		categories.append(category.name)	
+	return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )
+
+# get industry
+def get_industry(request):
+	result = Industry.objects.filter(name__contains=request.GET['term']).distinct()
+	categories = []
+	for category in result:
+		categories.append(category.name)	
+	return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )

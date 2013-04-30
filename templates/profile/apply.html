@@ -22,7 +22,7 @@
 							<div class="input-holder">
 								<span class="input" style="width: 52px;">
 									<input type="text" 
-									value="{{client.suffix}} " placeholder="Suffix"
+									value="{{client.suffix}}" placeholder="Suffix"
 									id="general-form-profile-your-name-first" name="suffix" />
 								</span>
 								<span class="input" style="width: 120px;">
@@ -55,8 +55,15 @@
 								 class="validate[required]" id="general-form-profile-addresse-second" name="city" />
 								</span>
 								<span class="input" style="width: 59px;"><input type="text"
-								 value="{{client.state}}" placeholder="State"
-								  id="general-form-profile-addresse-third" name="state" />
+
+								 {% ifequal client.state None %}
+								 	value=""
+								 {% else %}
+								 	value="{{client.state}}"
+								 {% endifequal %}
+
+								 placeholder="State"
+								  id="general-form-profile-addresse-third" name="state" class="input-state" />
 								</span>
 								<span class="input" style="width: 103px;"><input type="text"
 								 	value="{{client.zip_code}}" placeholder="Zip code" 
@@ -64,7 +71,14 @@
 								</span>
 								<span class="input" style="width: 76px;">
 									<input type="text"
-									value="{{client.country}}" placeholder="Country"  
+
+										 {% ifequal client.country None %}
+										 	value=""
+										 {% else %}
+										 	value="{{client.country}}"
+										 {% endifequal %}
+
+									placeholder="Country" class="input-country"
 									id="general-form-profile-addresse-country" 
 									name="country" />
 								</span>
@@ -127,7 +141,14 @@
 							<label>Legal form*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 136px;"><input type="text" 
-									value="{{business.legal_form}}" placeholder="Legal form"
+
+									{% ifequal business.legal_form None %}
+										value=""
+									{% else %}
+										value="{{business.legal_form}}"
+									{% endifequal %}
+
+									placeholder="Legal form"
 									id="general-form-profile-business-legal-first" name="legal_form" /></span>
 								<span class="input" style="width: 207px;"><input type="text"
 									value="{{business.state_of_incorporation}}" placeholder="State of incorporation" 
@@ -150,13 +171,27 @@
 									class="validate[required]" id="general-form-profile-business-address-second" name="city" />
 								</span>
 								<span class="input" style="width: 66px;"><input type="text" 
-									value="{{business.state}}" placeholder="State"
+									
+									{% ifequal business.state None %}
+										value=""
+									{% else %}
+										value="{{business.state}}"
+									{% endifequal %}
+
+									placeholder="State" class="input-state"
 									id="general-form-profile-business-address-third" name="state" /></span>
 								<span class="input" style="width: 101px;"><input type="text"
 									value="{{business.zip_code}}" placeholder="Zip code" 
 									class="validate[required]" id="general-form-profile-business-address-four" name="zip_code" /></span>
-								<span class="input" style="width: 75px;"><input type="text" 
-									value="{{business.country}}" placeholder="Country"
+								<span class="input" style="width: 75px;"><input type="text"
+
+									{% ifequal business.country None %}
+										value=""
+									{% else %}
+										value="{{business.country}}"
+									{% endifequal %}
+
+									placeholder="Country" class="input-country" id="general-form-profile-business-address-country"
 									name="country" 
 									 /></span>
 							</div>
@@ -172,8 +207,13 @@
 						<div class="row">
 							<label>Industry</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text"
-									value="{{business.industry}}" placeholder="Industry"									
+								<span class="input" style="width: 209px;"><input type="text" 
+									{% ifequal business.industry None %}
+										value=""
+									{% else %}
+										value="{{business.industry}}"
+									{% endifequal %}
+									placeholder="Industry" class="input-industry"									
 									name="industry" /></span>
 								<div class="btn-form" style="width: 177px;">
 									<span>
