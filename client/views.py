@@ -39,6 +39,20 @@ def profile(request):
 		loan_offer = Loan_offer.objects.get(client=client.id)
 	return {'request': request, 'client': client, 'business':business, 'loan_offer':loan_offer}
 
+# qualify
+@render_to('profile/qualify.html')
+def qualify(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
+	client = Client.objects.get(email=request.session['username'])
+	loan_offer = Loan_offer.objects.get(client=client.id)
+	return {'request': request, 'loan_offer':loan_offer}
+
+# credit
+@render_to('profile/credit.html')
+def credit(request):
+	return {'request': request}
+
 # credit offers for profile
 @render_to('profile/credit-offers.html')
 def credit_offers(request):
@@ -73,14 +87,22 @@ def save_profile_main(request):
 	client.other_name = request.GET['other_name']
 	client.street = request.GET['street']
 	client.city = request.GET['city']
-	#client.state = request.GET['state']
+	try: 
+		state=State.objects.get(name=request.GET['state'])
+		client.state=state
+	except:
+		client.state = ''
 	client.zip_code = request.GET['zip_code']
-	#client.country = request.GET['country']	
+	try: 
+		country=Country.objects.get(name=request.GET['country'])
+		client.country=country
+	except:
+		client.country = ''	
 	client.home_phone = request.GET['home_phone']
 	client.cell_phone = request.GET['cell_phone']
 	client.date_of_birth = request.GET['date_of_birth']
 	client.save()
-	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+	return HttpResponse( json.dumps({'result':request.GET['state']}), mimetype="application/json" )
 
 # save data for profile business page
 def save_profile_business(request):
@@ -88,16 +110,37 @@ def save_profile_business(request):
 	business = Business.objects.get(client=client.id)
 	business.business_name = request.GET['business_name']
 	business.dba = request.GET['dba']
-	#business.legal_form = request.GET['legal_form']
-	business.state_of_incorporation = request.GET['state_of_incorporation']
+	try: 
+		legal=Legal.objects.get(name=request.GET['legal_form'])
+		business.legal_form=legal
+	except:
+		business.legal_form = ''
+	try: 
+		state_of_incorporation=State.objects.get(name=request.GET['state_of_incorporation'])
+		business.state_of_incorporation=state_of_incorporation
+	except:
+		business.state_of_incorporation = ''
+
 	business.date_founded = request.GET['date_founded']
 	business.street = request.GET['street']
 	business.city = request.GET['city']
-	#business.state = request.GET['state']
+	try: 
+		state=State.objects.get(name=request.GET['state'])
+		business.state=state
+	except:
+		business.state = ''
 	business.zip_code = request.GET['zip_code']
-	#business.country = request.GET['country']
+	try: 
+		country=Country.objects.get(name=request.GET['country'])
+		business.country=country
+	except:
+		business.country = ''
 	business.business_phone = request.GET['business_phone']
-	#business.industry = request.GET['industry']
+	try: 
+		industry=Industry.objects.get(name=request.GET['industry'])
+		business.industry=industry
+	except:
+		business.industry = ''
 	business.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
@@ -114,7 +157,7 @@ def save_profile_credit(request):
 
 # get legal legal_form
 def get_legal_form(request):
-	result = Legal.objects.filter(name__contains=request.GET['term']).distinct()
+	result = Legal.objects.all()
 	categories = []
 	for category in result:
 		categories.append(category.name)	
@@ -122,7 +165,7 @@ def get_legal_form(request):
 
 # get state
 def get_state(request):
-	result = State.objects.filter(name__contains=request.GET['term']).distinct()
+	result = State.objects.all()
 	categories = []
 	for category in result:
 		categories.append(category.name)	
@@ -130,7 +173,7 @@ def get_state(request):
 
 # get country
 def get_country(request):
-	result = Country.objects.filter(name__contains=request.GET['term']).distinct()
+	result = Country.objects.all()
 	categories = []
 	for category in result:
 		categories.append(category.name)	
@@ -138,7 +181,7 @@ def get_country(request):
 
 # get industry
 def get_industry(request):
-	result = Industry.objects.filter(name__contains=request.GET['term']).distinct()
+	result = Industry.objects.all()
 	categories = []
 	for category in result:
 		categories.append(category.name)	

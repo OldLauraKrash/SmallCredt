@@ -22,6 +22,10 @@ $(document).ready(function(){
 	$('#form-auth').validationEngine();
     $('#form-auth-main').validationEngine();
 
+    // accepted credit
+    $('.accepted-credit').live("click", function(){
+        window.location.href = '/credit';   
+    });
 
     // register
 	$('#form-sign-submit').live("click", function(){
@@ -85,6 +89,7 @@ $(document).ready(function(){
             $('.ui-datepicker').hide();
             $.get('/save-profile-main/', $('#general-form-profile').serialize());
             lineProgress();
+            $('#general-form-profile-business-name-first').focus();
         }
         $(this).parent().parent().fadeIn();
         return false;
@@ -97,6 +102,7 @@ $(document).ready(function(){
             $('.ui-datepicker').hide();
             $.get('/save-profile-business/', $('#general-form-profile-business').serialize());
             lineProgress();
+            $('#general-form-profile-credit-loan-amount').focus();
         }
         $(this).parent().parent().fadeIn();
         return false;
@@ -110,6 +116,7 @@ $(document).ready(function(){
             lineProgress();
         }
         $(this).parent().parent().fadeIn();
+        window.location.href = '/qualify'; 
         return false;
     });
 
@@ -146,8 +153,8 @@ $(document).ready(function(){
     }
     lineProgress();
 
-    $('#general-form-profile-date').datepicker({dateFormat: 'yy-mm-dd'});
-    $('#general-form-profile-business-legal-third').datepicker({dateFormat: 'yy-mm-dd'});
+    //$('#general-form-profile-date').datepicker({dateFormat: 'yy-mm-dd'});
+    //$('#general-form-profile-business-legal-third').datepicker({dateFormat: 'yy-mm-dd'});
 
     // autocomplete
     var suffix = [
@@ -158,7 +165,10 @@ $(document).ready(function(){
       "Dr."
     ];
     $( "#general-form-profile-your-name-first" ).autocomplete({
-      source: suffix
+      source: suffix,
+      minLength: 0,
+    }).focus(function(){            
+        $(this).autocomplete("search");
     });
 
 
@@ -178,6 +188,8 @@ $(document).ready(function(){
             }});
         },
         minLength: 0,
+    }).focus(function(){            
+        $(this).autocomplete("search");
     });
 
     $('#general-form-profile-business-address-third').autocomplete({
@@ -196,6 +208,8 @@ $(document).ready(function(){
         }});
         },
         minLength: 0,
+    }).focus(function(){            
+        $(this).autocomplete("search");
     });
 
     $('#general-form-profile-addresse-third').autocomplete({
@@ -214,6 +228,8 @@ $(document).ready(function(){
         }});
         },
         minLength: 0,
+    }).focus(function(){            
+        $(this).autocomplete("search");
     });
 
     $('#general-form-profile-addresse-country').autocomplete({
@@ -232,6 +248,8 @@ $(document).ready(function(){
         }});
         },
         minLength: 0,
+    }).focus(function(){            
+        $(this).autocomplete("search");
     });
 
     $('#general-form-profile-business-address-country').autocomplete({
@@ -250,6 +268,8 @@ $(document).ready(function(){
         }});
         },
         minLength: 0,
+    }).focus(function(){            
+        $(this).autocomplete("search");
     });
 
     $('.input-industry').autocomplete({
@@ -268,6 +288,28 @@ $(document).ready(function(){
         }});
         },
         minLength: 0,
+    }).focus(function(){        
+        $(this).autocomplete("search");
+    });
+
+    $('#general-form-profile-business-legal-second').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-state",
+            dataType: "json",
+            data: {'term': $('.input-state').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    }).focus(function(){        
+        $(this).autocomplete("search");
     });
 
 });

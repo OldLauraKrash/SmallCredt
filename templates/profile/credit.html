@@ -1,0 +1,104 @@
+{% extends 'misc/base.html' %}
+{% block content %}
+    <div class="main-holder">
+      <nav class="nav-holder">
+        <div class="frame">
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile/">Apply</a></li>
+            <li><a href="/account/" class="active">My Account</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="main">
+        <h1>Progress</h1>
+        <div class="progress">
+          <span class="line-progress" style="width: 66%;">&nbsp;</span>
+        </div>
+        <form action="#" class="general-form general-form-other">
+          <fieldset>
+            <div class="form-block">
+              <div class="row">
+                <label>Social Security Number*</label>
+                <div class="input-holder">
+                  <span class="input" style="width: 209px;"><input type="text" value="Social Security" /></span>
+                </div>
+              </div>
+              <div class="row">
+                <label>Tax ID (EIN)*</label>
+                <div class="input-holder">
+                  <span class="input" style="width: 209px;"><input type="text" value="EIN" /></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label>Bank account*<span class="label-info">This information is not shared <br />with third parties*.</span>
+              </label>
+              <div class="input-holder">
+                <span class="input" style="width: 209px;"><input type="text" value="Bank" /></span>
+                <span class="input" style="width: 209px;"><input type="text" value="Username" /></span>
+                <span class="input" style="width: 209px;"><input type="password" value="Password" /></span>
+                <div class="btn-form btn-form-indent" style="width: 177px;">
+                  <span>
+                    Save
+                    <input type="button" value="Save" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <span class="information">You are likely to receive substantially better terms of financing if you provide more information</span>
+        <form action="#" class="general-form general-form-other">
+          <fieldset>
+            <div class="form-block">
+              <div class="row row-indent">
+                <label>Financial Statements</label>
+                <div class="input-holder">
+                  <div class="file">
+                    <input type="file" class="file-input-area" style="opacity: 0;">
+                    <a class="button-gray" href="#">Upload</a>
+                    <span class="file-name"></span>
+                  </div>
+                  <span class="or">or</span>
+                  <a href="#" class="green-link color-black" style="width: 180px;">
+                    <span>QuickBooks</span>
+                  </a>
+                </div>
+              </div>
+            
+            <div class="row">
+              <label>
+                Processor account
+                <span class="label-info">This information is not shared <br />with third parties*.</span>
+              </label>
+              <div class="input-holder">
+                <span class="input" style="width: 209px;"><input type="text" value="Processor" /></span>
+                <span class="input" style="width: 209px;"><input type="text" value="Username" /></span>
+                <span class="input" style="width: 209px;"><input type="password" value="Password" /></span>
+              </div>
+            </div>
+            </div>
+            <div class="row">
+              <label>
+                IRS Statements
+              </label>
+              <div class="input-holder">
+                <a href="#" class="green-link color-black" style="width: 180px;">
+                  <span>Access</span>
+                </a>
+                <div class="btn-form" style="width: 177px;">
+                  <span>
+                    Save
+                    <input type="button" value="Save" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <span class="example-text">* We provide only select transactional statistics (see <a href="#">example</a>).</span>
+      </div>
+    </div>
+  </div>
+{% endblock %}

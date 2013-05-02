@@ -21,8 +21,13 @@
 							<label>Your name*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 52px;">
-									<input type="text" 
-									value="{{client.suffix}}" placeholder="Suffix"
+									<input type="text"
+									 {% ifequal client.suffix ' ' %}
+									 	value=""
+									 {% else %}
+									 	value="{{client.suffix}}"
+									 {% endifequal %} 
+									placeholder="Title"
 									id="general-form-profile-your-name-first" name="suffix" />
 								</span>
 								<span class="input" style="width: 120px;">
@@ -39,7 +44,7 @@
 								<span class="input" style="width: 204px;"><input type="text"
 									value="{{client.last_name}}" placeholder="Last"  
 									class="validate[required]" id="general-form-profile-your-name-four"  name="last_name" /></span>
-								<span class="input" style="width: 50px; margin:0;"><input type="text"  name="other_name"  value="{{other_name}}" />
+								<span class="input" style="width: 50px; margin:0;"><input type="text"  placeholder="Suffix" name="other_name"  value="{{other_name}}" />
 								</span>
 							</div>
 						</div>
@@ -63,7 +68,7 @@
 								 {% endifequal %}
 
 								 placeholder="State"
-								  id="general-form-profile-addresse-third" name="state" class="input-state" />
+								  id="general-form-profile-addresse-third" name="state" class="input-state validate[required]" />
 								</span>
 								<span class="input" style="width: 103px;"><input type="text"
 								 	value="{{client.zip_code}}" placeholder="Zip code" 
@@ -78,7 +83,7 @@
 										 	value="{{client.country}}"
 										 {% endifequal %}
 
-									placeholder="Country" class="input-country"
+									placeholder="Country" class="input-country validate[required]"
 									id="general-form-profile-addresse-country" 
 									name="country" />
 								</span>
@@ -140,7 +145,7 @@
 						<div class="row">
 							<label>Legal form*</label>
 							<div class="input-holder">
-								<span class="input" style="width: 136px;"><input type="text" 
+								<span class="input" style="width: 136px;"><input type="text"  class="validate[required]"
 
 									{% ifequal business.legal_form None %}
 										value=""
@@ -151,8 +156,13 @@
 									placeholder="Legal form"
 									id="general-form-profile-business-legal-first" name="legal_form" /></span>
 								<span class="input" style="width: 207px;"><input type="text"
-									value="{{business.state_of_incorporation}}" placeholder="State of incorporation" 
-									class="validate[required]" 
+									{% ifequal business.state_of_incorporation None %}
+										value=""
+									{% else %}
+										value="{{business.state_of_incorporation}}"
+									{% endifequal %}
+									placeholder="State of incorporation" 
+									class="input-state validate[required]"
 									id="general-form-profile-business-legal-second" name="state_of_incorporation" /></span>
 								<span class="input" style="width: 132px;"><input type="text" 
 									value="{{business.date_founded|date:'Y-m-d'}}" placeholder="YYYY-MM-DD"
@@ -178,7 +188,7 @@
 										value="{{business.state}}"
 									{% endifequal %}
 
-									placeholder="State" class="input-state"
+									placeholder="State" class="input-state validate[required]"
 									id="general-form-profile-business-address-third" name="state" /></span>
 								<span class="input" style="width: 101px;"><input type="text"
 									value="{{business.zip_code}}" placeholder="Zip code" 
@@ -191,7 +201,7 @@
 										value="{{business.country}}"
 									{% endifequal %}
 
-									placeholder="Country" class="input-country" id="general-form-profile-business-address-country"
+									placeholder="Country" class="input-country validate[required]" id="general-form-profile-business-address-country"
 									name="country" 
 									 /></span>
 							</div>
@@ -213,7 +223,7 @@
 									{% else %}
 										value="{{business.industry}}"
 									{% endifequal %}
-									placeholder="Industry" class="input-industry"									
+									placeholder="Industry" class="input-industry validate[required]" id="industry"									
 									name="industry" /></span>
 								<div class="btn-form" style="width: 177px;">
 									<span>
