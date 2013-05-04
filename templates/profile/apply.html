@@ -39,12 +39,12 @@
 								<span class="input" style="width: 162px;">
 									<input type="text"
 									value="{{client.middle_name}}" placeholder="Middle" 
-									class="validate[required]" id="general-form-profile-your-name-third" name="middle_name" />
+									id="general-form-profile-your-name-third" name="middle_name" />
 								</span>
 								<span class="input" style="width: 204px;"><input type="text"
 									value="{{client.last_name}}" placeholder="Last"  
 									class="validate[required]" id="general-form-profile-your-name-four"  name="last_name" /></span>
-								<span class="input" style="width: 50px; margin:0;"><input type="text"  placeholder="Suffix" name="other_name"  value="{{other_name}}" />
+								<span class="input" style="width: 50px; margin:0;"><input type="text"  placeholder="Suffix" name="other_name"  value="{{client.other_name}}" />
 								</span>
 							</div>
 						</div>
@@ -94,10 +94,10 @@
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
 									value="{{client.home_phone}}" placeholder="Your home phone" 								 
-									class="validate[required,custom[phone]]" id="general-form-profile-phone" name="home_phone" /></span>
+									id="general-form-profile-phone" name="home_phone" /></span>
 								<span class="input" style="width: 204px;"><input type="text"
-									value="{{client.cell}}" placeholder="Your cell phone"
-									id="general-form-profile-second" name="cell_phone" /></span>
+									value="{{client.cell_phone}}" placeholder="Your cell phone"
+									id="general-form-profile-second" name="cell_phone" class="validate[required,custom[phone]]" /></span>
 							</div>
 						</div>
 						<div class="row">
@@ -174,7 +174,7 @@
 							<label>Business address*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{business.street}}" placeholder="Street" 
+									value="{{business.street}}" placeholder="Street"  class="validate[required]"
 									id="general-form-profile-business-address-first" name="street" /></span>
 								<span class="input" style="width: 104px;"><input type="text"
 									value="{{business.city}}" placeholder="City"  

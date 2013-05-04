@@ -102,7 +102,7 @@ def save_profile_main(request):
 	client.cell_phone = request.GET['cell_phone']
 	client.date_of_birth = request.GET['date_of_birth']
 	client.save()
-	return HttpResponse( json.dumps({'result':request.GET['state']}), mimetype="application/json" )
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # save data for profile business page
 def save_profile_business(request):

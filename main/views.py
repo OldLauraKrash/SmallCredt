@@ -50,6 +50,7 @@ def register(request):
 	# save param credit
 	credit = Loan_offer()
 	credit.client=client
+	credit.amount = request.GET['amount'] + "000"
 	credit.save()
 	# send message on email
 	request.session['username'] = client.email

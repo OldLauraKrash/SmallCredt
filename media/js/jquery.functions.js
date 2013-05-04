@@ -31,7 +31,9 @@ $(document).ready(function(){
 	$('#form-sign-submit').live("click", function(){
 
 		if ($("#form-sign-up").validationEngine('validate')) {
-            var jqxhr = $.getJSON('/register/', {'email': $('#form-sign-up-email').val(), 'password':$('#form-sign-up-confirm-password').val()} ,function(data) {
+            var amount = $('.ui-slider-handle').html();
+            amount = amount.substring(0,amount.length-1);
+            var jqxhr = $.getJSON('/register/', {'email': $('#form-sign-up-email').val(), 'password':$('#form-sign-up-confirm-password').val(), 'amount':amount} ,function(data) {
                 if (data['result']=='ok') {
                     window.location.href = '/profile';
                 } else {
@@ -112,11 +114,15 @@ $(document).ready(function(){
     $('#general-form-profile-credit-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-credit").validationEngine('validate')) {
-            $.get('/save-profile-credit/', $('#general-form-profile-credit').serialize());
-            lineProgress();
+            $.get('/save-profile-credit/', $('#general-form-profile-credit').serialize(), function(data) {
+                if (data.result == 'ok') {
+                    if (lineProgress()==100) {
+                       window.location.href = '/qualify';   
+                    }
+                }
+            });
         }
         $(this).parent().parent().fadeIn();
-        window.location.href = '/qualify'; 
         return false;
     });
 
@@ -150,6 +156,7 @@ $(document).ready(function(){
            width +=10; 
 
         $('.line-progress').css('width', width+'%')
+        return width;
     }
     lineProgress();
 
