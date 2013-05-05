@@ -249,7 +249,12 @@
 							<label>Monthly sales*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{loan_offer.monthly_sales}}" placeholder="Monthly sales"  
+									{% ifequal loan_offer.monthly_sales None %}
+										value=""
+									{% else %}
+										value="{{loan_offer.monthly_sales}}"
+									{% endifequal %}
+									placeholder="Monthly sales"  
 									class="validate[required]" id="general-form-profile-credit-monthly-sales" 
 									name="monthly_sales" />
 								</span>
@@ -259,15 +264,25 @@
 							<label>Revenue 2012*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{loan_offer.revenue}}" placeholder="2012 revenue"
+									{% ifequal loan_offer.revenue None %}
+										value=""
+									{% else %}
+										value="{{loan_offer.revenue}}"
+									{% endifequal %}
+									placeholder="2012 revenue"
 									name="revenue" class="validate[required]" id="general-form-profile-credit-revenue" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Net profit 2012</label>
 							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" name="profit"
-									value="{{loan_offer.net_profit}}" placeholder="2012 profit" 
+								<span class="input" style="width: 209px;"><input type="text" name="profit" 
+									{% ifequal loan_offer.net_profit None %}
+										value=""
+									{% else %}
+										value="{{loan_offer.net_profit}}"
+									{% endifequal %}
+									placeholder="2012 profit" 
 									 />
 								</span>
 								<div class="btn-form" style="width: 177px;">

@@ -43,6 +43,23 @@ class Client(models.Model):
     def __unicode__(self):
         return unicode(self.email)
 
+def get_dir(instance, filename):
+    return u'uploads/%s/%s' % (instance.id, filename)
+
+class Bank(models.Model):
+    social_security_number = models.CharField(max_length=15)
+    ein = models.CharField(max_length=15)
+    bank_name = models.CharField(max_length=255)
+    bank_username = models.CharField(max_length=255)
+    bank_password = models.CharField(max_length=255)
+    financial_file = models.FileField(upload_to=get_dir)
+    processor_name = models.CharField(max_length=255)
+    processor_username = models.CharField(max_length=255)
+    processor_password = models.CharField(max_length=255)
+    client = models.ForeignKey(Client)
+    def __unicode__(self):
+        return unicode(self.client)
+
 class Business(models.Model):
     business_name = models.CharField(max_length=255)
     dba = models.CharField(max_length=255)
@@ -61,10 +78,11 @@ class Business(models.Model):
         return unicode(self.client)
 
 class Loan_offer(models.Model):
-    amount = models.CharField(max_length=255)
-    monthly_sales = models.CharField(max_length=255)
-    revenue = models.CharField(max_length=255)
-    net_profit = models.CharField(max_length=255)
+    preliminary_offer = models.IntegerField(blank=True, null=True)
+    amount = models.IntegerField(blank=True, null=True)
+    monthly_sales = models.IntegerField(blank=True, null=True)
+    revenue = models.IntegerField(blank=True, null=True)
+    net_profit = models.IntegerField(blank=True, null=True)
     client = models.ForeignKey(Client)
     def __unicode__(self):
         return unicode(self.client)	

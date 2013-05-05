@@ -48,10 +48,14 @@ def qualify(request):
 	loan_offer = Loan_offer.objects.get(client=client.id)
 	return {'request': request, 'loan_offer':loan_offer}
 
-# credit
-@render_to('profile/credit.html')
-def credit(request):
-	return {'request': request}
+# accepted
+@render_to('profile/accepted.html')
+def accepted(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
+	client = Client.objects.get(email=request.session['username'])
+	bank = Bank.objects.get(client=client.id)
+	return {'request': request, 'bank': bank}
 
 # credit offers for profile
 @render_to('profile/credit-offers.html')
@@ -68,7 +72,8 @@ def account(request):
 	client = Client.objects.get(email=request.session['username'])
 	business = Business.objects.get(client=client.id)
 	loan_offer = Loan_offer.objects.get(client=client.id)
-	return {'request': request, 'client': client, 'business':business, 'loan_offer':loan_offer}
+	bank = Bank.objects.get(client=client.id)
+	return {'request': request, 'client': client, 'business':business, 'loan_offer':loan_offer, 'bank': bank}
 
 # statements for profile
 @render_to('profile/statements.html')
@@ -153,6 +158,18 @@ def save_profile_credit(request):
 	loan_offer.revenue = request.GET['revenue']
 	loan_offer.net_profit = request.GET['profit']
 	loan_offer.save()
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# save data for profile bank
+def save_profile_bank(request):
+	client = Client.objects.get(email=request.session['username'])
+	bank = Bank.objects.get(client=client.id)
+	bank.ein = request.GET['ein']
+	bank.social_security_number = request.GET['social_security_number']
+	#bank.bank_name = request.GET['bank_name']
+	#bank.bank_username = request.GET['bank_username']
+	#bank.bank_password = request.GET['bank_password']
+	bank.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # get legal legal_form

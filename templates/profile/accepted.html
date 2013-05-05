@@ -5,29 +5,29 @@
         <div class="frame">
           <ul class="menu">
             <li><a href="/">Home</a></li>
-            <li><a href="/profile/">Apply</a></li>
-            <li><a href="/account/" class="active">My Account</a></li>
+            <li><a href="/profile/accepted/" class="active">Apply</a></li>
+            <li><a href="/account/">My Account</a></li>
           </ul>
         </div>
       </nav>
       <div id="main">
         <h1>Progress</h1>
         <div class="progress">
-          <span class="line-progress" style="width: 66%;">&nbsp;</span>
+          <span class="line-progress" style="width: 100%;">&nbsp;</span>
         </div>
-        <form action="#" class="general-form general-form-other">
+        <form action="#" class="general-form general-form-other" id="form-accepted-first">
           <fieldset>
             <div class="form-block">
               <div class="row">
                 <label>Social Security Number*</label>
                 <div class="input-holder">
-                  <span class="input" style="width: 209px;"><input type="text" value="Social Security" /></span>
+                  <span class="input" style="width: 209px;"><input type="text" value="{{bank.social_security_number}}" placeholder="Social Security" id="form-accepted-first-security" class="validate[required,maxSize[9],minSize[9]]" name="social_security_number"  /></span>
                 </div>
               </div>
               <div class="row">
                 <label>Tax ID (EIN)*</label>
                 <div class="input-holder">
-                  <span class="input" style="width: 209px;"><input type="text" value="EIN" /></span>
+                  <span class="input" style="width: 209px;"><input type="text" value="{{bank.ein}}" placeholder="EIN" id="form-accepted-first-ein" class="validate[required,maxSize[10],minSize[10]]"  name="ein" /></span>
                 </div>
               </div>
             </div>
@@ -35,13 +35,13 @@
               <label>Bank account*<span class="label-info">This information is not shared <br />with third parties*.</span>
               </label>
               <div class="input-holder">
-                <span class="input" style="width: 209px;"><input type="text" value="Bank" /></span>
-                <span class="input" style="width: 209px;"><input type="text" value="Username" /></span>
-                <span class="input" style="width: 209px;"><input type="password" value="Password" /></span>
+                <span class="input" style="width: 209px;"><input type="text" value="" placeholder="Bank" id="form-accepted-first-bank" /></span>
+                <span class="input" style="width: 209px;"><input type="text" value="" placeholder="Username" id="form-accepted-first-username"  /></span>
+                <span class="input" style="width: 209px;"><input type="password" value="" placeholder="Password"id="form-accepted-first-password" /></span>
                 <div class="btn-form btn-form-indent" style="width: 177px;">
                   <span>
                     Save
-                    <input type="button" value="Save" />
+                    <input type="submit" value="Save" id="form-accepted-first-submit" />
                   </span>
                 </div>
               </div>
@@ -49,7 +49,7 @@
           </fieldset>
         </form>
         <span class="information">You are likely to receive substantially better terms of financing if you provide more information</span>
-        <form action="#" class="general-form general-form-other">
+        <form action="#" class="general-form general-form-other"  id="form-accepted-second">
           <fieldset>
             <div class="form-block">
               <div class="row row-indent">
@@ -73,9 +73,9 @@
                 <span class="label-info">This information is not shared <br />with third parties*.</span>
               </label>
               <div class="input-holder">
-                <span class="input" style="width: 209px;"><input type="text" value="Processor" /></span>
-                <span class="input" style="width: 209px;"><input type="text" value="Username" /></span>
-                <span class="input" style="width: 209px;"><input type="password" value="Password" /></span>
+                <span class="input" style="width: 209px;"><input type="text" value="" placeholder="Processor" class="validate[required]" id="form-accepted-second-processor" /></span>
+                <span class="input" style="width: 209px;"><input type="text" value="" placeholder="Username" class="validate[required]" id="form-accepted-second-username"  /></span>
+                <span class="input" style="width: 209px;"><input type="password" value="" placeholder="Password" class="validate[required]" id="form-accepted-second-password" /></span>
               </div>
             </div>
             </div>
@@ -90,7 +90,7 @@
                 <div class="btn-form" style="width: 177px;">
                   <span>
                     Save
-                    <input type="button" value="Save" />
+                    <input type="submit" value="Save" />
                   </span>
                 </div>
               </div>

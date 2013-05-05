@@ -21,10 +21,12 @@ $(document).ready(function(){
 	$('#form-sign-up').validationEngine();
 	$('#form-auth').validationEngine();
     $('#form-auth-main').validationEngine();
+    $('#form-accepted-first').validationEngine();
+    $('#form-accepted-second').validationEngine();
 
     // accepted credit
     $('.accepted-credit').live("click", function(){
-        window.location.href = '/credit';   
+        window.location.href = '/profile/accepted';   
     });
 
     // register
@@ -126,9 +128,21 @@ $(document).ready(function(){
         return false;
     });
 
+    // save profile bank
+    $('#form-accepted-first-submit').live("click", function(){
+        $(this).parent().parent().fadeOut();
+        if ($("#form-accepted-first").validationEngine('validate')) {
+            $.get('/save-profile-accepted-first/', $('#form-accepted-first').serialize(), function(data) {
+            });
+        }
+        $(this).parent().parent().fadeIn();
+        return false;
+    });
+
     $('input[placeholder]').placeholder();
 
     function lineProgress() {
+
         var width = 20;
         var countInput = 0;
         $( "#general-form-profile input" ).each(function( index ) {
@@ -155,7 +169,10 @@ $(document).ready(function(){
         if (countInput > 1)
            width +=10; 
 
-        $('.line-progress').css('width', width+'%')
+        if ($('.line-progress').css('width')=='984px')
+            $('.line-progress').css('width', '100%')
+        else
+            $('.line-progress').css('width', width+'%')            
         return width;
     }
     lineProgress();
