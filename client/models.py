@@ -49,13 +49,9 @@ def get_dir(instance, filename):
 class Bank(models.Model):
     social_security_number = models.CharField(max_length=15)
     ein = models.CharField(max_length=15)
-    bank_name = models.CharField(max_length=255)
-    bank_username = models.CharField(max_length=255)
-    bank_password = models.CharField(max_length=255)
+    bank_file = models.FileField(upload_to=get_dir)
     financial_file = models.FileField(upload_to=get_dir)
-    processor_name = models.CharField(max_length=255)
-    processor_username = models.CharField(max_length=255)
-    processor_password = models.CharField(max_length=255)
+    processor_file =models.FileField(upload_to=get_dir)
     client = models.ForeignKey(Client)
     def __unicode__(self):
         return unicode(self.client)

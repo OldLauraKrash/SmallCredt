@@ -59,3 +59,11 @@ class CountryAdmin(admin.ModelAdmin):
     def get_ordering(self, request):
         return ['name']
 admin.site.register(Country, CountryAdmin)
+
+class BankAdmin(admin.ModelAdmin):
+    list_filter = ['client']
+    list_display = ['client']
+    search_fields = ['client']
+    def get_ordering(self, request):
+        return ['client']
+admin.site.register(Bank, BankAdmin)

@@ -11,19 +11,21 @@
         </div>
       </nav>
       <div id="main">
-        <form action="#" class="form-user form-user-content">
+        <form action="/auth/" method="post" class="form-user form-user-content">
+          {% csrf_token %}
           <fieldset>
             <div class="holder">
               <div class="input-holder" style="width: 149px;">
-                <span class="input"><input type="text" value="" placeholder="Email" /></span>
+                <span class="input"><input type="text" value="" placeholder="Email" name="email" /></span>
               </div>
               <div class="input-holder" style="width: 149px;">
-                <span class="input"><input type="password" value="" placeholder="Password" /></span>
+                <span class="input"><input type="password" value="" placeholder="Password" name="password" /></span>
               </div>
-              <input type="button" class="btn-form" value="Sign in" />
+              <input type="submit" class="btn-form" value="Sign in" />
             </div>
           </fieldset>
         </form>
+        <p style="text-align:center">{{result}}</p>
       </div>
     </div>
   </div>

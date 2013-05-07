@@ -21,8 +21,6 @@ $(document).ready(function(){
 	$('#form-sign-up').validationEngine();
 	$('#form-auth').validationEngine();
     $('#form-auth-main').validationEngine();
-    $('#form-accepted-first').validationEngine();
-    $('#form-accepted-second').validationEngine();
 
     // accepted credit
     $('.accepted-credit').live("click", function(){
@@ -31,7 +29,6 @@ $(document).ready(function(){
 
     // register
 	$('#form-sign-submit').live("click", function(){
-
 		if ($("#form-sign-up").validationEngine('validate')) {
             var amount = $('.ui-slider-handle').html();
             amount = amount.substring(0,amount.length-1);
@@ -118,7 +115,7 @@ $(document).ready(function(){
         if ($("#general-form-profile-credit").validationEngine('validate')) {
             $.get('/save-profile-credit/', $('#general-form-profile-credit').serialize(), function(data) {
                 if (data.result == 'ok') {
-                    if (lineProgress()==100) {
+                    if (lineProgress()==70) {
                        window.location.href = '/qualify';   
                     }
                 }
@@ -127,18 +124,7 @@ $(document).ready(function(){
         $(this).parent().parent().fadeIn();
         return false;
     });
-
-    // save profile bank
-    $('#form-accepted-first-submit').live("click", function(){
-        $(this).parent().parent().fadeOut();
-        if ($("#form-accepted-first").validationEngine('validate')) {
-            $.get('/save-profile-accepted-first/', $('#form-accepted-first').serialize(), function(data) {
-            });
-        }
-        $(this).parent().parent().fadeIn();
-        return false;
-    });
-
+    
     $('input[placeholder]').placeholder();
 
     function lineProgress() {
@@ -151,7 +137,7 @@ $(document).ready(function(){
         });
 
         if (countInput > 10)
-           width +=50; 
+           width +=20; 
 
         var countInput = 0;
         $( "#general-form-profile-business input" ).each(function( index ) {
@@ -169,10 +155,8 @@ $(document).ready(function(){
         if (countInput > 1)
            width +=10; 
 
-        if ($('.line-progress').css('width')=='984px')
-            $('.line-progress').css('width', '100%')
-        else
-            $('.line-progress').css('width', width+'%')            
+
+        $('.line-progress').css('width', width+'%')            
         return width;
     }
     lineProgress();

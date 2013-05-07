@@ -17,7 +17,7 @@
         </div>
         <form action="#" class="general-form general-form-other" id="form-accepted-first">
           <fieldset>
-            <div class="form-block">
+            <div class="">
               <div class="row">
                 <label>Social Security Number*</label>
                 <div class="input-holder">
@@ -34,10 +34,12 @@
             <div class="row">
               <label>Bank account*<span class="label-info">This information is not shared <br />with third parties*.</span>
               </label>
-              <div class="input-holder">
-                <span class="input" style="width: 209px;"><input type="text" value="" placeholder="Bank" id="form-accepted-first-bank" /></span>
-                <span class="input" style="width: 209px;"><input type="text" value="" placeholder="Username" id="form-accepted-first-username"  /></span>
-                <span class="input" style="width: 209px;"><input type="password" value="" placeholder="Password"id="form-accepted-first-password" /></span>
+                <div class="input-holder">
+                  <div class="file">
+                    <input type="file" class="file-input-area" style="opacity: 0;">
+                    <a class="button-gray" href="#">Upload</a>
+                    <span class="file-name"></span>
+                  </div>
                 <div class="btn-form btn-form-indent" style="width: 177px;">
                   <span>
                     Save
@@ -46,13 +48,22 @@
                 </div>
               </div>
             </div>
-          </fieldset>
-        </form>
-        <span class="information">You are likely to receive substantially better terms of financing if you provide more information</span>
-        <form action="#" class="general-form general-form-other"  id="form-accepted-second">
-          <fieldset>
-            <div class="form-block">
-              <div class="row row-indent">
+            <br/>          
+            <div class="row">
+              <label>
+                Processor account
+                <span class="label-info">This information is not shared <br />with third parties*.</span>
+              </label>
+                <div class="input-holder">
+                  <div class="file">
+                    <input type="file" class="file-input-area" style="opacity: 0;">
+                    <a class="button-gray" href="#">Upload</a>
+                    <span class="file-name"></span>
+                  </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
                 <label>Financial Statements</label>
                 <div class="input-holder">
                   <div class="file">
@@ -60,45 +71,16 @@
                     <a class="button-gray" href="#">Upload</a>
                     <span class="file-name"></span>
                   </div>
-                  <span class="or">or</span>
-                  <a href="#" class="green-link color-black" style="width: 180px;">
-                    <span>QuickBooks</span>
-                  </a>
                 </div>
-              </div>
-            
-            <div class="row">
-              <label>
-                Processor account
-                <span class="label-info">This information is not shared <br />with third parties*.</span>
-              </label>
-              <div class="input-holder">
-                <span class="input" style="width: 209px;"><input type="text" value="" placeholder="Processor" class="validate[required]" id="form-accepted-second-processor" /></span>
-                <span class="input" style="width: 209px;"><input type="text" value="" placeholder="Username" class="validate[required]" id="form-accepted-second-username"  /></span>
-                <span class="input" style="width: 209px;"><input type="password" value="" placeholder="Password" class="validate[required]" id="form-accepted-second-password" /></span>
-              </div>
-            </div>
-            </div>
-            <div class="row">
-              <label>
-                IRS Statements
-              </label>
-              <div class="input-holder">
-                <a href="#" class="green-link color-black" style="width: 180px;">
-                  <span>Access</span>
-                </a>
                 <div class="btn-form" style="width: 177px;">
                   <span>
                     Save
                     <input type="submit" value="Save" />
                   </span>
                 </div>
-              </div>
             </div>
           </fieldset>
         </form>
-        <span class="example-text">* We provide only select transactional statistics (see <a href="#">example</a>).</span>
       </div>
     </div>
-  </div>
 {% endblock %}

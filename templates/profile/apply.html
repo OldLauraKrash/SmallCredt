@@ -274,7 +274,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<label>Net profit 2012</label>
+							<label>Net profit 2012*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text" name="profit" 
 									{% ifequal loan_offer.net_profit None %}
@@ -282,7 +282,7 @@
 									{% else %}
 										value="{{loan_offer.net_profit}}"
 									{% endifequal %}
-									placeholder="2012 profit" 
+									placeholder="2012 profit" class="validate[required]" id="general-form-profile-credit-profit"
 									 />
 								</span>
 								<div class="btn-form" style="width: 177px;">

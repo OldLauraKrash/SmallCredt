@@ -42,7 +42,10 @@ def register(request):
 	ticket = hashlib.md5()
 	ticket.update(request.GET['password']+request.GET['email'])
 	client = Client(email=request.GET['email'], password=password.hexdigest(), ticket= ticket.hexdigest())
-	client.save()
+	try:
+		client.save()
+	except:
+		return HttpResponse( json.dumps({'result':'error'}), mimetype="application/json" )
 	# save param business
 	business = Business()
 	business.client=client

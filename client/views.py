@@ -22,7 +22,18 @@ def check_auth(request):
 # auth on page for profile
 @render_to('profile/auth.html')
 def auth(request):
-	return {'request': request}
+	result = ''
+	if request.method == 'POST' and request.POST:
+		password = hashlib.md5()
+		password.update(request.POST['password'])
+		client = Client.objects.filter(email=request.POST['email'], password=password.hexdigest())	
+		try: 
+			if client[0].email!='' and len(client)==1:
+				request.session['username'] = client[0].email
+				return HttpResponseRedirect("/profile/")
+		except:
+			result = 'Wrong Username/Email and password combination.'
+	return {'request': request, 'result': result}
 
 # profile client
 @render_to('profile/apply.html')
@@ -153,10 +164,13 @@ def save_profile_business(request):
 def save_profile_credit(request):
 	client = Client.objects.get(email=request.session['username'])
 	loan_offer = Loan_offer.objects.get(client=client.id)
-	loan_offer.amount = request.GET['amount']
-	loan_offer.monthly_sales = request.GET['monthly_sales']
-	loan_offer.revenue = request.GET['revenue']
-	loan_offer.net_profit = request.GET['profit']
+	loan_offer.amount = int(request.GET['amount'])
+	loan_offer.monthly_sales = int(request.GET['monthly_sales'])
+	loan_offer.revenue = int(request.GET['revenue'])
+	if request.GET['profit']!='':
+		loan_offer.net_profit = int(request.GET['profit'])
+	else:
+		loan_offer.net_profit = 0
 	loan_offer.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
