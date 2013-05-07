@@ -1,10 +1,10 @@
 {% extends 'misc/base.html' %}
 {% block content %}
   <div class="promo">
-      <div class="card">
-        <img src="{{ MEDIA_URL }}images/img-card.png" alt="" width="188" height="119" />
-      </div>
-      <img src="{{ MEDIA_URL }}images/img02.jpg" alt="" width="986" height="418" />
+      <div class="video">
+        <iframe src="http://player.vimeo.com/video/65617946?title=0&amp;byline=0&amp;portrait=0&amp;color=92c763" width="550" height="310" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+        </iframe>
+  		</div>
       <h1>How much money does <br /><span>your business need?</span></h1>
       <form action="#" class="form-content">
         <fieldset>
@@ -53,13 +53,10 @@
           </li>
         </ul>
         <div class="container">
-          <div class="video">
-            <a href="#"><img src="{{ MEDIA_URL }}images/img01.jpg" alt="" width="466" height="333" /></a>
-          </div>
           <div class="text">
             <h2>Terms:</h2>
             <ul class="list-terms">
-              <li><span class="green-text">Affordable</span> – APR of 15-25%</li>
+              <li><span class="green-text">Affordable</span> – lenders compete to provide best rates</li>
               <li><span class="green-text">Convenient</span> – automatic daily repayment</li>
               <li><span class="green-text">Flexible</span> – repayment fully in line with your business perfomance</li>
             </ul>
