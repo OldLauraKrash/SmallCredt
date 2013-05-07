@@ -381,6 +381,7 @@ form,fieldset{
 }
 .container{
 	overflow:hidden;
+	text-align:center;
 	padding: 0 8px 10px;
 }
 .promo .video{
