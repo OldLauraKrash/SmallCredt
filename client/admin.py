@@ -3,30 +3,30 @@ from django.contrib import admin
 from django.contrib.contenttypes import generic
 from client.models import *
 
-class ClientAdmin(admin.ModelAdmin):
+class System_accountAdmin(admin.ModelAdmin):
     list_filter = ['created']
-    list_display = ('email', 'created', 'enable')
+    list_display = ('email', 'created', 'status')
     search_fields = ['email']
     def get_ordering(self, request):
         return ['email']
-admin.site.register(Client, ClientAdmin)
+admin.site.register(System_account, System_accountAdmin)
 
+
+class BorrowerAdmin(admin.ModelAdmin):
+    list_filter = ['system_account']
+    list_display = ['system_account']
+    search_fields = ['system_account']
+    def get_ordering(self, request):
+        return ['system_account']
+admin.site.register(Borrower, BorrowerAdmin)
 
 class BusinessAdmin(admin.ModelAdmin):
-    list_filter = ['client']
-    list_display = ['client']
-    search_fields = ['client']
+    list_filter = ['system_account']
+    list_display = ['system_account']
+    search_fields = ['system_account']
     def get_ordering(self, request):
-        return ['client']
+        return ['system_account']
 admin.site.register(Business, BusinessAdmin)
-
-class Loan_offerAdmin(admin.ModelAdmin):
-    list_filter = ['client']
-    list_display = ['client']
-    search_fields = ['client']
-    def get_ordering(self, request):
-        return ['client']
-admin.site.register(Loan_offer, Loan_offerAdmin)
 
 class LegalAdmin(admin.ModelAdmin):
     list_filter = ['name']
@@ -61,9 +61,17 @@ class CountryAdmin(admin.ModelAdmin):
 admin.site.register(Country, CountryAdmin)
 
 class BankAdmin(admin.ModelAdmin):
-    list_filter = ['client']
-    list_display = ['client']
-    search_fields = ['client']
+    list_filter = ['system_account']
+    list_display = ['system_account']
+    search_fields = ['system_account']
     def get_ordering(self, request):
-        return ['client']
+        return ['system_account']
 admin.site.register(Bank, BankAdmin)
+
+class Business_measureAdmin(admin.ModelAdmin):
+    list_filter = ['system_account']
+    list_display = ['system_account']
+    search_fields = ['system_account']
+    def get_ordering(self, request):
+        return ['system_account']
+admin.site.register(Business_measure, Business_measureAdmin)

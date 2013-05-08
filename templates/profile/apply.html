@@ -22,29 +22,29 @@
 							<div class="input-holder">
 								<span class="input" style="width: 52px;">
 									<input type="text"
-									 {% ifequal client.suffix ' ' %}
+									 {% ifequal borrower.suffix ' ' %}
 									 	value=""
 									 {% else %}
-									 	value="{{client.suffix}}"
+									 	value="{{borrower.suffix}}"
 									 {% endifequal %} 
 									placeholder="Title"
 									id="general-form-profile-your-name-first" name="suffix" />
 								</span>
 								<span class="input" style="width: 120px;">
 									<input type="text" 
-									value="{{client.first_name}}" placeholder="First"
+									value="{{borrower.first_name}}" placeholder="First"
 									class="validate[required]" 
 									id="general-form-profile-your-name-second" name="first_name" />
 								</span>
 								<span class="input" style="width: 162px;">
 									<input type="text"
-									value="{{client.middle_name}}" placeholder="Middle" 
+									value="{{borrower.middle_name}}" placeholder="Middle" 
 									id="general-form-profile-your-name-third" name="middle_name" />
 								</span>
 								<span class="input" style="width: 204px;"><input type="text"
-									value="{{client.last_name}}" placeholder="Last"  
+									value="{{borrower.last_name}}" placeholder="Last"  
 									class="validate[required]" id="general-form-profile-your-name-four"  name="last_name" /></span>
-								<span class="input" style="width: 50px; margin:0;"><input type="text"  placeholder="Suffix" name="other_name"  value="{{client.other_name}}" />
+								<span class="input" style="width: 50px; margin:0;"><input type="text"  placeholder="Suffix" name="other_name"  value="{{borrower.other_name}}" />
 								</span>
 							</div>
 						</div>
@@ -52,35 +52,35 @@
 							<label>Personal address*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{client.street}}" placeholder="Street" 
+									value="{{borrower.street}}" placeholder="Street" 
 									class="validate[required]" id="general-form-profile-address-first"  name="street" />
 								</span>
 								<span class="input" style="width: 107px;"><input type="text"
-									value="{{client.city}}" placeholder="City" 
+									value="{{borrower.city}}" placeholder="City" 
 								 class="validate[required]" id="general-form-profile-addresse-second" name="city" />
 								</span>
 								<span class="input" style="width: 59px;"><input type="text"
 
-								 {% ifequal client.state None %}
+								 {% ifequal borrower.state None %}
 								 	value=""
 								 {% else %}
-								 	value="{{client.state}}"
+								 	value="{{borrower.state}}"
 								 {% endifequal %}
 
 								 placeholder="State"
 								  id="general-form-profile-addresse-third" name="state" class="input-state validate[required]" />
 								</span>
 								<span class="input" style="width: 103px;"><input type="text"
-								 	value="{{client.zip_code}}" placeholder="Zip code" 
+								 	value="{{borrower.zip_code}}" placeholder="Zip code" 
 									class="validate[required]" id="general-form-profile-addresse-four"  name="zip_code" />
 								</span>
 								<span class="input" style="width: 76px;">
 									<input type="text"
 
-										 {% ifequal client.country None %}
+										 {% ifequal borrower.country None %}
 										 	value=""
 										 {% else %}
-										 	value="{{client.country}}"
+										 	value="{{borrower.country}}"
 										 {% endifequal %}
 
 									placeholder="Country" class="input-country validate[required]"
@@ -93,10 +93,10 @@
 							<label>Personal phone*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{client.home_phone}}" placeholder="Your home phone" 								 
+									value="{{borrower.home_phone}}" placeholder="Your home phone" 								 
 									id="general-form-profile-phone" name="home_phone" /></span>
 								<span class="input" style="width: 204px;"><input type="text"
-									value="{{client.cell_phone}}" placeholder="Your cell phone"
+									value="{{borrower.cell_phone}}" placeholder="Your cell phone"
 									id="general-form-profile-second" name="cell_phone" class="validate[required,custom[phone]]" /></span>
 							</div>
 						</div>
@@ -104,7 +104,7 @@
 							<label>Date of birth*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{ client.date_of_birth|date:'Y-m-d' }}" placeholder="YYYY-MM-DD"
+									value="{{ borrower.date_of_birth|date:'Y-m-d' }}" placeholder="YYYY-MM-DD"
 									class="validate[required, custom[date]]"
 									id="general-form-profile-date" name="date_of_birth" /></span>
 							</div>
@@ -114,7 +114,7 @@
 							<div class="input-holder">
 								<span class="input" style="width: 209px;">
 									<input type="text" 
-									value="{{client.email}}" placeholder="Email"
+									value="{{system_account.email}}" placeholder="Email"
 									class="validate[required, custom[email]]" id="general-form-profile-email" name="email" /></span>
 								<div class="btn-form" style="width: 177px;">
 									<span>
@@ -241,7 +241,7 @@
 							<label>Loan amount*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209 px;"><input type="text"
-									value="{{loan_offer.amount}}" placeholder="Loan amount" 
+									value="{{business_measure.amount}}" placeholder="Loan amount" 
 									class="validate[required]" id="general-form-profile-credit-loan-amount" name="amount"  /></span>
 							</div>
 						</div>
@@ -249,10 +249,10 @@
 							<label>Monthly sales*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									{% ifequal loan_offer.monthly_sales None %}
+									{% ifequal business_measure.monthly_sales None %}
 										value=""
 									{% else %}
-										value="{{loan_offer.monthly_sales}}"
+										value="{{business_measure.monthly_sales}}"
 									{% endifequal %}
 									placeholder="Monthly sales"  
 									class="validate[required]" id="general-form-profile-credit-monthly-sales" 
@@ -264,10 +264,10 @@
 							<label>Revenue 2012*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									{% ifequal loan_offer.revenue None %}
+									{% ifequal business_measure.revenue None %}
 										value=""
 									{% else %}
-										value="{{loan_offer.revenue}}"
+										value="{{business_measure.revenue}}"
 									{% endifequal %}
 									placeholder="2012 revenue"
 									name="revenue" class="validate[required]" id="general-form-profile-credit-revenue" /></span>
@@ -277,10 +277,10 @@
 							<label>Net profit 2012*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text" name="profit" 
-									{% ifequal loan_offer.net_profit None %}
+									{% ifequal business_measure.net_profit None %}
 										value=""
 									{% else %}
-										value="{{loan_offer.net_profit}}"
+										value="{{business_measure.net_profit}}"
 									{% endifequal %}
 									placeholder="2012 profit" class="validate[required]" id="general-form-profile-credit-profit"
 									 />

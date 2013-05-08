@@ -13,21 +13,22 @@
       <div id="main">
         <h1>Progress</h1>
         <div class="progress">
-          <span class="line-progress" style="width: 100%;">&nbsp;</span>
+          <span class="line-progress" style="width: 70%;">&nbsp;</span>
         </div>
-        <form action="#" class="general-form general-form-other" id="form-accepted-first">
+        <form action="/profile/accepted/" class="general-form general-form-other" method="post" enctype="multipart/form-data" id="general-form-profile-accepted">
+          {% csrf_token %}
           <fieldset>
             <div class="">
               <div class="row">
                 <label>Social Security Number*</label>
                 <div class="input-holder">
-                  <span class="input" style="width: 209px;"><input type="text" value="{{bank.social_security_number}}" placeholder="Social Security" id="form-accepted-first-security" class="validate[required,maxSize[9],minSize[9]]" name="social_security_number"  /></span>
+                  <span class="input" style="width: 209px;"><input type="text" value="{{borrower.ssn}}" placeholder="Social Security" id="form-accepted-first-security" class="validate[required,maxSize[9],minSize[9]]" name="ssn"  /></span>
                 </div>
               </div>
               <div class="row">
                 <label>Tax ID (EIN)*</label>
                 <div class="input-holder">
-                  <span class="input" style="width: 209px;"><input type="text" value="{{bank.ein}}" placeholder="EIN" id="form-accepted-first-ein" class="validate[required,maxSize[10],minSize[10]]"  name="ein" /></span>
+                  <span class="input" style="width: 209px;"><input type="text" value="{{business.ein}}" placeholder="EIN" id="form-accepted-first-ein" class="validate[required,maxSize[10],minSize[10]]"  name="ein" /></span>
                 </div>
               </div>
             </div>
@@ -36,30 +37,26 @@
               </label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area" style="opacity: 0;">
+                    <input type="file" class="file-input-area {% if bank.bank_file == '' %} validate[required] {% endif %}" style="opacity: 0;" id="form-accepted-first-file1" name="bank_file">
                     <a class="button-gray" href="#">Upload</a>
-                    <span class="file-name"></span>
+                    <span class="file-name">{{bank.bank_file}}</span>
                   </div>
-                <div class="btn-form btn-form-indent" style="width: 177px;">
-                  <span>
-                    Save
-                    <input type="submit" value="Save" id="form-accepted-first-submit" />
-                  </span>
-                </div>
+                  <a href="/{{bank.bank_file}}">{{bank.bank_file}}</a>
               </div>
             </div>
             <br/>          
             <div class="row">
               <label>
-                Processor account
+                Processor account*
                 <span class="label-info">This information is not shared <br />with third parties*.</span>
               </label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area" style="opacity: 0;">
+                    <input type="file" class="file-input-area {% if bank.processor_file == '' %} validate[required] {% endif %}" style="opacity: 0;" id="form-accepted-first-file2" name="processor_file">
                     <a class="button-gray" href="#">Upload</a>
                     <span class="file-name"></span>
                   </div>
+                  <a href="/{{bank.processor_file}}">{{bank.processor_file}}</a>
                 </div>
             </div>
             <br/>
@@ -67,10 +64,11 @@
                 <label>Financial Statements</label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area" style="opacity: 0;">
+                    <input type="file" class="file-input-area {% if bank.processor_file == '' %} validate[required] {% endif %}" style="opacity: 0;" id="form-accepted-first-file3" name="financial_file">
                     <a class="button-gray" href="#">Upload</a>
                     <span class="file-name"></span>
                   </div>
+                  <a href="/{{bank.financial_file}}">{{bank.financial_file}}</a>
                 </div>
                 <div class="btn-form" style="width: 177px;">
                   <span>

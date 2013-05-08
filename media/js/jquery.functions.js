@@ -21,6 +21,7 @@ $(document).ready(function(){
 	$('#form-sign-up').validationEngine();
 	$('#form-auth').validationEngine();
     $('#form-auth-main').validationEngine();
+    $('#general-form-profile-accepted').validationEngine();
 
     // accepted credit
     $('.accepted-credit').live("click", function(){
@@ -128,6 +129,9 @@ $(document).ready(function(){
     $('input[placeholder]').placeholder();
 
     function lineProgress() {
+
+        if ($('.line-progress').css('width') == '689px')
+            return 70;
 
         var width = 20;
         var countInput = 0;

@@ -25,10 +25,10 @@ def login(request):
 	result = 'error'
 	password = hashlib.md5()
 	password.update(request.GET['password'])
-	client = Client.objects.filter(email=request.GET['email'], password=password.hexdigest())	
+	system_account = System_account.objects.filter(email=request.GET['email'], password=password.hexdigest())	
 	try: 
-		if client[0].email!='' and len(client)==1:
-			request.session['username'] = client[0].email
+		if system_account[0].email!='' and len(system_account)==1:
+			request.session['username'] = system_account[0].email
 			result = 'ok'
 	except:
 		result = 'error'
@@ -41,37 +41,46 @@ def register(request):
 	password.update(request.GET['password'])
 	ticket = hashlib.md5()
 	ticket.update(request.GET['password']+request.GET['email'])
-	client = Client(email=request.GET['email'], password=password.hexdigest(), ticket= ticket.hexdigest())
+	system_account = System_account(email=request.GET['email'], password=password.hexdigest(), ticket= ticket.hexdigest())
 	try:
-		client.save()
+		system_account.save()
 	except:
 		return HttpResponse( json.dumps({'result':'error'}), mimetype="application/json" )
-	# save param business
+
+	# save param borrower
+	borrower = Borrower()
+	borrower.system_account=system_account
+	borrower.save()
+
+	# save param Business
 	business = Business()
-	business.client=client
+	business.system_account=system_account
 	business.save()
-	# save param credit
-	credit = Loan_offer()
-	credit.client=client
-	credit.preliminary_offer = 0
-	credit.amount = request.GET['amount'] + "000"
-	credit.save()
-	# save param bank
+
+	# save param Bank
 	bank = Bank()
-	bank.client=client
+	bank.system_account=system_account
 	bank.save()
+
+	# save param Business measure
+	business_measure = Business_measure()
+	business_measure.system_account=system_account
+	business_measure.preliminary_offer = 0
+	business_measure.amount = request.GET['amount'] + "000"
+	business_measure.save()
+
 	# send message on email
-	request.session['username'] = client.email
+	request.session['username'] = system_account.email
 	if settings.PROD:
-		send_mail(const.REGISTER_THEMA_EMAIL, const.REGISTER_TEXT_EMAIL+client.ticket, const.EMAIL_FROM, [client.email], fail_silently=False)
-	return HttpResponse( json.dumps({'result':'ok', 'username':client.email}), mimetype="application/json" )
+		send_mail(const.REGISTER_THEMA_EMAIL, const.REGISTER_TEXT_EMAIL+system_account.ticket, const.EMAIL_FROM, [system_account.email], fail_silently=False)
+	return HttpResponse( json.dumps({'result':'ok', 'username':system_account.email}), mimetype="application/json" )
 
 # send link on change password
 def forget_send(request):
 	if settings.PROD:
 		try:
-			client = Client.objects.get(email=request.GET['email'])	
-			send_mail(const.FORGET_THEMA_EMAIL, const.FORGET_TEXT_EMAIL+client.ticket, const.EMAIL_FROM, [client.email], fail_silently=False)	
+			system_account = System_account.objects.get(email=request.GET['email'])	
+			send_mail(const.FORGET_THEMA_EMAIL, const.FORGET_TEXT_EMAIL+system_account.ticket, const.EMAIL_FROM, [system_account.email], fail_silently=False)	
 		except:
 			return HttpResponse( json.dumps({'result':'error'}))		
 	return HttpResponse( json.dumps({'result':'ok'}))
@@ -80,16 +89,16 @@ def forget_send(request):
 @render_to('main/forget.html')
 def forget(request, ticket):
 	try:
-		client = Client.objects.get(ticket=ticket)
+		system_account = System_account.objects.get(ticket=ticket)
 	except:
 		return HttpResponseRedirect("/")
 			
 	if request.method == 'POST' and request.POST:
-		client = Client.objects.get(ticket=ticket)
+		system_account = System_account.objects.get(ticket=ticket)
 		password = hashlib.md5()
 		password.update(request.POST['password'])
-		client.password = password.hexdigest()
-		client.save()
+		system_account.password = password.hexdigest()
+		system_account.save()
 		return HttpResponseRedirect("/")
 
 	return {'request': request, 'ticket': ticket}
@@ -97,10 +106,10 @@ def forget(request, ticket):
 # active account
 def active_account(request, ticket):
 	try:
-		client = Client.objects.get(ticket=ticket)
-		client.enable=True
-		client.save()
-		request.session['username'] = client.email
+		system_account = System_account.objects.get(ticket=ticket)
+		system_account.status=True
+		system_account.save()
+		request.session['username'] = system_account.email
 		return HttpResponseRedirect("/profile")
 	except:
 		return HttpResponseRedirect("/")	

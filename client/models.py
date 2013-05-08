@@ -21,10 +21,17 @@ class Country(models.Model):
     def __unicode__(self):
         return unicode(self.name)
 
-class Client(models.Model):
+class System_account(models.Model):
     email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
     ticket = models.CharField(max_length=255) 
+    account_type = models.BooleanField()
+    status = models.BooleanField()
+    created = models.DateTimeField(auto_now_add=True)   
+    def __unicode__(self):
+        return unicode(self.email)
+
+class Borrower(models.Model): 
     suffix = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     middle_name = models.CharField(max_length=255)
@@ -38,27 +45,17 @@ class Client(models.Model):
     home_phone = models.CharField(max_length=255)
     cell_phone = models.CharField(max_length=255)
     date_of_birth = models.DateTimeField(null=True)
-    enable = models.BooleanField()
-    created = models.DateTimeField(auto_now_add=True)   
+    ssn = models.CharField(max_length=15)
+    borrower_status = models.BooleanField()
+    created = models.DateTimeField(auto_now_add=True)
+    system_account = models.ForeignKey(System_account)   
     def __unicode__(self):
-        return unicode(self.email)
-
-def get_dir(instance, filename):
-    return u'uploads/%s/%s' % (instance.id, filename)
-
-class Bank(models.Model):
-    social_security_number = models.CharField(max_length=15)
-    ein = models.CharField(max_length=15)
-    bank_file = models.FileField(upload_to=get_dir)
-    financial_file = models.FileField(upload_to=get_dir)
-    processor_file =models.FileField(upload_to=get_dir)
-    client = models.ForeignKey(Client)
-    def __unicode__(self):
-        return unicode(self.client)
+        return unicode(self.system_account)
 
 class Business(models.Model):
     business_name = models.CharField(max_length=255)
     dba = models.CharField(max_length=255)
+    ein = models.CharField(max_length=15)
     legal_form = models.ForeignKey(Legal, null=True)
     state_of_incorporation = models.ForeignKey(State, null=True, related_name='state_of_incorporation')
     date_founded = models.DateTimeField(null=True)
@@ -69,17 +66,28 @@ class Business(models.Model):
     country = models.ForeignKey(Country, null=True)
     business_phone = models.CharField(max_length=255)
     industry = models.ForeignKey(Industry, null=True)
-    client = models.ForeignKey(Client)
+    system_account = models.ForeignKey(System_account)
     def __unicode__(self):
-        return unicode(self.client)
+        return unicode(self.system_account)
 
-class Loan_offer(models.Model):
+def get_dir(instance, filename):
+    return u'uploads/%s/%s' % (instance.id, filename)
+
+class Bank(models.Model):
+    bank_file = models.FileField(upload_to=get_dir)
+    financial_file = models.FileField(upload_to=get_dir)
+    processor_file =models.FileField(upload_to=get_dir)
+    system_account = models.ForeignKey(System_account)
+    def __unicode__(self):
+        return unicode(self.system_account)
+
+class Business_measure(models.Model):
     preliminary_offer = models.IntegerField(blank=True, null=True)
     amount = models.IntegerField(blank=True, null=True)
     monthly_sales = models.IntegerField(blank=True, null=True)
     revenue = models.IntegerField(blank=True, null=True)
     net_profit = models.IntegerField(blank=True, null=True)
-    client = models.ForeignKey(Client)
+    system_account = models.ForeignKey(System_account)
     def __unicode__(self):
-        return unicode(self.client)	
+        return unicode(self.system_account)	
 

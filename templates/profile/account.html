@@ -34,40 +34,58 @@
 					<div class="table-info">
 						<table>
 							<tbody>
-								{% if client.first_name != '' %}
+								{% if borrower.first_name != '' %}
 								<tr>
 									<td class="col01">Your name</td>
-									<td class="col02">{{client.suffix}} {{client.first_name}} {{client.middle_name}} {{client.last_name}}</td>
+									<td class="col02">{{borrower.suffix}} {{borrower.first_name}} {{borrower.middle_name}} {{borrower.last_name}}</td>
 								</tr>
 								{% endif %}	
-								{% if client.street != '' %}							
+								{% if borrower.street != '' %}							
 								<tr>
 									<td class="col01">Personal address</td>
-									<td class="col02">{{client.street}}, {{client.city}}, {{client.state}}, {{ client.zip_code }}, {{ client.country }} </td>
+									<td class="col02">{{borrower.street}}, {{borrower.city}}, {{borrower.state}}, {{ borrower.zip_code }}, {{ borrower.country }} </td>
 								</tr>
 								{% endif %}
-								{% if client.cell_phone != '' %}		
+								{% if borrower.cell_phone != '' %}		
 								<tr>
 									<td class="col01">Personal phone</td>
-									<td class="col02">{{ client.home_phone }} {{ client.cell_phone }}</td>
+									<td class="col02">{{ borrower.home_phone }} {{ borrower.cell_phone }}</td>
 								</tr>
 								{% endif %}
-								{% if client.email != '' %}
+								{% if borrower.email != '' %}
 								<tr>
 									<td class="col01">Email</td>
-									<td class="col02"><a href="mailto:{{ client.email }}" class="link-mail">{{ client.email }}</a></td>
+									<td class="col02"><a href="mailto:{{ system_account.email }}" class="link-mail">{{ system_account.email }}</a></td>
 								</tr>
 								{% endif %}
-								{% if bank.social_security_number != '' %}
+								{% if borrower.ssn != '' %}
 								<tr>
 									<td class="col01">Social Security #</td>
-									<td class="col02">{{bank.social_security_number}}</td>
+									<td class="col02">{{borrower.ssn}}</td>
 								</tr>
 								{% endif %}
-								{% if bank.ein != '' %}
+								{% if business.ein != '' %}
 								<tr>
 									<td class="col01">EIN</td>
-									<td class="col02">{{bank.ein}}</td>
+									<td class="col02">{{business.ein}}</td>
+								</tr>
+								{% endif %}
+								{% if bank.bank_file != '' %}
+								<tr>
+									<td class="col01">Bank account</td>
+									<td class="col02"><a href="/{{bank.bank_file}}">{{bank.bank_file}}</a></td>
+								</tr>
+								{% endif %}
+								{% if bank.processor_file != '' %}
+								<tr>
+									<td class="col01">Processor account</td>
+									<td class="col02"><a href="/{{bank.processor_file}}">{{bank.processor_file}}</a></td>
+								</tr>
+								{% endif %}
+								{% if bank.financial_file != '' %}
+								<tr>
+									<td class="col01">Financial Statements</td>
+									<td class="col02"><a href="/{{bank.financial_file}}">{{bank.financial_file}}</a></td>
 								</tr>
 								{% endif %}
 							</tbody>
@@ -107,22 +125,22 @@
 									<td class="col02">{{ business.industry }}</td>
 								</tr>
 								{% endif %}
-								{% if loan_offer.monthly_sales != None %}
+								{% if business_measure.monthly_sales != None %}
 								<tr>
 									<td class="col01">Monthly sales</td>
-									<td class="col02">${{loan_offer.monthly_sales}}</td>
+									<td class="col02">${{business_measure.monthly_sales}}</td>
 								</tr>
 								{% endif %}
-								{% if loan_offer.revenue != None %}
+								{% if business_measure.revenue != None %}
 								<tr>
 									<td class="col01">Revenue 2012</td>
-									<td class="col02">${{loan_offer.revenue}}</td>
+									<td class="col02">${{business_measure.revenue}}</td>
 								</tr>
 								{% endif %}
-								{% if loan_offer.net_profit != None %}
+								{% if business_measure.net_profit != None %}
 								<tr>
 									<td class="col01">Net profit 2012</td>
-									<td class="col02">${{loan_offer.net_profit}}</td>
+									<td class="col02">${{business_measure.net_profit}}</td>
 								</tr>
 								{% endif %}
 							</tbody>

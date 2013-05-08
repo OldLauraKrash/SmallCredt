@@ -26,10 +26,10 @@ def auth(request):
 	if request.method == 'POST' and request.POST:
 		password = hashlib.md5()
 		password.update(request.POST['password'])
-		client = Client.objects.filter(email=request.POST['email'], password=password.hexdigest())	
+		system_account = System_account.objects.filter(email=request.POST['email'], password=password.hexdigest())	
 		try: 
-			if client[0].email!='' and len(client)==1:
-				request.session['username'] = client[0].email
+			if system_account[0].email!='' and len(system_account)==1:
+				request.session['username'] = system_account[0].email
 				return HttpResponseRedirect("/profile/")
 		except:
 			result = 'Wrong Username/Email and password combination.'
@@ -40,33 +40,50 @@ def auth(request):
 def profile(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-	client = Client.objects.get(email=request.session['username'])
-	business = Business.objects.get(client=client.id)
-	loan_offer = Loan_offer.objects.get(client=client.id)
+	system_account = System_account.objects.get(email=request.session['username'])
+	business = Business.objects.get(system_account=system_account.id)
+	borrower = Borrower.objects.get(system_account=system_account.id)
 	try:
-		loan_offer.amount = request.GET['amount'] + "000"
-		loan_offer.save()
+		business_measure.amount = request.GET['amount'] + "000"
+		business_measure.save()
 	except:
-		loan_offer = Loan_offer.objects.get(client=client.id)
-	return {'request': request, 'client': client, 'business':business, 'loan_offer':loan_offer}
+		business_measure = Business_measure.objects.get(system_account=system_account.id)
+	return {'request': request, 'system_account': system_account, 'borrower':borrower, 'business':business, 'business_measure':business_measure}
 
 # qualify
 @render_to('profile/qualify.html')
 def qualify(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-	client = Client.objects.get(email=request.session['username'])
-	loan_offer = Loan_offer.objects.get(client=client.id)
-	return {'request': request, 'loan_offer':loan_offer}
+	system_account = System_account.objects.get(email=request.session['username'])
+	business_measure = Business_measure.objects.get(system_account=system_account.id)
+	return {'request': request, 'business_measure':business_measure}
 
 # accepted
 @render_to('profile/accepted.html')
 def accepted(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-	client = Client.objects.get(email=request.session['username'])
-	bank = Bank.objects.get(client=client.id)
-	return {'request': request, 'bank': bank}
+	system_account = System_account.objects.get(email=request.session['username'])
+	bank = Bank.objects.get(system_account=system_account.id)
+	business = Business.objects.get(system_account=system_account.id)
+	borrower = Borrower.objects.get(system_account=system_account.id)
+	if request.method == 'POST' and request.POST:
+		business.ein = request.POST['ein']
+		business.save()
+
+		borrower.ssn = request.POST['ssn']
+		borrower.save()
+
+		try:
+			bank.bank_file = request.FILES['bank_file']
+			bank.financial_file = request.FILES['financial_file']
+			bank.processor_file = request.FILES['processor_file']
+		except:
+			bank.save()
+		bank.save()		
+	return {'request': request, 'bank': bank, 'business':business, 'borrower':borrower}
+
 
 # credit offers for profile
 @render_to('profile/credit-offers.html')
@@ -80,11 +97,12 @@ def credit_offers(request):
 def account(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-	client = Client.objects.get(email=request.session['username'])
-	business = Business.objects.get(client=client.id)
-	loan_offer = Loan_offer.objects.get(client=client.id)
-	bank = Bank.objects.get(client=client.id)
-	return {'request': request, 'client': client, 'business':business, 'loan_offer':loan_offer, 'bank': bank}
+	system_account = System_account.objects.get(email=request.session['username'])
+	borrower = Borrower.objects.get(system_account=system_account.id)
+	business = Business.objects.get(system_account=system_account.id)
+	bank = Bank.objects.get(system_account=system_account.id)
+	business_measure = Business_measure.objects.get(system_account=system_account.id)
+	return {'request': request, 'system_account': system_account, 'business':business, 'borrower':borrower, 'bank': bank, 'business_measure': business_measure}
 
 # statements for profile
 @render_to('profile/statements.html')
@@ -95,35 +113,36 @@ def statements(request):
 
 # save data for profile page
 def save_profile_main(request):
-	client = Client.objects.get(email=request.session['username'])
-	client.suffix = request.GET['suffix']
-	client.first_name = request.GET['first_name']
-	client.middle_name = request.GET['middle_name']
-	client.last_name = request.GET['last_name']
-	client.other_name = request.GET['other_name']
-	client.street = request.GET['street']
-	client.city = request.GET['city']
+	system_account = System_account.objects.get(email=request.session['username'])
+	borrower = Borrower.objects.get(system_account=system_account.id)
+	borrower.suffix = request.GET['suffix']
+	borrower.first_name = request.GET['first_name']
+	borrower.middle_name = request.GET['middle_name']
+	borrower.last_name = request.GET['last_name']
+	borrower.other_name = request.GET['other_name']
+	borrower.street = request.GET['street']
+	borrower.city = request.GET['city']
 	try: 
 		state=State.objects.get(name=request.GET['state'])
-		client.state=state
+		borrower.state=state
 	except:
-		client.state = ''
-	client.zip_code = request.GET['zip_code']
+		borrower.state = ''
+	borrower.zip_code = request.GET['zip_code']
 	try: 
 		country=Country.objects.get(name=request.GET['country'])
-		client.country=country
+		borrower.country=country
 	except:
 		client.country = ''	
-	client.home_phone = request.GET['home_phone']
-	client.cell_phone = request.GET['cell_phone']
-	client.date_of_birth = request.GET['date_of_birth']
-	client.save()
+	borrower.home_phone = request.GET['home_phone']
+	borrower.cell_phone = request.GET['cell_phone']
+	borrower.date_of_birth = request.GET['date_of_birth']
+	borrower.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # save data for profile business page
 def save_profile_business(request):
-	client = Client.objects.get(email=request.session['username'])
-	business = Business.objects.get(client=client.id)
+	system_account = System_account.objects.get(email=request.session['username'])
+	business = Business.objects.get(system_account=system_account.id)
 	business.business_name = request.GET['business_name']
 	business.dba = request.GET['dba']
 	try: 
@@ -162,28 +181,16 @@ def save_profile_business(request):
 
 # save data for profile credit page
 def save_profile_credit(request):
-	client = Client.objects.get(email=request.session['username'])
-	loan_offer = Loan_offer.objects.get(client=client.id)
-	loan_offer.amount = int(request.GET['amount'])
-	loan_offer.monthly_sales = int(request.GET['monthly_sales'])
-	loan_offer.revenue = int(request.GET['revenue'])
+	system_account = System_account.objects.get(email=request.session['username'])
+	business_measure = Business_measure.objects.get(system_account=system_account.id)
+	business_measure.amount = int(request.GET['amount'])
+	business_measure.monthly_sales = int(request.GET['monthly_sales'])
+	business_measure.revenue = int(request.GET['revenue'])
 	if request.GET['profit']!='':
-		loan_offer.net_profit = int(request.GET['profit'])
+		business_measure.net_profit = int(request.GET['profit'])
 	else:
-		loan_offer.net_profit = 0
-	loan_offer.save()
-	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
-
-# save data for profile bank
-def save_profile_bank(request):
-	client = Client.objects.get(email=request.session['username'])
-	bank = Bank.objects.get(client=client.id)
-	bank.ein = request.GET['ein']
-	bank.social_security_number = request.GET['social_security_number']
-	#bank.bank_name = request.GET['bank_name']
-	#bank.bank_username = request.GET['bank_username']
-	#bank.bank_password = request.GET['bank_password']
-	bank.save()
+		business_measure.net_profit = 0
+	business_measure.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # get legal legal_form
