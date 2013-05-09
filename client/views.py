@@ -8,6 +8,7 @@ from client.models import *
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 # check auth client
 def check_auth(request):
@@ -65,24 +66,18 @@ def accepted(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
-	bank = Bank.objects.get(system_account=system_account.id)
 	business = Business.objects.get(system_account=system_account.id)
 	borrower = Borrower.objects.get(system_account=system_account.id)
+	bank_file = Bank_file.objects.filter(system_account=system_account.id)
+	processor_file = Processor_file.objects.filter(system_account=system_account.id)
+	financial_file =  Financial_file.objects.filter(system_account=system_account.id)
 	if request.method == 'POST' and request.POST:
 		business.ein = request.POST['ein']
 		business.save()
 
 		borrower.ssn = request.POST['ssn']
 		borrower.save()
-
-		try:
-			bank.bank_file = request.FILES['bank_file']
-			bank.financial_file = request.FILES['financial_file']
-			bank.processor_file = request.FILES['processor_file']
-		except:
-			bank.save()
-		bank.save()		
-	return {'request': request, 'bank': bank, 'business':business, 'borrower':borrower}
+	return {'request': request, 'business':business, 'borrower':borrower, 'bank_file':bank_file, 'processor_file':processor_file, 'financial_file':financial_file}
 
 
 # credit offers for profile
@@ -100,9 +95,11 @@ def account(request):
 	system_account = System_account.objects.get(email=request.session['username'])
 	borrower = Borrower.objects.get(system_account=system_account.id)
 	business = Business.objects.get(system_account=system_account.id)
-	bank = Bank.objects.get(system_account=system_account.id)
 	business_measure = Business_measure.objects.get(system_account=system_account.id)
-	return {'request': request, 'system_account': system_account, 'business':business, 'borrower':borrower, 'bank': bank, 'business_measure': business_measure}
+	bank_file = Bank_file.objects.filter(system_account=system_account.id)
+	processor_file = Processor_file.objects.filter(system_account=system_account.id)
+	financial_file =  Financial_file.objects.filter(system_account=system_account.id)
+	return {'request': request, 'bank_files':bank_file, 'financial_file':financial_file, 'processor_file':processor_file, 'system_account': system_account, 'business':business, 'borrower':borrower, 'business_measure': business_measure}
 
 # statements for profile
 @render_to('profile/statements.html')
@@ -192,6 +189,37 @@ def save_profile_credit(request):
 		business_measure.net_profit = 0
 	business_measure.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# save files
+@csrf_exempt
+def save_files(request):
+	system_account = System_account.objects.get(email=request.session['username'])
+
+	try:
+		bank_file = Bank_file()
+		bank_file.system_account=system_account
+		bank_file.bank_file = request.FILES['bank_file']
+		bank_file.save()
+	except:
+		request.FILES['bank_file'] = ''
+
+	try:
+		financial_file = Financial_file()
+		financial_file.system_account=system_account
+		financial_file.financial_file = request.FILES['financial_file']
+		financial_file.save()
+	except:
+		request.FILES['financial_file'] = ''
+
+	try:
+		processor_file = Processor_file()
+		processor_file.system_account=system_account
+		processor_file.processor_file = request.FILES['processor_file']
+		processor_file.save()
+	except:
+		request.FILES['processor_file'] = ''
+
+	return HttpResponseRedirect("/profile/accepted/")
 
 # get legal legal_form
 def get_legal_form(request):

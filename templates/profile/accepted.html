@@ -15,7 +15,7 @@
         <div class="progress">
           <span class="line-progress" style="width: 70%;">&nbsp;</span>
         </div>
-        <form action="/profile/accepted/" class="general-form general-form-other" method="post" enctype="multipart/form-data" id="general-form-profile-accepted">
+        <form action="/profile/accepted/" class="general-form general-form-other" method="post" id="general-form-profile-accepted">
           {% csrf_token %}
           <fieldset>
             <div class="">
@@ -30,18 +30,35 @@
                 <div class="input-holder">
                   <span class="input" style="width: 209px;"><input type="text" value="{{business.ein}}" placeholder="EIN" id="form-accepted-first-ein" class="validate[required,maxSize[10],minSize[10]]"  name="ein" /></span>
                 </div>
+                <div class="btn-form" style="width: 177px;">
+                  <span>
+                    Save
+                    <input type="submit" value="Save" />
+                    </form>
+                  </span>
+                </div>
               </div>
             </div>
+            <form action="/profile/save-files/" method="post" enctype="multipart/form-data" id="accepted-save-files">
+              {% csrf_token %}
             <div class="row">
               <label>Bank account*<span class="label-info">This information is not shared <br />with third parties*.</span>
               </label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area {% if bank.bank_file == '' %} validate[required] {% endif %}" style="opacity: 0;" id="form-accepted-first-file1" name="bank_file">
+                    <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file1" name="bank_file">
                     <a class="button-gray" href="#">Upload</a>
-                    <span class="file-name">{{bank.bank_file}}</span>
+                    <span class="file-name"></span>
                   </div>
-                  <a href="/{{bank.bank_file}}">{{bank.bank_file}}</a>
+                  <ul class="list-files">
+                    {% for file in bank_file %}
+                    <li>
+                      <a href="#" class="filename">{{file.bank_file}}</a>
+                      <a href="{{ MEDIA_URL }}{{file.bank_file}}" class="download"><img src="{{ MEDIA_URL }}/images/download.png"></a> 
+                      <a href="#" class="cancel"><img src="{{ MEDIA_URL }}/images/cancel.png"></a>
+                    </li>
+                    {% endfor %}
+                  </ul>
               </div>
             </div>
             <br/>          
@@ -52,11 +69,19 @@
               </label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area {% if bank.processor_file == '' %} validate[required] {% endif %}" style="opacity: 0;" id="form-accepted-first-file2" name="processor_file">
+                    <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file2" name="processor_file">
                     <a class="button-gray" href="#">Upload</a>
                     <span class="file-name"></span>
                   </div>
-                  <a href="/{{bank.processor_file}}">{{bank.processor_file}}</a>
+                  <ul class="list-files">
+                    {% for file in processor_file %}
+                    <li>
+                      <a href="#" class="filename">{{file.processor_file}}</a>
+                      <a href="{{ MEDIA_URL }}{{file.processor_file}}" class="download"><img src="{{ MEDIA_URL }}/images/download.png"></a> 
+                      <a href="#" class="cancel"><img src="{{ MEDIA_URL }}/images/cancel.png"></a>
+                    </li>
+                    {% endfor %}
+                  </ul>
                 </div>
             </div>
             <br/>
@@ -64,21 +89,22 @@
                 <label>Financial Statements</label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area {% if bank.processor_file == '' %} validate[required] {% endif %}" style="opacity: 0;" id="form-accepted-first-file3" name="financial_file">
+                    <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file3" name="financial_file">
                     <a class="button-gray" href="#">Upload</a>
                     <span class="file-name"></span>
                   </div>
-                  <a href="/{{bank.financial_file}}">{{bank.financial_file}}</a>
-                </div>
-                <div class="btn-form" style="width: 177px;">
-                  <span>
-                    Save
-                    <input type="submit" value="Save" />
-                  </span>
+                  <ul class="list-files">
+                    {% for file in financial_file %}
+                    <li>
+                      <a href="#" class="filename">{{file.financial_file}}</a>
+                      <a href="{{ MEDIA_URL }}{{file.financial_file}}" class="download"><img src="{{ MEDIA_URL }}/images/download.png"></a> 
+                      <a href="#" class="cancel"><img src="{{ MEDIA_URL }}/images/cancel.png"></a>
+                    </li>
+                    {% endfor %}
+                  </ul>
                 </div>
             </div>
           </fieldset>
-        </form>
       </div>
     </div>
 {% endblock %}

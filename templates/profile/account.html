@@ -64,30 +64,6 @@
 									<td class="col02">{{borrower.ssn}}</td>
 								</tr>
 								{% endif %}
-								{% if business.ein != '' %}
-								<tr>
-									<td class="col01">EIN</td>
-									<td class="col02">{{business.ein}}</td>
-								</tr>
-								{% endif %}
-								{% if bank.bank_file != '' %}
-								<tr>
-									<td class="col01">Bank account</td>
-									<td class="col02"><a href="/{{bank.bank_file}}">{{bank.bank_file}}</a></td>
-								</tr>
-								{% endif %}
-								{% if bank.processor_file != '' %}
-								<tr>
-									<td class="col01">Processor account</td>
-									<td class="col02"><a href="/{{bank.processor_file}}">{{bank.processor_file}}</a></td>
-								</tr>
-								{% endif %}
-								{% if bank.financial_file != '' %}
-								<tr>
-									<td class="col01">Financial Statements</td>
-									<td class="col02"><a href="/{{bank.financial_file}}">{{bank.financial_file}}</a></td>
-								</tr>
-								{% endif %}
 							</tbody>
 						</table>
 					</div>
@@ -123,6 +99,12 @@
 								<tr>
 									<td class="col01">Industry</td>
 									<td class="col02">{{ business.industry }}</td>
+								</tr>
+								{% endif %}
+								{% if business.ein != '' %}
+								<tr>
+									<td class="col01">EIN</td>
+									<td class="col02">{{business.ein}}</td>
 								</tr>
 								{% endif %}
 								{% if business_measure.monthly_sales != None %}

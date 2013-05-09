@@ -747,7 +747,7 @@ h1{
 	padding: 0 11px 0 21px;
 }
 .general-form .input input{
-	color:#cbcbcb;
+	color:#000;
 	font-size: 18px;
 	float:left;
 	margin: 2px 0 0;
@@ -1504,4 +1504,22 @@ h2.title-table{
 }
 .pointer {
 	cursor: pointer;
+}
+.list-files {
+	width: 250px;
+	margin-left: -40px;
+	margin-top: 50px;
+}
+.list-files li {
+	list-style-type: none;
+	border-bottom: 1px solid #333333;
+}
+.list-files li .cancel {
+	float: right;
+}
+.list-files li .download {
+	float: right;
+}
+.list-files li .filename {
+	width: 200px;
 }

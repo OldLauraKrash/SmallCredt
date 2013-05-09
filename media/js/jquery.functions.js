@@ -324,4 +324,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    $('#form-accepted-first-file1, #form-accepted-first-file2, #form-accepted-first-file3').change(function() {
+        $('#accepted-save-files').submit();
+    });
 });

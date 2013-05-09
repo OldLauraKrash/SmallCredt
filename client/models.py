@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from time import gmtime, strftime
 
 class Legal(models.Model):
     name = models.CharField(max_length=255)
@@ -71,13 +72,23 @@ class Business(models.Model):
         return unicode(self.system_account)
 
 def get_dir(instance, filename):
-    return u'uploads/%s/%s' % (instance.id, filename)
+    return u'uploads/%s/%s' % (instance.system_account, strftime("%Y-%m-%d %H:%M:%S", gmtime())+'-'+str(filename))
 
-class Bank(models.Model):
-    bank_file = models.FileField(upload_to=get_dir)
-    financial_file = models.FileField(upload_to=get_dir)
-    processor_file =models.FileField(upload_to=get_dir)
+class Bank_file(models.Model):
     system_account = models.ForeignKey(System_account)
+    bank_file = models.FileField(upload_to=get_dir)
+    def __unicode__(self):
+        return unicode(self.system_account) 
+
+class Financial_file(models.Model):
+    system_account = models.ForeignKey(System_account)
+    financial_file = models.FileField(upload_to=get_dir)
+    def __unicode__(self):
+        return unicode(self.system_account) 
+
+class Processor_file(models.Model):
+    system_account = models.ForeignKey(System_account)
+    processor_file = models.FileField(upload_to=get_dir)
     def __unicode__(self):
         return unicode(self.system_account)
 

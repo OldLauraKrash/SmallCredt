@@ -60,14 +60,6 @@ class CountryAdmin(admin.ModelAdmin):
         return ['name']
 admin.site.register(Country, CountryAdmin)
 
-class BankAdmin(admin.ModelAdmin):
-    list_filter = ['system_account']
-    list_display = ['system_account']
-    search_fields = ['system_account']
-    def get_ordering(self, request):
-        return ['system_account']
-admin.site.register(Bank, BankAdmin)
-
 class Business_measureAdmin(admin.ModelAdmin):
     list_filter = ['system_account']
     list_display = ['system_account']
