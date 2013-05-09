@@ -231,6 +231,11 @@ form,fieldset{
 	position:relative;
 	min-height: 418px;
 }
+.promo .video{
+	left: 441px;
+	position: absolute;
+	top: 50px;
+}
 .promo .card{
 	left: 436px;
 	position: absolute;
@@ -383,11 +388,6 @@ form,fieldset{
 	overflow:hidden;
 	padding: 0 8px 10px;
 }
-.promo .video{
-	left: 441px;
-	position: absolute;
-	top: 50px;
-}
 .container .text{
 	overflow:hidden;
 	padding: 18px 0 0;
@@ -397,6 +397,11 @@ form,fieldset{
 	font-weight:bold;
 	font-size: 31px;
 	margin: 0 0 27px;
+}
+.container .card{
+	left: 700px;
+	position: absolute;
+	top: 200px;
 }
 .list-terms{
 	color:#000;
