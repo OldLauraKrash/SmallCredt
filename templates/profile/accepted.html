@@ -1,5 +1,6 @@
 {% extends 'misc/base.html' %}
 {% block content %}
+    {% load tags %}
     <div class="main-holder">
       <nav class="nav-holder">
         <div class="frame">
@@ -47,15 +48,14 @@
                 <div class="input-holder">
                   <div class="file">
                     <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file1" name="bank_file">
-                    <a class="button-gray" href="#">Upload</a>
+                    <a class="button-gray" href="#"  name="bank">Upload</a>
                     <span class="file-name"></span>
                   </div>
                   <ul class="list-files">
                     {% for file in bank_file %}
                     <li>
-                      <a href="#" class="filename">{{file.bank_file}}</a>
-                      <a href="{{ MEDIA_URL }}{{file.bank_file}}" class="download"><img src="{{ MEDIA_URL }}/images/download.png"></a> 
-                      <a href="#" class="cancel"><img src="{{ MEDIA_URL }}/images/cancel.png"></a>
+                      <a href="/remove-bank-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>
+                      <a href="{{ MEDIA_URL }}{{file.bank_file}}" class="filename">{% split_filename file.bank_file %}</a>
                     </li>
                     {% endfor %}
                   </ul>
@@ -70,15 +70,14 @@
                 <div class="input-holder">
                   <div class="file">
                     <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file2" name="processor_file">
-                    <a class="button-gray" href="#">Upload</a>
+                    <a class="button-gray" href="#"  name="processor">Upload</a>
                     <span class="file-name"></span>
                   </div>
                   <ul class="list-files">
                     {% for file in processor_file %}
                     <li>
-                      <a href="#" class="filename">{{file.processor_file}}</a>
-                      <a href="{{ MEDIA_URL }}{{file.processor_file}}" class="download"><img src="{{ MEDIA_URL }}/images/download.png"></a> 
-                      <a href="#" class="cancel"><img src="{{ MEDIA_URL }}/images/cancel.png"></a>
+                      <a href="/remove-processor-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>
+                      <a href="{{ MEDIA_URL }}{{file.processor_file}}" class="filename">{% split_filename file.processor_file %}</a>
                     </li>
                     {% endfor %}
                   </ul>
@@ -90,15 +89,14 @@
                 <div class="input-holder">
                   <div class="file">
                     <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file3" name="financial_file">
-                    <a class="button-gray" href="#">Upload</a>
+                    <a class="button-gray" href="#" name="financial">Upload</a>
                     <span class="file-name"></span>
                   </div>
                   <ul class="list-files">
                     {% for file in financial_file %}
                     <li>
-                      <a href="#" class="filename">{{file.financial_file}}</a>
-                      <a href="{{ MEDIA_URL }}{{file.financial_file}}" class="download"><img src="{{ MEDIA_URL }}/images/download.png"></a> 
-                      <a href="#" class="cancel"><img src="{{ MEDIA_URL }}/images/cancel.png"></a>
+                      <a href="/remove-financial-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>
+                      <a href="{{ MEDIA_URL }}{{file.financial_file}}" class="filename">{% split_filename file.financial_file %}</a>
                     </li>
                     {% endfor %}
                   </ul>

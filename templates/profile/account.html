@@ -71,6 +71,7 @@
 					<div class="table-info">
 						<table>
 							<tbody>
+								{% load tags %}
 								{% if business.business_name != '' %}
 								<tr>
 									<td class="col01">Business name</td>
@@ -125,6 +126,39 @@
 									<td class="col02">${{business_measure.net_profit}}</td>
 								</tr>
 								{% endif %}
+								{% if bank_file|length  %}
+								<tr>
+									<td class="col01">Bank account</td>
+									<td class="col02">
+				                    	{% for file in bank_file %}
+				                      		<a href="{{ MEDIA_URL }}{{file.bank_file}}" class="filename filename-account">{% split_filename file.bank_file %}</a>
+				                    		<br/>
+				                    	{% endfor %}
+									</td>
+								</tr>								
+								{% endif %}								
+								{% if processor_file|length  %}
+								<tr>
+									<td class="col01">Processor account</td>
+									<td class="col02">
+				                    	{% for file in processor_file %}
+				                      		<a href="{{ MEDIA_URL }}{{file.processor_file}}" class="filename filename-account">{% split_filename file.processor_file %}</a>
+				                    		<br/>
+				                    	{% endfor %}
+									</td>
+								</tr>								
+								{% endif %}	
+								{% if financial_file|length  %}
+								<tr>
+									<td class="col01">Financial Statements</td>
+									<td class="col02">
+				                    	{% for file in financial_file %}
+				                      		<a href="{{ MEDIA_URL }}{{file.financial_file}}" class="filename filename-account">{% split_filename file.financial_file %}</a>
+				                    		<br/>
+				                    	{% endfor %}
+									</td>
+								</tr>								
+								{% endif %}	
 							</tbody>
 						</table>
 					</div>

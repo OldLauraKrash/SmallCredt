@@ -1519,12 +1519,9 @@ h2.title-table{
 	list-style-type: none;
 	border-bottom: 1px solid #333333;
 }
-.list-files li .cancel {
-	float: right;
-}
-.list-files li .download {
-	float: right;
-}
 .list-files li .filename {
 	width: 200px;
+}
+.filename-account {
+	font-size: 14px;
 }

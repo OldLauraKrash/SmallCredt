@@ -99,7 +99,7 @@ def account(request):
 	bank_file = Bank_file.objects.filter(system_account=system_account.id)
 	processor_file = Processor_file.objects.filter(system_account=system_account.id)
 	financial_file =  Financial_file.objects.filter(system_account=system_account.id)
-	return {'request': request, 'bank_files':bank_file, 'financial_file':financial_file, 'processor_file':processor_file, 'system_account': system_account, 'business':business, 'borrower':borrower, 'business_measure': business_measure}
+	return {'request': request, 'bank_file':bank_file, 'financial_file':financial_file, 'processor_file':processor_file, 'system_account': system_account, 'business':business, 'borrower':borrower, 'business_measure': business_measure}
 
 # statements for profile
 @render_to('profile/statements.html')
@@ -194,12 +194,13 @@ def save_profile_credit(request):
 @csrf_exempt
 def save_files(request):
 	system_account = System_account.objects.get(email=request.session['username'])
-
+	anchor = ''
 	try:
 		bank_file = Bank_file()
 		bank_file.system_account=system_account
 		bank_file.bank_file = request.FILES['bank_file']
 		bank_file.save()
+		anchor = '#bank'
 	except:
 		request.FILES['bank_file'] = ''
 
@@ -208,6 +209,7 @@ def save_files(request):
 		financial_file.system_account=system_account
 		financial_file.financial_file = request.FILES['financial_file']
 		financial_file.save()
+		anchor = '#financial'
 	except:
 		request.FILES['financial_file'] = ''
 
@@ -216,10 +218,32 @@ def save_files(request):
 		processor_file.system_account=system_account
 		processor_file.processor_file = request.FILES['processor_file']
 		processor_file.save()
+		anchor = '#processor'
 	except:
 		request.FILES['processor_file'] = ''
 
-	return HttpResponseRedirect("/profile/accepted/")
+	return HttpResponseRedirect("/profile/accepted/"+str(anchor))
+
+# remove bank file
+def remove_bank_file(request, id):
+	bank_file = Bank_file.objects.get(pk=id)
+	if str(bank_file.system_account) == request.session['username']:
+		bank_file.delete()
+	return HttpResponseRedirect("/profile/accepted/#bank")
+
+# remove processor file
+def remove_processor_file(request, id):
+	processor_file = Processor_file.objects.get(pk=id)
+	if str(processor_file.system_account) == request.session['username']:
+		processor_file.delete()
+	return HttpResponseRedirect("/profile/accepted/#processor")
+
+# remove financial file
+def remove_financial_file(request, id):
+	financial_file = Financial_file.objects.get(pk=id)
+	if str(financial_file.system_account) == request.session['username']:
+		financial_file.delete()
+	return HttpResponseRedirect("/profile/accepted/#financial")
 
 # get legal legal_form
 def get_legal_form(request):
