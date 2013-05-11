@@ -67,3 +67,27 @@ class Business_measureAdmin(admin.ModelAdmin):
     def get_ordering(self, request):
         return ['system_account']
 admin.site.register(Business_measure, Business_measureAdmin)
+
+class Bank_fileAdmin(admin.ModelAdmin):
+    list_filter = ['system_account']
+    list_display = ['system_account']
+    search_fields = ['system_account']
+    def get_ordering(self, request):
+        return ['system_account']
+admin.site.register(Bank_file, Bank_fileAdmin)
+
+class Financial_fileAdmin(admin.ModelAdmin):
+    list_filter = ['system_account']
+    list_display = ['system_account']
+    search_fields = ['system_account']
+    def get_ordering(self, request):
+        return ['system_account']
+admin.site.register(Financial_file, Financial_fileAdmin)
+
+class Processor_fileAdmin(admin.ModelAdmin):
+    list_filter = ['system_account']
+    list_display = ['system_account']
+    search_fields = ['system_account']
+    def get_ordering(self, request):
+        return ['system_account']
+admin.site.register(Processor_file, Processor_fileAdmin)

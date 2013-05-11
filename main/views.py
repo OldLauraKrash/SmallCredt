@@ -57,11 +57,6 @@ def register(request):
 	business.system_account=system_account
 	business.save()
 
-	# save param Bank
-	bank = Bank()
-	bank.system_account=system_account
-	bank.save()
-
 	# save param Business measure
 	business_measure = Business_measure()
 	business_measure.system_account=system_account
