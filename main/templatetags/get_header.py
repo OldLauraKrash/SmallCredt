@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*
 from django import template
+from client.models import *
 
 register = template.Library()
 @register.inclusion_tag('main/header_right.html') 
 def get_header_right(request):
 	username = ''
 	flag = False
+	lender = ''
 	try:
 		if request.session['username']!='':
 			username = request.session['username']
+			system_account = System_account.objects.get(email=request.session['username'])
+			if system_account.account_type:
+				lender = 'Lender'
+			else:
+				lender = ''				
 			flag = True
 	except:
 		flag = False
-
-	return {'flag': flag, 'request': request, 'username': username}
+		lender = ''
+	return {'flag': flag, 'request': request, 'username': username, 'lender':lender}

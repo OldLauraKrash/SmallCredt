@@ -31,7 +31,10 @@ def auth(request):
 		try: 
 			if system_account[0].email!='' and len(system_account)==1:
 				request.session['username'] = system_account[0].email
-				return HttpResponseRedirect("/profile/")
+				if system_account[0].account_type:
+					return HttpResponseRedirect("/lender/account/")
+				else:
+					return HttpResponseRedirect("/profile/")
 		except:
 			result = 'Wrong Username/Email and password combination.'
 	return {'request': request, 'result': result}

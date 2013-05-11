@@ -22,6 +22,7 @@ def home(request):
 
 # sign in client
 def login(request):
+	lender = 0
 	result = 'error'
 	password = hashlib.md5()
 	password.update(request.GET['password'])
@@ -29,10 +30,14 @@ def login(request):
 	try: 
 		if system_account[0].email!='' and len(system_account)==1:
 			request.session['username'] = system_account[0].email
+			if system_account[0].account_type:
+				lender = 1
+			else:
+				lender = 0
 			result = 'ok'
 	except:
 		result = 'error'
-	return HttpResponse( json.dumps({'result':result}), mimetype="application/json" )
+	return HttpResponse( json.dumps({'result':result, 'lender':lender}), mimetype="application/json" )
 
 # sign up client
 def register(request):

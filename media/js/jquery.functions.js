@@ -22,6 +22,7 @@ $(document).ready(function(){
 	$('#form-auth').validationEngine();
     $('#form-auth-main').validationEngine();
     $('#general-form-profile-accepted').validationEngine();
+    $('#lender-form').validationEngine();
 
     // accepted credit
     $('.accepted-credit').live("click", function(){
@@ -49,7 +50,10 @@ $(document).ready(function(){
         if ($("#form-auth-main").validationEngine('validate')) {
             var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-main-email').val(), 'password':$('#form-auth-main-password').val()} ,function(data) {
                 if (data['result']=='ok') {
-                    window.location.href = '/profile';
+                    if (data['lender'])
+                        window.location.href = '/lender/account/';
+                    else
+                        window.location.href = '/profile';
                 }  else {
                     $("#form-auth-main-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error');
                 }
@@ -64,7 +68,10 @@ $(document).ready(function(){
         if ($("#form-auth").validationEngine('validate')) {
             var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-email').val(), 'password':$('#form-auth-password').val()} ,function(data) {
                 if (data['result']=='ok') {
-                    window.location.href = '/profile';
+                    if (data['lender'])
+                        window.location.href = '/lender/account/';
+                    else
+                        window.location.href = '/profile';
                 }  else {
                    $("#form-auth-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error');
                 }
@@ -94,6 +101,17 @@ $(document).ready(function(){
             $.get('/save-profile-main/', $('#general-form-profile').serialize());
             lineProgress();
             $('#general-form-profile-business-name-first').focus();
+        }
+        $(this).parent().parent().fadeIn();
+        return false;
+    });
+
+    // submit lender save
+    $('#lender-form-submit').live("click", function(){
+        $(this).parent().parent().fadeOut();
+        if ($("#lender-form").validationEngine('validate')) {
+
+            $.get('/save-lender/', $('#lender-form').serialize());
         }
         $(this).parent().parent().fadeIn();
         return false;
