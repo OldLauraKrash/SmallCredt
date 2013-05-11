@@ -59,6 +59,7 @@ $(document).ready(function(){
         return false;
     });  
 
+    // auth form
     $('#form-auth-submit').live("click", function(){
         if ($("#form-auth").validationEngine('validate')) {
             var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-email').val(), 'password':$('#form-auth-password').val()} ,function(data) {
@@ -72,6 +73,7 @@ $(document).ready(function(){
         return false;
     });
 
+    // active user
     $('.active-user').live("click", function(){
         var amount = $('.ui-slider-handle').html();
         window.location.href = '/profile/?amount='+amount.substring(0,amount.length-1);
@@ -125,16 +127,19 @@ $(document).ready(function(){
         $(this).parent().parent().fadeIn();
         return false;
     });
-    
+
+    // on placeholder    
     $('input[placeholder]').placeholder();
 
+    // calculate line progress
     function lineProgress() {
-
-        if ($('.line-progress').css('width') == '689px')
-            return 70;
-
         var width = 20;
         var countInput = 0;
+
+        if ($('#general-form-profile-accepted').html() != undefined) {
+          width = 70;  
+        }
+
         $( "#general-form-profile input" ).each(function( index ) {
             if ($(this).val()!="") 
                 countInput++;
@@ -160,6 +165,18 @@ $(document).ready(function(){
            width +=10; 
 
 
+        if ($('#accepted-save-files .list-files').html() != undefined) {
+            
+            if ($('#accepted-save-files .list-files').eq(0).html().length != 40)         
+                width +=10;
+
+            if ($('#accepted-save-files .list-files').eq(1).html().length != 40)        
+                width +=10;
+
+            if ($('#form-accepted-first-ein').val()!= undefined)
+                width +=10;
+        }
+
         $('.line-progress').css('width', width+'%')            
         return width;
     }
@@ -168,7 +185,7 @@ $(document).ready(function(){
     //$('#general-form-profile-date').datepicker({dateFormat: 'yy-mm-dd'});
     //$('#general-form-profile-business-legal-third').datepicker({dateFormat: 'yy-mm-dd'});
 
-    // autocomplete
+    // autocomplete title
     var suffix = [
       "Mr.",
       "Ms.",
@@ -183,7 +200,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
-
+    // autocomplete legal
     $("#general-form-profile-business-legal-first").autocomplete({
         source: function( request, response ) {
         $.ajax({
@@ -204,6 +221,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    // autocomplete state
     $('#general-form-profile-business-address-third').autocomplete({
         source: function( request, response ) {
         $.ajax({
@@ -224,6 +242,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    // autocomplete state
     $('#general-form-profile-addresse-third').autocomplete({
         source: function( request, response ) {
         $.ajax({
@@ -244,6 +263,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    // autocomplete country
     $('#general-form-profile-addresse-country').autocomplete({
         source: function( request, response ) {
         $.ajax({
@@ -264,6 +284,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    // autocomplete country
     $('#general-form-profile-business-address-country').autocomplete({
         source: function( request, response ) {
         $.ajax({
@@ -284,6 +305,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    // autocomplete industry
     $('.input-industry').autocomplete({
         source: function( request, response ) {
         $.ajax({
@@ -304,6 +326,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    // autocomplete state
     $('#general-form-profile-business-legal-second').autocomplete({
         source: function( request, response ) {
         $.ajax({
@@ -324,6 +347,7 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    // file upload
     $('#form-accepted-first-file1, #form-accepted-first-file2, #form-accepted-first-file3').change(function() {
         $('#accepted-save-files').submit();
     });
