@@ -5,4 +5,4 @@ register = template.Library()
 @register.simple_tag
 def split_filename(filename):
 	filename = str(filename)
-	return filename.split('/')[2]
+	return filename.split('/')[3]

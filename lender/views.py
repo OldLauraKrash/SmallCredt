@@ -13,7 +13,12 @@ from django.views.decorators.csrf import csrf_exempt
 # profile lender
 @render_to('lender/account.html')
 def lender_account(request):
-	return {'request': request}
+	system_account = System_account.objects.get(email=request.session['username'])
+	try: 
+		lender = Lender.objects.get(system_account=system_account.id)
+	except:
+		lender = ''
+	return {'request': request, 'lender':lender, 'system_account':system_account}
 
 # statements lender
 @render_to('lender/statements.html')
@@ -56,5 +61,36 @@ def save_lender(request):
 	lender.last_name = request.GET['last']
 	lender.home_phone = request.GET['home_phone']
 	lender.cell_phone = request.GET['cell_phone']
+	try: 
+		geography=Geography.objects.get(name=request.GET['geography'])
+		lender.geography=geography
+	except:
+		lender.geography = ''
+	try: 
+		risk_level=Risk_level.objects.get(name=request.GET['risk_level'])
+		lender.risk_level=risk_level
+	except:
+		lender.risk_level = ''
+	try: 
+		industry=Industry.objects.get(name=request.GET['industry'])
+		lender.industry=industry
+	except:
+		lender.industry = ''		
 	lender.save()	
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# get geography
+def get_geography(request):
+	result = Geography.objects.all()
+	categories = []
+	for category in result:
+		categories.append(category.name)	
+	return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )
+
+# get risk level
+def get_risk_level(request):
+	result = Risk_level.objects.all()
+	categories = []
+	for category in result:
+		categories.append(category.name)	
+	return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )

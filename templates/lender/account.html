@@ -34,37 +34,22 @@
           <div class="table-info">
             <table>
               <tbody>
+                {% if lender.middle_name != '' %}  
                 <tr>
                   <td class="col01">Your name*</td>
-                  <td class="col02">Adam Adamson</td>
+                  <td class="col02">{{lender.suffix}} {{lender.first_name}} {{ lender.middle_name }} {{ lender.last_name }}</td>
                 </tr>
+                {% endif %}
                 <tr>
                   <td class="col01">Email*</td>
-                  <td class="col02"><a href="mailto:adam@adamco.com" class="link-mail">adam@adamco.com</a></td>
+                  <td class="col02"><a href="mailto:{{system_account.email}}" class="link-mail">{{system_account.email}}</a></td>
                 </tr>
+                {% if lender.cell_phone != '' %} 
                 <tr>
                   <td class="col01">Phone</td>
-                  <td class="col02">212 345 09 87</td>
+                  <td class="col02">{{ lender.cell_phone }} {{ lender.home_phone }}</td>
                 </tr>
-                <tr>
-                  <td class="col01">Company*</td>
-                  <td class="col02">Adam Co.</td>
-                </tr>
-                <tr>
-                  <td class="col01">Title</td>
-                  <td class="col02">CEO</td>
-                </tr>
-                <tr>
-                  <td class="col01">Address*</td>
-                  <td class="col02">200 Park Ave, New York, NY, 10153</td>
-                </tr>
-                <tr>
-                  <td class="col01">Bank account*</td>
-                  <td class="col02">
-                    <span class="text-hold"><span class="color-grey">Routing #</span>1234567</span>
-                    <span class="text-hold"><span class="color-grey">Account #</span>1234567</span>
-                  </td>
-                </tr>
+                {% endif %}
               </tbody>
             </table>
           </div>
@@ -72,18 +57,24 @@
           <div class="table-info">
             <table>
               <tbody>
+                {% if lender.geography != '' %} 
                 <tr>
                   <td class="col01">Geography</td>
-                  <td class="col02">New York</td>
+                  <td class="col02">{{ lender.geography }}</td>
                 </tr>
+                {% endif %}
+                {% if lender.risk_level != '' %}
                 <tr>
                   <td class="col01">Risk level</td>
-                  <td class="col02">Low</td>
+                  <td class="col02">{{ lender.risk_level }}</td>
                 </tr>
+                {% endif %}
+                {% if lender.industry != '' %}
                 <tr>
                   <td class="col01">Industry</td>
-                  <td class="col02">Medical</td>
+                  <td class="col02">{{ lender.industry }}</td>
                 </tr>
+                {% endif %}
               </tbody>
             </table>
           </div>

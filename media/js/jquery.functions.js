@@ -218,6 +218,20 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    var suffix = [
+      "Mr.",
+      "Ms.",
+      "Mrs.",
+      "Miss.",
+      "Dr."
+    ];
+    $( "#lender-form-suffix" ).autocomplete({
+      source: suffix,
+      minLength: 0,
+    }).focus(function(){            
+        $(this).autocomplete("search");
+    });
+
     // autocomplete legal
     $("#general-form-profile-business-legal-first").autocomplete({
         source: function( request, response ) {
@@ -330,6 +344,48 @@ $(document).ready(function(){
             url: "/get-industry",
             dataType: "json",
             data: {'term': $('.input-industry').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    }).focus(function(){        
+        $(this).autocomplete("search");
+    });
+
+    // autocomplete risk-level
+    $('.input-risk-level').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-risk-level/",
+            dataType: "json",
+            data: {'term': $('.input-risk-level').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    }).focus(function(){        
+        $(this).autocomplete("search");
+    });
+
+    // autocomplete geography
+    $('.input-geography').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-geography/",
+            dataType: "json",
+            data: {'term': $('.input-geography').val()},
             success: function( data ) {
                 response( $.map( data.categories, function( item ) {
                     return {

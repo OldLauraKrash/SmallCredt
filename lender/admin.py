@@ -11,3 +11,19 @@ class LenderAdmin(admin.ModelAdmin):
     def get_ordering(self, request):
         return ['system_account']
 admin.site.register(Lender, LenderAdmin)
+
+class GeographyAdmin(admin.ModelAdmin):
+    list_filter = ['name']
+    list_display = ['name']
+    search_fields = ['name']
+    def get_ordering(self, request):
+        return ['name']
+admin.site.register(Geography, GeographyAdmin)
+
+class Risk_levelAdmin(admin.ModelAdmin):
+    list_filter = ['name']
+    list_display = ['name']
+    search_fields = ['name']
+    def get_ordering(self, request):
+        return ['name']
+admin.site.register(Risk_level, Risk_levelAdmin)

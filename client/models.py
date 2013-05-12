@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from time import gmtime, strftime
+import hashlib
 
 class Legal(models.Model):
     name = models.CharField(max_length=255)
@@ -72,7 +73,15 @@ class Business(models.Model):
         return unicode(self.system_account)
 
 def get_dir(instance, filename):
-    return u'uploads/%s/%s' % (instance.system_account, strftime("%Y-%m-%d %H:%M:%S", gmtime())+'-'+str(filename))
+    account = hashlib.md5()
+    account.update(str(instance.system_account))
+    account = str(account.hexdigest())   
+
+    created = hashlib.md5()
+    created.update(str(strftime("%Y-%m-%d %H:%M:%S", gmtime())))
+    created = str(created.hexdigest())  
+
+    return u'uploads/%s/%s/%s' % (account, created, str(filename))
 
 class Bank_file(models.Model):
     system_account = models.ForeignKey(System_account)

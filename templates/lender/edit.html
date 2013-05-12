@@ -21,7 +21,7 @@
 									<input type="text" value="{{lender.suffix}}" placeholder="Suffix" id="lender-form-suffix" name="suffix" />
 								</span>
 								<span class="input" style="width: 120px;">
-									<input type="text" class="validate[required]" value="{{lender.first_name}}" placeholder="First" id="lender-form-first" name="first" />
+									<input type="text" class="validate[required]" value="{{lender.first_name}}" placeholder="First" class="validate[required]"  id="lender-form-first" name="first" />
 								</span>
 								<span class="input" style="width: 162px;">
 									<input type="text" value="{{lender.middle_name}}" class="validate[required]" placeholder="Middle" id="lender-form-middle" name="middle" />
@@ -46,7 +46,7 @@
 							<label>Geography</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="" placeholder="Geography" 								 
+									value="{{ lender.geography }}" placeholder="Geography" class="input-geography"		 
 									id="lender-form-geography" name="geography" /></span>
 							</div>
 						</div>
@@ -54,15 +54,15 @@
 							<label>Risk level</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="" placeholder="Risk level" 								 
-									id="lender-form-risk-level" name="risk_level" /></span>
+									value="{{lender.risk_level}}" placeholder="Risk level" class="input-risk-level"			 
+									id="lender-form-risk-level"  name="risk_level" /></span>
 							</div>
 						</div>
 						<div class="row">
 							<label>Industry</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="" placeholder="Industry" 								 
+									value="{{lender.industry}}" placeholder="Industry"  class="input-industry"
 									id="lender-form-industry" name="industry" /></span>
 							</div>
 							<div class="btn-form" style="width: 177px;">

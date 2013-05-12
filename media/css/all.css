@@ -1511,16 +1511,13 @@ h2.title-table{
 	cursor: pointer;
 }
 .list-files {
-	width: 250px;
 	margin-left: -40px;
 	margin-top: 50px;
 }
 .list-files li {
 	list-style-type: none;
-	border-bottom: 1px solid #333333;
 }
 .list-files li .filename {
-	width: 200px;
 }
 .filename-account {
 	font-size: 14px;
