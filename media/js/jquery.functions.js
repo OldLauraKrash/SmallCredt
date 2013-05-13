@@ -106,12 +106,33 @@ $(document).ready(function(){
         return false;
     });
 
+    // finish alert
+    $('.finish-button').live("click", function(){
+            $('.formError').remove();
+            $('.popup-holder').css({"left": "-9999px"});
+            $('.popup-holder').height(0);
+            $('.popup-holder').show();
+
+            popupbg();
+            $('#finish-alert').css({"left": "-9999px"});
+            $('#finish-alert').show();
+            windowScroll($('#finish-alert .popup').height());
+            $('#finish-alert').hide();
+            $('#finish-alert').css({"left": "0"});
+            $('#finish-alert .popup').css('top',wScroll);
+            $('#finish-alert').fadeIn(200);
+        return false;
+    });
+
     // submit lender save
     $('#lender-form-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
         if ($("#lender-form").validationEngine('validate')) {
-
-            $.get('/save-lender/', $('#lender-form').serialize());
+            $.get('/save-lender/', $('#lender-form').serialize(), function(data) {
+                if (data.result == 'ok') {
+                window.location.href = '/lender/account';
+                }
+            });
         }
         $(this).parent().parent().fadeIn();
         return false;
@@ -195,10 +216,15 @@ $(document).ready(function(){
                 width +=10;
         }
 
-        $('.line-progress').css('width', width+'%')            
+        $('.line-progress').css('width', width+'%')  
+
+        if (width==100)
+            $('.finish-button').show();
+
         return width;
     }
     lineProgress();
+
 
     //$('#general-form-profile-date').datepicker({dateFormat: 'yy-mm-dd'});
     //$('#general-form-profile-business-legal-third').datepicker({dateFormat: 'yy-mm-dd'});

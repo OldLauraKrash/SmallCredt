@@ -11,42 +11,105 @@
 				</div>
 			</nav>
 			<div id="main">
-				<h1>Edit Lender</h1>
+		        <ul class="main-list">
+		          <li>
+		            <div>
+		              <a href="/lender/portfolio/">Portfolio</a>
+		            </div>
+		          </li>
+		          <li>
+		            <div>
+		              <a href="/lender/statements/">Statements</a>
+		            </div>
+		          </li>
+		          <li class="last-child">
+		            <div>
+		              <a href="/lender/account/" class="active">Account</a>
+		            </div>
+		          </li>
+		        </ul>
 				<form action="#" class="general-form border-none" id="lender-form">
-					<fieldset>
-						<div class="row">
-							<label>Your name*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 52px;">
-									<input type="text" value="{{lender.suffix}}" placeholder="Suffix" id="lender-form-suffix" name="suffix" />
-								</span>
-								<span class="input" style="width: 120px;">
-									<input type="text" class="validate[required]" value="{{lender.first_name}}" placeholder="First" class="validate[required]"  id="lender-form-first" name="first" />
-								</span>
-								<span class="input" style="width: 162px;">
-									<input type="text" value="{{lender.middle_name}}" class="validate[required]" placeholder="Middle" id="lender-form-middle" name="middle" />
-								</span>
-								<span class="input" style="width: 204px;">
-									<input type="text" value="{{lender.last_name}}" class="validate[required]" placeholder="Last" id="lender-form-last" name="last" />
-								</span>
-							</div>
+				<fieldset>
+		        <div class="table-content">
+		          <h2 class="title-table">Account Information</h2>
+					<div class="row">
+						<label>Your name*</label>
+						<div class="input-holder">
+							<span class="input" style="width: 52px;">
+								<input type="text" value="{{lender.suffix}}" placeholder="Suffix" id="lender-form-suffix" name="suffix" />
+							</span>
+							<span class="input" style="width: 120px;">
+								<input type="text" class="validate[required]" value="{{lender.first_name}}" placeholder="First" class="validate[required]"  id="lender-form-first" name="first" />
+							</span>
+							<span class="input" style="width: 162px;">
+								<input type="text" value="{{lender.middle_name}}" class="validate[required]" placeholder="Middle" id="lender-form-middle" name="middle" />
+							</span>
+							<span class="input" style="width: 204px;">
+								<input type="text" value="{{lender.last_name}}" class="validate[required]" placeholder="Last" id="lender-form-last" name="last" />
+							</span>
 						</div>
-						<div class="row">
-							<label>Personal phone*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text"
-									value="{{lender.home_phone}}" placeholder="Your home phone" 								 
-									id="lender-form-home-phone" name="home_phone" /></span>
-								<span class="input" style="width: 204px;"><input type="text"
-									value="{{lender.cell_phone}}" placeholder="Your cell phone"
-									id="lender-form-cell-phone" name="cell_phone" class="validate[required,custom[phone]]" /></span>
-							</div>
+					</div>
+					<div class="row">
+						<label>Personal phone*</label>
+						<div class="input-holder">
+							<span class="input" style="width: 209px;"><input type="text"
+								value="{{lender.home_phone}}" placeholder="Your home phone" 								 
+								id="lender-form-home-phone" name="home_phone" /></span>
+							<span class="input" style="width: 204px;"><input type="text"
+								value="{{lender.cell_phone}}" placeholder="Your cell phone"
+								id="lender-form-cell-phone" name="cell_phone" class="validate[required,custom[phone]]" /></span>
 						</div>
+					</div>
+					<div class="row">
+						<label>Title*</label>
+						<div class="input-holder">
+							<span class="input" style="width: 209px;"><input type="text"
+								value="{{lender.title}}" placeholder="Title"
+								class="validate[required]"
+								id="general-form-title" name="title" /></span>
+						</div>
+					</div>
+					<div class="row">
+						<label>Company*</label>
+						<div class="input-holder">
+							<span class="input" style="width: 209px;"><input type="text"
+								value="{{lender.company}}" placeholder="Company" 
+								class="validate[required]"
+								id="general-form-title" name="company" /></span>
+						</div>
+					</div>
+					<div class="row">
+						<label>Personal address*</label>
+						<div class="input-holder">
+							<span class="input" style="width: 209px;"><input type="text"
+								value="{{lender.street}}" placeholder="Street" 
+								class="validate[required]" id="general-form-profile-address-first"  name="street" />
+							</span>
+							<span class="input" style="width: 107px;"><input type="text"									value="{{lender.city}}" placeholder="City" 
+							 class="validate[required]" id="general-form-profile-addresse-second" name="city" />
+							</span>
+							<span class="input" style="width: 59px;"><input type="text" value="{{lender.state}}"
+							  placeholder="State"
+							  id="general-form-profile-addresse-third" name="state" class="input-state validate[required]" />
+							</span>
+							<span class="input" style="width: 103px;"><input type="text"
+							 	value="{{lender.zip_code}}" placeholder="Zip code" 
+								class="validate[required]" id="general-form-profile-addresse-four"  name="zip_code" />
+							</span>
+							<span class="input" style="width: 76px;">
+								<input type="text" value="{{lender.country}}"
+								placeholder="Country" class="input-country validate[required]"
+								id="general-form-profile-addresse-country" 
+								name="country" />
+							</span>
+						</div>
+					</div>		          
+		          <h2 class="title-table">Portfolio Criteria</h2>
 						<div class="row">
 							<label>Geography</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{ lender.geography }}" placeholder="Geography" class="input-geography"		 
+									value="{{ lender.geography }}" placeholder="Geography" class="input-geography validate[required]"		 
 									id="lender-form-geography" name="geography" /></span>
 							</div>
 						</div>
@@ -54,7 +117,7 @@
 							<label>Risk level</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{lender.risk_level}}" placeholder="Risk level" class="input-risk-level"			 
+									value="{{lender.risk_level}}" placeholder="Risk level" class="input-risk-level validate[required]"			 
 									id="lender-form-risk-level"  name="risk_level" /></span>
 							</div>
 						</div>
@@ -62,17 +125,18 @@
 							<label>Industry</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{lender.industry}}" placeholder="Industry"  class="input-industry"
+									value="{{lender.industry}}" placeholder="Industry"  class="input-industry validate[required]"
 									id="lender-form-industry" name="industry" /></span>
 							</div>
-							<div class="btn-form" style="width: 177px;">
+							<div class="btn-form" style="width: 177px; margin-right:50px">
 								<span>
 									Save
 									<input type="submit" value="Save" id="lender-form-submit" />
 								</span>
 							</div>
 						</div>
-					</fieldset>
-				</form>
+		        </div>
+		        </fieldset>
+		    	</form>
 			</div>
 {% endblock %}

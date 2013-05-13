@@ -61,6 +61,21 @@ def save_lender(request):
 	lender.last_name = request.GET['last']
 	lender.home_phone = request.GET['home_phone']
 	lender.cell_phone = request.GET['cell_phone']
+	lender.title = request.GET['title']
+	lender.company = request.GET['company']
+	lender.street = request.GET['street']
+	lender.city = request.GET['city']
+	lender.zip_code = request.GET['zip_code']
+	try: 
+		state=State.objects.get(name=request.GET['state'])
+		lender.state=state
+	except:
+		lender.state = ''
+	try: 
+		country=Country.objects.get(name=request.GET['country'])
+		lender.country=country
+	except:
+		lender.country = ''
 	try: 
 		geography=Geography.objects.get(name=request.GET['geography'])
 		lender.geography=geography

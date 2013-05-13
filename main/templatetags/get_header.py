@@ -13,7 +13,7 @@ def get_header_right(request):
 			username = request.session['username']
 			system_account = System_account.objects.get(email=request.session['username'])
 			if system_account.account_type:
-				lender = 'Lender'
+				lender = request.session['username']
 			else:
 				lender = ''				
 			flag = True
