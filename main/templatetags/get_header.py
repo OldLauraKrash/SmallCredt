@@ -21,3 +21,9 @@ def get_header_right(request):
 		flag = False
 		lender = ''
 	return {'flag': flag, 'request': request, 'username': username, 'lender':lender}
+
+
+@register.inclusion_tag('main/menu_flatpages.html') 
+def menu_flatpages(request):
+	system_account = System_account.objects.get(email=request.session['username'])
+	return {'request': request, 'system_account':system_account}

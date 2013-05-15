@@ -1,0 +1,15 @@
+	<nav class="nav-holder">
+		<div class="frame">
+			<ul class="menu">
+				{% if system_account.lender %}
+					<li><a href="/">Home</a></li>
+					<li><a href="/profile/">Apply</a></li>
+					<li><a href="/account/" class="active">My Account</a></li>
+				{% else %}
+		            <li><a href="/">Home</a></li>
+		            <li><a href="/lender/marketplace/">Marketplace</a></li>
+		            <li><a href="/lender/account/" class="active">My Account</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>

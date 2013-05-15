@@ -38,7 +38,7 @@
 						<label>Your name*</label>
 						<div class="input-holder">
 							<span class="input" style="width: 52px;">
-								<input type="text" value="{{lender.suffix}}" placeholder="Suffix" id="lender-form-suffix" name="suffix" />
+								<input type="text" value="{{lender.suffix}}" placeholder="Title" id="lender-form-suffix" name="suffix" />
 							</span>
 							<span class="input" style="width: 120px;">
 								<input type="text" class="validate[required]" value="{{lender.first_name}}" placeholder="First" class="validate[required]"  id="lender-form-first" name="first" />
@@ -52,23 +52,14 @@
 						</div>
 					</div>
 					<div class="row">
-						<label>Personal phone*</label>
+						<label>Phone*</label>
 						<div class="input-holder">
 							<span class="input" style="width: 209px;"><input type="text"
-								value="{{lender.home_phone}}" placeholder="Your home phone" 								 
+								value="{{lender.home_phone}}" placeholder="Your work phone" 								 
 								id="lender-form-home-phone" name="home_phone" /></span>
 							<span class="input" style="width: 204px;"><input type="text"
 								value="{{lender.cell_phone}}" placeholder="Your cell phone"
 								id="lender-form-cell-phone" name="cell_phone" class="validate[required,custom[phone]]" /></span>
-						</div>
-					</div>
-					<div class="row">
-						<label>Title*</label>
-						<div class="input-holder">
-							<span class="input" style="width: 209px;"><input type="text"
-								value="{{lender.title}}" placeholder="Title"
-								class="validate[required]"
-								id="general-form-title" name="title" /></span>
 						</div>
 					</div>
 					<div class="row">
@@ -81,7 +72,16 @@
 						</div>
 					</div>
 					<div class="row">
-						<label>Personal address*</label>
+						<label>Title*</label>
+						<div class="input-holder">
+							<span class="input" style="width: 209px;"><input type="text"
+								value="{{lender.title}}" placeholder="Title"
+								class="validate[required]"
+								id="general-form-title" name="title" /></span>
+						</div>
+					</div>
+					<div class="row">
+						<label>Address*</label>
 						<div class="input-holder">
 							<span class="input" style="width: 209px;"><input type="text"
 								value="{{lender.street}}" placeholder="Street" 
