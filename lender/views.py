@@ -43,7 +43,40 @@ def lender_edit(request):
 # marketplace lender
 @render_to('lender/marketplace.html')
 def lender_marketplace(request):
-	return {'request': request}
+	borrowers = Borrower.objects.filter(borrower_status = True)
+	lists = []
+	for borrower in borrowers:
+		system_account = System_account.objects.get(email=borrower.system_account)
+		business = Business.objects.get(system_account=borrower.system_account)
+		business_measure = Business_measure.objects.get(system_account=borrower.system_account)
+		locale = str(business.city)+', '+str(business.state)
+		lists.append(dict([('date', borrower.created),
+							('id', system_account.id), 
+							('amount', business_measure.amount),
+							('industry', business.industry),
+							('locale', locale),
+							('name', business.business_name)]))
+
+	return {'request': request, 'lists':lists}
+
+# bid
+def bid(request):
+	loan_offer = Loan_offer()
+	
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# decline
+def decline(request):
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# marketplace lender
+@render_to('lender/marketplace_borrower.html')
+def lender_marketplace_borrower(request, id):
+	system_account = System_account.objects.get(id=id)
+	business = Business.objects.get(system_account=system_account)
+	borrower = Borrower.objects.get(system_account=system_account)
+	business_measure = Business_measure.objects.get(system_account=borrower.system_account)
+	return {'request': request, 'business': business, 'system_account': system_account, 'borrower': borrower, 'business_measure':business_measure}
 
 # save data lender
 def save_lender(request):

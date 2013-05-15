@@ -1,0 +1,132 @@
+{% extends 'misc/base.html' %}
+{% block content %}
+		<div class="main-holder">
+			<nav class="nav-holder">
+				<div class="frame">
+		          <ul class="menu">
+		            <li><a href="/">Home</a></li>
+		            <li><a href="/lender/marketplace/" class="active">Marketplace</a></li>
+		            <li><a href="/lender/account/">My Account</a></li>
+		          </ul>
+				</div>
+			</nav>
+			<div id="main">
+				<div class="table-content table-content-indent02">
+					<table class="table-description table-description-other">
+						<tbody>
+							<tr>
+								<td class="col01">Borrower:</td>
+								<td class="col02">{{business.business_name}}</td>
+								<td class="col03">Risk:</td>
+								<td class="col04">A</td>
+								<td class="col05" rowspan="3">
+									<div class="link-holder link-holder-indent">
+										<a href="#" class="btn-status"><span>Bid</span></a>
+										<a href="#" class="btn-status decline" rel="{{business.id}}" id="decline"><span>Decline</span></a>
+										<div class="bid-drop">
+											<form action="#">
+												<fieldset>
+													<div class="row">
+														<span class="input" style="width: 88px;"><input type="text" value="{{business_measure.amount}}" /></span>
+														<label>Amount, $</label>
+													</div>
+													<div class="row">
+														<span class="input" style="width: 88px;"><input type="text" value="10" /></span>
+														<label>Discount, %</label>
+													</div>
+													<div class="row">
+														<span class="input" style="width: 88px;"><input type="text" value="10" /></span>
+														<label>Daily repayment, %</label>
+													</div>
+													<div class="row">
+														<a href="#" class="btn-bid" id="bid" rel="{{business.id}}"><span>Done</span></a>
+													</div>
+												</fieldset>
+											</form>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="col01">Amount:</td>
+								<td class="col02">${{business_measure.amount}}</td>
+								<td class="col03">Industry:</td>
+								<td class="col04">{{business.industry}}</td>
+							</tr>
+							<tr>
+								<td class="col01">Date:</td>
+								<td class="col02">{{borrower.created|date:'Y/m/d'}}</td>
+								<td class="col03">Location:</td>
+								<td class="col04">{{business.city}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<h2 class="title-table">Personal</h2>
+					<div class="table-info">
+						<table>
+							<tbody>
+								<tr>
+									<td class="col01">Your name</td>
+									<td class="col02">{{borrower.suffix}} {{borrower.first_name}} {{borrower.middle_name}} {{borrower.last_name}}</td>
+								</tr>
+								<tr>
+									<td class="col01">Personal address</td>
+									<td class="col02">{{borrower.street}}, {{borrower.city}}, {{borrower.state}}, {{ borrower.zip_code }}, {{ borrower.country }}</td>
+								</tr>
+								<tr>
+									<td class="col01">Personal phone</td>
+									<td class="col02">{{ borrower.home_phone }} {{ borrower.cell_phone }}</td>
+								</tr>
+								<tr>
+									<td class="col01">Email</td>
+									<td class="col02"><a href="mailto:{{ system_account.email }}" class="link-mail">{{ system_account.email }}</a></td>
+								</tr><tr>
+									<td class="col01">Social Security #</td>
+									<td class="col02">{{borrower.ssn}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<h2 class="title-table">Business</h2>
+					<div class="table-info">
+						<table>
+							<tbody>
+								<tr>
+									<td class="col01">Business name</td>
+									<td class="col02">{{ business.business_name }}</td>
+								</tr>
+								<tr>
+									<td class="col01">Business address</td>
+									<td class="col02">{{business.street}}, {{business.city}}, {{business.state}}, {{ business.zip_code }}, {{ business.country }}</td>
+								</tr>
+								<tr>
+									<td class="col01">Business phone</td>
+									<td class="col02">{{ business.business_phone }}</td>
+								</tr>
+								<tr>
+									<td class="col01">Industry</td>
+									<td class="col02">{{ business.industry }}</td>
+								</tr>
+								<tr>
+									<td class="col01">EIN</td>
+									<td class="col02">{{business.ein}}</td>
+								</tr>
+								<tr>
+									<td class="col01">Monthly sales</td>
+									<td class="col02">${{business_measure.monthly_sales}}</td>
+								</tr>
+								<tr>
+									<td class="col01">Revenue 2012</td>
+									<td class="col02">${{business_measure.revenue}}</td>
+								</tr>
+								<tr>
+									<td class="col01">Net profit 2012</td>
+									<td class="col02">${{business_measure.net_profit}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}

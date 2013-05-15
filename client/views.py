@@ -76,8 +76,6 @@ def accepted(request):
 	financial_file =  Financial_file.objects.filter(system_account=system_account.id)
 	if request.method == 'POST' and request.POST:
 		business.ein = request.POST['ein']
-		business.save()
-
 		borrower.ssn = request.POST['ssn']
 		borrower.save()
 	return {'request': request, 'business':business, 'borrower':borrower, 'bank_file':bank_file, 'processor_file':processor_file, 'financial_file':financial_file}
@@ -113,6 +111,8 @@ def statements(request):
 
 # save data for profile page
 def save_profile_main(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	borrower = Borrower.objects.get(system_account=system_account.id)
 	borrower.suffix = request.GET['suffix']
@@ -141,6 +141,8 @@ def save_profile_main(request):
 
 # save data for profile business page
 def save_profile_business(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	business = Business.objects.get(system_account=system_account.id)
 	business.business_name = request.GET['business_name']
@@ -181,6 +183,8 @@ def save_profile_business(request):
 
 # save data for profile credit page
 def save_profile_credit(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	business_measure = Business_measure.objects.get(system_account=system_account.id)
 	business_measure.amount = int(request.GET['amount'])
@@ -192,6 +196,16 @@ def save_profile_credit(request):
 		business_measure.net_profit = 0
 	business_measure.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# finish account
+def account_finish(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
+	system_account = System_account.objects.get(email=request.session['username'])
+	borrower = Borrower.objects.get(system_account=system_account.id)
+	borrower.borrower_status = 1
+	borrower.save()
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )	
 
 # save files
 @csrf_exempt

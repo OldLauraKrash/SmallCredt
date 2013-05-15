@@ -1065,6 +1065,7 @@ h1{
 	text-align:left;
 }
 .btn-status.decline,
+.btn-bid,
 .btn-status{
 	text-align:left;
 	font-weight:bold;
@@ -1078,6 +1079,7 @@ h1{
 	padding: 0 14px 0 0;
 }
 .btn-status.decline span,
+.btn-bid span,
 .btn-status span{
 	min-width: 67px;
 	padding: 0 4px 0 42px;
@@ -1090,6 +1092,13 @@ h1{
 	text-decoration:none;
 }
 .btn-status:hover span{
+	background:url(../images/btn-link.png) no-repeat;
+}
+.btn-bid:hover{
+	background:url(../images/btn-link.png) no-repeat 100% -47px;
+	text-decoration:none;
+}
+.btn-bid:hover span{
 	background:url(../images/btn-link.png) no-repeat;
 }
 .btn-status.decline{
@@ -1521,4 +1530,7 @@ h2.title-table{
 }
 .filename-account {
 	font-size: 14px;
+}
+.client {
+	cursor:pointer;
 }

@@ -86,6 +86,28 @@ $(document).ready(function(){
         window.location.href = '/profile/?amount='+amount.substring(0,amount.length-1);
     });
 
+    // bid 
+    $('#bid').live("click", function(){
+        $('.link-holder').hide();
+        $.get('/lender/marketplace/bid', { 'id': $(this).attr('rel') }, function(data) {
+            if (data.result == 'ok') {
+
+            }
+        });
+        return false;
+    });
+
+    // decline
+    $('#decline').live("click", function(){
+        $('.link-holder').hide();
+        $.get('/lender/marketplace/decline', { 'id': $(this).attr('rel') }, function(data) {
+            if (data.result == 'ok') {
+
+            }
+        });
+        return false;
+    });
+
 
     // include validate for forms profile
     $('#general-form-profile').validationEngine();
@@ -108,19 +130,23 @@ $(document).ready(function(){
 
     // finish alert
     $('.finish-button').live("click", function(){
-            $('.formError').remove();
-            $('.popup-holder').css({"left": "-9999px"});
-            $('.popup-holder').height(0);
-            $('.popup-holder').show();
+        $('.formError').remove();
+        $('.popup-holder').css({"left": "-9999px"});
+        $('.popup-holder').height(0);
+        $('.popup-holder').show();
 
-            popupbg();
-            $('#finish-alert').css({"left": "-9999px"});
-            $('#finish-alert').show();
-            windowScroll($('#finish-alert .popup').height());
-            $('#finish-alert').hide();
-            $('#finish-alert').css({"left": "0"});
-            $('#finish-alert .popup').css('top',wScroll);
-            $('#finish-alert').fadeIn(200);
+        popupbg();
+        $('#finish-alert').css({"left": "-9999px"});
+        $('#finish-alert').show();
+        windowScroll($('#finish-alert .popup').height());
+        $('#finish-alert').hide();
+        $('#finish-alert').css({"left": "0"});
+        $('#finish-alert .popup').css('top',wScroll);
+        $('#finish-alert').fadeIn(200);
+
+        $.get('/account-finish/', function(data) {
+        });
+
         return false;
     });
 
@@ -149,6 +175,11 @@ $(document).ready(function(){
         }
         $(this).parent().parent().fadeIn();
         return false;
+    });
+
+    // client id 
+    $('.client').live("click", function(){
+        window.location.href = '/lender/marketplace/borrower/'+$(this).attr('rel');
     });
 
     // save profile credit

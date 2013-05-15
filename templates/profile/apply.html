@@ -28,21 +28,25 @@
 									 	value="{{borrower.suffix}}"
 									 {% endifequal %} 
 									placeholder="Title"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									id="general-form-profile-your-name-first" name="suffix" />
 								</span>
 								<span class="input" style="width: 120px;">
 									<input type="text" 
 									value="{{borrower.first_name}}" placeholder="First"
-									class="validate[required]" 
+									class="validate[required]"
+									{% if borrower.borrower_status%} disabled {% endif %} 
 									id="general-form-profile-your-name-second" name="first_name" />
 								</span>
 								<span class="input" style="width: 162px;">
 									<input type="text"
-									value="{{borrower.middle_name}}" placeholder="Middle" 
+									value="{{borrower.middle_name}}" placeholder="Middle"
+									{% if borrower.borrower_status%} disabled {% endif %} 
 									id="general-form-profile-your-name-third" name="middle_name" />
 								</span>
 								<span class="input" style="width: 204px;"><input type="text"
-									value="{{borrower.last_name}}" placeholder="Last"  
+									value="{{borrower.last_name}}" placeholder="Last"
+									{% if borrower.borrower_status%} disabled {% endif %}  
 									class="validate[required]" id="general-form-profile-your-name-four"  name="last_name" /></span>
 								<span class="input" style="width: 50px; margin:0;"><input type="text"  placeholder="Suffix" name="other_name"  value="{{borrower.other_name}}" />
 								</span>
@@ -52,11 +56,13 @@
 							<label>Personal address*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{borrower.street}}" placeholder="Street" 
+									value="{{borrower.street}}" placeholder="Street"
+									{% if borrower.borrower_status%} disabled {% endif %} 
 									class="validate[required]" id="general-form-profile-address-first"  name="street" />
 								</span>
 								<span class="input" style="width: 107px;"><input type="text"
-									value="{{borrower.city}}" placeholder="City" 
+									value="{{borrower.city}}" placeholder="City"
+									{% if borrower.borrower_status%} disabled {% endif %} 
 								 class="validate[required]" id="general-form-profile-addresse-second" name="city" />
 								</span>
 								<span class="input" style="width: 59px;"><input type="text"
@@ -71,7 +77,8 @@
 								  id="general-form-profile-addresse-third" name="state" class="input-state validate[required]" />
 								</span>
 								<span class="input" style="width: 103px;"><input type="text"
-								 	value="{{borrower.zip_code}}" placeholder="Zip code" 
+								 	value="{{borrower.zip_code}}" placeholder="Zip code"
+								 	{% if borrower.borrower_status%} disabled {% endif %} 
 									class="validate[required]" id="general-form-profile-addresse-four"  name="zip_code" />
 								</span>
 								<span class="input" style="width: 76px;">
@@ -82,7 +89,7 @@
 										 {% else %}
 										 	value="{{borrower.country}}"
 										 {% endifequal %}
-
+										 {% if borrower.borrower_status%} disabled {% endif %}
 									placeholder="Country" class="input-country validate[required]"
 									id="general-form-profile-addresse-country" 
 									name="country" />
@@ -93,10 +100,12 @@
 							<label>Personal phone*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{borrower.home_phone}}" placeholder="Your home phone" 								 
+									value="{{borrower.home_phone}}" placeholder="Your home phone"
+									{% if borrower.borrower_status%} disabled {% endif %} 								 
 									id="general-form-profile-phone" name="home_phone" /></span>
 								<span class="input" style="width: 204px;"><input type="text"
 									value="{{borrower.cell_phone}}" placeholder="Your cell phone"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									id="general-form-profile-second" name="cell_phone" class="validate[required,custom[phone]]" /></span>
 							</div>
 						</div>
@@ -106,6 +115,7 @@
 								<span class="input" style="width: 209px;"><input type="text"
 									value="{{ borrower.date_of_birth|date:'Y-m-d' }}" placeholder="YYYY-MM-DD"
 									class="validate[required, custom[date]]"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									id="general-form-profile-date" name="date_of_birth" /></span>
 							</div>
 						</div>
@@ -115,11 +125,12 @@
 								<span class="input" style="width: 209px;">
 									<input type="text" 
 									value="{{system_account.email}}" placeholder="Email"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									class="validate[required, custom[email]]" id="general-form-profile-email" name="email" /></span>
 								<div class="btn-form" style="width: 177px;">
 									<span>
 										Save
-										<input type="submit" value="Save" id="general-form-profile-submit" />
+										<input type="submit" value="Save" {% if borrower.borrower_status%} disabled {% endif %} id="general-form-profile-submit" />
 									</span>
 								</div>
 							</div>
@@ -133,11 +144,13 @@
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text" 
 									value="{{business.business_name}}" placeholder="Business name"
-									class="validate[required]" 
+									class="validate[required]"
+									{% if borrower.borrower_status%} disabled {% endif %} 
 									id="general-form-profile-business-name-first" name="business_name" />
 								</span>
 								<span class="input" style="width: 163px;"><input type="text"
 									value="{{business.dba}}" placeholder="DBA"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									class="validate[required]" id="general-form-profile-business-name-second" name="dba" />
 								</span>
 							</div>
@@ -152,8 +165,8 @@
 									{% else %}
 										value="{{business.legal_form}}"
 									{% endifequal %}
-
-									placeholder="Legal form"
+									{% if borrower.borrower_status%} disabled {% endif %}
+									placeholder="Legal form"	
 									id="general-form-profile-business-legal-first" name="legal_form" /></span>
 								<span class="input" style="width: 207px;"><input type="text"
 									{% ifequal business.state_of_incorporation None %}
@@ -161,12 +174,14 @@
 									{% else %}
 										value="{{business.state_of_incorporation}}"
 									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
 									placeholder="State of incorporation" 
 									class="input-state validate[required]"
 									id="general-form-profile-business-legal-second" name="state_of_incorporation" /></span>
 								<span class="input" style="width: 132px;"><input type="text" 
 									value="{{business.date_founded|date:'Y-m-d'}}" placeholder="YYYY-MM-DD"
 									class="validate[required, custom[date]]"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									id="general-form-profile-business-legal-third" name="date_founded" /></span>
 							</div>
 						</div>
@@ -175,13 +190,15 @@
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
 									value="{{business.street}}" placeholder="Street"  class="validate[required]"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									id="general-form-profile-business-address-first" name="street" /></span>
 								<span class="input" style="width: 104px;"><input type="text"
-									value="{{business.city}}" placeholder="City"  
+									value="{{business.city}}" placeholder="City" 
+									{% if borrower.borrower_status%} disabled {% endif %} 
 									class="validate[required]" id="general-form-profile-business-address-second" name="city" />
 								</span>
 								<span class="input" style="width: 66px;"><input type="text" 
-									
+									{% if borrower.borrower_status%} disabled {% endif %}
 									{% ifequal business.state None %}
 										value=""
 									{% else %}
@@ -200,7 +217,7 @@
 									{% else %}
 										value="{{business.country}}"
 									{% endifequal %}
-
+									{% if borrower.borrower_status%} disabled {% endif %}
 									placeholder="Country" class="input-country validate[required]" id="general-form-profile-business-address-country"
 									name="country" 
 									 /></span>
@@ -211,6 +228,7 @@
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text" 
 									value="{{business.business_phone}}" placeholder="Business phone"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									name="business_phone" /></span>
 							</div>
 						</div>
@@ -223,12 +241,13 @@
 									{% else %}
 										value="{{business.industry}}"
 									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
 									placeholder="Industry" class="input-industry validate[required]" id="industry"									
 									name="industry" /></span>
 								<div class="btn-form" style="width: 177px;">
 									<span>
 										Save
-										<input type="submit" value="Save" id="general-form-profile-business-submit" />
+										<input type="submit" value="Save" {% if borrower.borrower_status%} disabled {% endif %} id="general-form-profile-business-submit" />
 									</span>
 								</div>
 							</div>
@@ -241,7 +260,7 @@
 							<label>Loan amount*</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209 px;"><input type="text"
-									value="{{business_measure.amount}}" placeholder="Loan amount" 
+									value="{{business_measure.amount}}" placeholder="Loan amount"
 									class="validate[required]" id="general-form-profile-credit-loan-amount" name="amount"  /></span>
 							</div>
 						</div>
@@ -288,7 +307,7 @@
 								<div class="btn-form" style="width: 177px;">
 									<span>
 										Save
-										<input type="submit" value="Save" id="general-form-profile-credit-submit" />
+										<input type="submit" value="Save"id="general-form-profile-credit-submit" />
 									</span>
 								</div>
 							</div>

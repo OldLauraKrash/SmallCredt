@@ -23,18 +23,18 @@
               <div class="row">
                 <label>Social Security Number*</label>
                 <div class="input-holder">
-                  <span class="input" style="width: 209px;"><input type="text" value="{{borrower.ssn}}" placeholder="Social Security" id="form-accepted-first-security" class="validate[required,maxSize[9],minSize[9]]" name="ssn"  /></span>
+                  <span class="input" style="width: 209px;"><input type="text" value="{{borrower.ssn}}" {% if borrower.borrower_status%} disabled {% endif %} placeholder="Social Security" id="form-accepted-first-security" class="validate[required,maxSize[9],minSize[9]]" name="ssn"  /></span>
                 </div>
               </div>
               <div class="row">
                 <label>Tax ID (EIN)*</label>
                 <div class="input-holder">
-                  <span class="input" style="width: 209px;"><input type="text" value="{{business.ein}}" placeholder="EIN" id="form-accepted-first-ein" class="validate[required,maxSize[10],minSize[10]]"  name="ein" /></span>
+                  <span class="input" style="width: 209px;"><input type="text" value="{{business.ein}}" {% if borrower.borrower_status%} disabled {% endif %} placeholder="EIN" id="form-accepted-first-ein" class="validate[required,maxSize[10],minSize[10]]"  name="ein" /></span>
                 </div>
                 <div class="btn-form" style="width: 177px;">
                   <span>
                     Save
-                    <input type="submit" value="Save" />
+                    <input type="submit" {% if borrower.borrower_status%} disabled {% endif %} value="Save" />
                     </form>
                   </span>
                 </div>
@@ -47,7 +47,7 @@
               </label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file1" name="bank_file">
+                    <input type="file" class="file-input-area" {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file1" name="bank_file">
                     <a class="button-gray" href="#"  name="bank">Upload</a>
                     <span class="file-name"></span>
                   </div>
@@ -69,7 +69,7 @@
               </label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file2" name="processor_file">
+                    <input type="file" class="file-input-area"  {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file2" name="processor_file">
                     <a class="button-gray" href="#"  name="processor">Upload</a>
                     <span class="file-name"></span>
                   </div>
@@ -88,7 +88,7 @@
                 <label>Financial Statements</label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area" style="opacity: 0;" id="form-accepted-first-file3" name="financial_file">
+                    <input type="file" class="file-input-area" {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file3" name="financial_file">
                     <a class="button-gray" href="#" name="financial">Upload</a>
                     <span class="file-name"></span>
                   </div>
