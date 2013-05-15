@@ -41,78 +41,16 @@
 								<th class="col05">APR*</th>
 								<th class="col06">Risk</th>
 							</tr>
-							<tr class="odd">
-								<td class="col01 align-left">1/20/2013</td>
-								<td class="col02 align-left">Restaurant Nobu</td>
-								<td class="col03">$20,000</td>
-								<td class="col04">$20,000</td>
-								<td class="col05">20%</td>
-								<td class="col06">A</td>
-							</tr>
-							<tr>
-								<td class="col01 align-left">1/1/2013</td>
-								<td class="col02 align-left">Dr.Schwab and Associates</td>
-								<td class="col03">$10,000</td>
-								<td class="col04">$5,000 </td>
-								<td class="col05">18%</td>
-								<td class="col06">A</td>
-							</tr>
-							<tr class="odd">
-								<td class="col01 align-left">12/3/2012</td>
-								<td class="col02 align-left">Drunkin Duck</td>
-								<td class="col03">$10,000</td>
-								<td class="col04">$10,000</td>
-								<td class="col05">30%</td>
-								<td class="col06">A</td>
-							</tr>
-							<tr>
-								<td class="col01 align-left">12/3/2012</td>
-								<td class="col02 align-left">Manicure on 5th</td>
-								<td class="col03">$30,000</td>
-								<td class="col04">$30,000</td>
-								<td class="col05">30%</td>
-								<td class="col06">A</td>
-							</tr>
-							<tr class="odd">
-								<td class="col01 align-left">12/3/2012</td>
-								<td class="col02 align-left">Office Cleaners</td>
-								<td class="col03">$40,000</td>
-								<td class="col04">$40,000</td>
-								<td class="col05">30%</td>
-								<td class="col06">D</td>
-							</tr>
-							<tr>
-								<td class="col01 align-left">12/3/2012</td>
-								<td class="col02 align-left">Moving Services</td>
-								<td class="col03">$40,000</td>
-								<td class="col04">$40,000</td>
-								<td class="col05">20%</td>
-								<td class="col06">D</td>
-							</tr>
-							<tr class="odd">
-								<td class="col01 align-left">12/3/2012</td>
-								<td class="col02 align-left">Translation Help</td>
-								<td class="col03">$30,000</td>
-								<td class="col04">$0</td>
-								<td class="col05">20%</td>
-								<td class="col06">B</td>
-							</tr>
-							<tr>
-								<td class="col01 align-left">12/3/2012</td>
-								<td class="col02 align-left">Joe & Co. </td>
-								<td class="col03">$30,000</td>
-								<td class="col04">$0</td>
-								<td class="col05">20%</td>
-								<td class="col06">B</td>
-							</tr>
-							<tr class="total">
-								<td class="col01 align-left">Total</td>
-								<td class="col02 align-left">&nbsp;</td>
-								<td class="col03">$210,000</td>
-								<td class="col04">$145,000</td>
-								<td class="col05">20%</td>
-								<td class="col06">B</td>
-							</tr>
+							{% for list in lists %}
+								<tr class="{% cycle 'odd' '' %}" rel="{{list.id}}">
+									<td class="col01 align-left">{{list.offer_date|date:'Y/m/d'}}</td>
+									<td class="col02">{{list.borrower}}</td>
+									<td class="col03">${{list.amount}}</td>
+									<td class="col04">${{list.amount}}</td>
+									<td class="col05">{{list.discount}}%</td>
+									<td class="col06">A</td>
+								</tr>
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>

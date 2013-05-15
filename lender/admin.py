@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.contrib.contenttypes import generic
 from lender.models import *
 
-
 class LenderAdmin(admin.ModelAdmin):
     list_filter = ['system_account']
     list_display = ['system_account']

@@ -89,7 +89,11 @@ $(document).ready(function(){
     // bid 
     $('#bid').live("click", function(){
         $('.link-holder').hide();
-        $.get('/lender/marketplace/bid', { 'id': $(this).attr('rel') }, function(data) {
+        $.get('/lender/marketplace/bid', { 'id': $(this).attr('rel'), 
+                                            'amount': $('#bid-amount').val(), 
+                                            'discount': $('#bid-discount').val(),
+                                            'daily': $('#bid-daily-repayment').val(),                                             
+                                        }, function(data) {
             if (data.result == 'ok') {
 
             }

@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'client',
     'main',
+    'loan',
     'lender',
 )
 

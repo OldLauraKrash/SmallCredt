@@ -5,6 +5,7 @@ from client.models import *
 import hashlib
 import simplejson as json
 from lender.models import *
+from loan.models import *
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.conf import settings
@@ -28,7 +29,13 @@ def lender_statements(request):
 # portfolio lender
 @render_to('lender/portfolio.html')
 def lender_portfolio(request):
-	return {'request': request}
+	system_account = System_account.objects.get(email=request.session['username'])
+	try: 
+		lender = Lender.objects.get(system_account=system_account.id)
+		lists = Loan_offer.objects.filter(lender=lender)
+	except:
+		lists = ''
+	return {'request': request, 'lists':lists}
 
 # edit lender
 @render_to('lender/edit.html')
@@ -42,7 +49,7 @@ def lender_edit(request):
 
 # marketplace lender
 @render_to('lender/marketplace.html')
-def lender_marketplace(request):
+def lender_marketplace(request):	
 	borrowers = Borrower.objects.filter(borrower_status = True)
 	lists = []
 	for borrower in borrowers:
@@ -62,21 +69,58 @@ def lender_marketplace(request):
 # bid
 def bid(request):
 	loan_offer = Loan_offer()
-	
+	system_account = System_account.objects.get(email=request.session['username'])
+	lender = Lender.objects.get(system_account=system_account.id)
+
+	system_account = System_account.objects.get(id=request.GET['id'])
+	borrower = Borrower.objects.get(system_account=system_account)
+
+	loan_offer = Loan_offer()
+	loan_offer.lender = lender
+	loan_offer.borrower = borrower
+	loan_offer.amount = request.GET['amount']
+	loan_offer_daily_repayment_sale = request.GET['daily']
+	loan_offer.discount = request.GET['discount']
+	loan_offer.status = 1
+	loan_offer.save() 	
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # decline
 def decline(request):
+	loan_offer = Loan_offer()
+	system_account = System_account.objects.get(email=request.session['username'])
+	lender = Lender.objects.get(system_account=system_account.id)
+
+	system_account = System_account.objects.get(id=request.GET['id'])
+	borrower = Borrower.objects.get(system_account=system_account)
+
+	loan_offer = Loan_offer()
+	loan_offer.lender = lender
+	loan_offer.borrower = borrower
+	loan_offer.status = 2
+	loan_offer.save() 	
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # marketplace lender
 @render_to('lender/marketplace_borrower.html')
 def lender_marketplace_borrower(request, id):
+	system_account = System_account.objects.get(email=request.session['username'])
+	lender = Lender.objects.get(system_account=system_account.id)
+
+	system_account = System_account.objects.get(id=id)
+	borrower = Borrower.objects.get(system_account=system_account)
+
+	try:
+		loan_offer = Loan_offer.objects.get(lender=lender, borrower=borrower)
+		loan_offer = False
+	except:
+		loan_offer = True
+
 	system_account = System_account.objects.get(id=id)
 	business = Business.objects.get(system_account=system_account)
 	borrower = Borrower.objects.get(system_account=system_account)
 	business_measure = Business_measure.objects.get(system_account=borrower.system_account)
-	return {'request': request, 'business': business, 'system_account': system_account, 'borrower': borrower, 'business_measure':business_measure}
+	return {'request': request, 'loan_offer':loan_offer, 'business': business, 'system_account': system_account, 'borrower': borrower, 'business_measure':business_measure}
 
 # save data lender
 def save_lender(request):

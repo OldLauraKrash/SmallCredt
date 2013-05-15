@@ -20,31 +20,33 @@
 								<td class="col03">Risk:</td>
 								<td class="col04">A</td>
 								<td class="col05" rowspan="3">
+									{% if loan_offer %}
 									<div class="link-holder link-holder-indent">
 										<a href="#" class="btn-status"><span>Bid</span></a>
-										<a href="#" class="btn-status decline" rel="{{business.id}}" id="decline"><span>Decline</span></a>
+										<a href="#" class="btn-status decline" rel="{{system_account.id}}" id="decline"><span>Decline</span></a>
 										<div class="bid-drop">
 											<form action="#">
 												<fieldset>
 													<div class="row">
-														<span class="input" style="width: 88px;"><input type="text" value="{{business_measure.amount}}" /></span>
+														<span class="input" style="width: 88px;"><input type="text" value="{{business_measure.amount}}" id="bid-amount" /></span>
 														<label>Amount, $</label>
 													</div>
 													<div class="row">
-														<span class="input" style="width: 88px;"><input type="text" value="10" /></span>
+														<span class="input" style="width: 88px;"><input type="text" value="10"  id="bid-discount" /></span>
 														<label>Discount, %</label>
 													</div>
 													<div class="row">
-														<span class="input" style="width: 88px;"><input type="text" value="10" /></span>
+														<span class="input" style="width: 88px;"><input type="text" value="10"  id="bid-daily-repayment" /></span>
 														<label>Daily repayment, %</label>
 													</div>
 													<div class="row">
-														<a href="#" class="btn-bid" id="bid" rel="{{business.id}}"><span>Done</span></a>
+														<a href="#" class="btn-bid" id="bid" rel="{{system_account.id}}"><span>Done</span></a>
 													</div>
 												</fieldset>
 											</form>
 										</div>
 									</div>
+									{% endif %}
 								</td>
 							</tr>
 							<tr>

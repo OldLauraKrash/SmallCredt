@@ -41,132 +41,30 @@
 								<th class="col05">Time to repay**</th>
 								<th class="col06">Status</th>
 							</tr>
-							<tr class="odd">
-								<td class="col01">$20,000</td>
-								<td class="col02 align-left">Bank of America</td>
-								<td class="col03">$25,000</td>
-								<td class="col04">5%</td>
-								<td class="col05">9 months</td>
-								<td class="col06">
-									<div class="link-holder">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark normal" style="display:none;">&nbsp;</span>
-								</td>
-							</tr>
-							<tr>
-								<td class="col01">$10,000</td>
-								<td class="col02 align-left">Citi </td>
-								<td class="col03">$25,000</td>
-								<td class="col04">10%</td>
-								<td class="col05">9 months</td>
-								<td class="col06">
-									<div class="link-holder" style="display:none;">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark normal">&nbsp;</span>
-								</td>
-							</tr>
-							<tr class="odd">
-								<td class="col01">$10,000</td>
-								<td class="col02 align-left"> Wells Fargo </td>
-								<td class="col03">$25,000</td>
-								<td class="col04">5%</td>
-								<td class="col05">9 months</td>
-								<td class="col06">
-									<div class="link-holder" style="display:none;">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark delete">&nbsp;</span>
-								</td>
-							</tr>
-							<tr>
-								<td class="col01">$30,000</td>
-								<td class="col02 align-left">OnDeck</td>
-								<td class="col03">$25,000</td>
-								<td class="col04">5% </td>
-								<td class="col05"> 9 months</td>
-								<td class="col06">
-									<div class="link-holder" style="display:none;">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark delete">&nbsp;</span>
-								</td>
-							</tr>
-							<tr class="odd">
-								<td class="col01">$40,000</td>
-								<td class="col02 align-left"> Capital Network </td>
-								<td class="col03">$25,000</td>
-								<td class="col04">5%</td>
-								<td class="col05">9 months</td>
-								<td class="col06">
-									<div class="link-holder" style="display:none;">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark delete">&nbsp;</span>
-								</td>
-							</tr>
-							<tr>
-								<td class="col01">$40,000</td>
-								<td class="col02 align-left">Joe Schmo LLC</td>
-								<td class="col03">$25,000</td>
-								<td class="col04">5%</td>
-								<td class="col05">9 months</td>
-								<td class="col06">
-									<div class="link-holder" style="display:none;">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark delete">&nbsp;</span>
-								</td>
-							</tr>
-							<tr class="odd">
-								<td class="col01">$30,000</td>
-								<td class="col02 align-left">Anonomys </td>
-								<td class="col03">$25,000</td>
-								<td class="col04">5%</td>
-								<td class="col05">9 months</td>
-								<td class="col06">
-									<div class="link-holder" style="display:none;">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark delete">&nbsp;</span>
-								</td>
-							</tr>
-							<tr>
-								<td class="col01">$30,000</td>
-								<td class="col02 align-left">Signature Bank</td>
-								<td class="col03">$25,000</td>
-								<td class="col04">5%</td>
-								<td class="col05">9 months</td>
-								<td class="col06">
-									<div class="link-holder" style="display:none;">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark delete">&nbsp;</span>
-								</td>
-							</tr>
-							<tr class="odd">
-								<td class="col01">$30,000</td>
-								<td class="col02 align-left">Credit Union of Omaha</td>
-								<td class="col03">$25,000</td>
-								<td class="col04">5%</td>
-								<td class="col05">9 months</td>
-								<td class="col06">
-									<div class="link-holder" style="display:none;">
-										<a href="#" class="btn-status"><span>Accept</span></a>
-										<a href="#" class="btn-status decline"><span>Decline</span></a>
-									</div>
-									<span class="mark delete">&nbsp;</span>
-								</td>
-							</tr>
+							{% for list in lists %}
+								<tr class="{% cycle 'odd' '' %}" rel="{{list.id}}">
+									{% if list.amount == None%}
+										<td class="col01">$0</td>
+									{% else %}
+										<td class="col01">${{list.amount }}</td>
+									{% endif %}
+									<td class="col02 align-left">{{list.lender}}</td>
+									{% if list.amount == None%}
+										<td class="col01">$0</td>
+									{% else %}
+										<td class="col01">${{list.amount }}</td>
+									{% endif %}
+									<td class="col04">10%</td>
+									<td class="col05">9 months</td>
+									<td class="col06">
+										<div class="link-holder">
+											<a href="#" class="btn-status"><span>Accept</span></a>
+											<a href="#" class="btn-status decline"><span>Decline</span></a>
+										</div>
+										<span class="mark normal" style="display:none;">&nbsp;</span>
+									</td>
+								</tr>
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>

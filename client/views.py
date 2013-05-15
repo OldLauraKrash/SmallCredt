@@ -4,10 +4,10 @@ from annoying.decorators import render_to
 from client.models import *
 import hashlib
 import simplejson as json
-from client.models import *
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.conf import settings
+from loan.models import *
 from django.views.decorators.csrf import csrf_exempt
 
 # check auth client
@@ -86,7 +86,10 @@ def accepted(request):
 def credit_offers(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-	return {'request': request}	
+	system_account = System_account.objects.get(email=request.session['username'])
+	borrower = Borrower.objects.get(system_account=system_account.id)
+	lists = Loan_offer.objects.filter(borrower=borrower)
+	return {'request': request, 'lists': lists}	
 
 # account for profile
 @render_to('profile/account.html')
