@@ -74,11 +74,44 @@ def accepted(request):
 	bank_file = Bank_file.objects.filter(system_account=system_account.id)
 	processor_file = Processor_file.objects.filter(system_account=system_account.id)
 	financial_file =  Financial_file.objects.filter(system_account=system_account.id)
+
+	# validation files
+	bank_error = ''
+	try:
+		bank_error = request.session['bank_error']
+		request.session['bank_error'] = ''
+	except:
+		request.session['bank_error'] = ''
+
+	financial_error = ''
+	try:
+		financial_error = request.session['financial_error']
+		request.session['financial_error'] = ''
+	except:
+		request.session['financial_error'] = ''
+
+	processor_error = ''
+	try:
+		processor_error = request.session['processor_error']
+		request.session['processor_error'] = ''
+	except:
+		request.session['processor_error'] = ''
+
 	if request.method == 'POST' and request.POST:
 		business.ein = request.POST['ein']
 		borrower.ssn = request.POST['ssn']
 		borrower.save()
-	return {'request': request, 'business':business, 'borrower':borrower, 'bank_file':bank_file, 'processor_file':processor_file, 'financial_file':financial_file}
+		business.save()
+
+	return {'request': request,
+			'bank_error':bank_error,
+			'processor_error':processor_error,
+			'financial_error':financial_error, 
+			'business':business, 
+			'borrower':borrower, 
+			'bank_file':bank_file, 
+			'processor_file':processor_file, 
+			'financial_file':financial_file}
 
 
 # credit offers for profile
@@ -217,27 +250,36 @@ def save_files(request):
 	anchor = ''
 	try:
 		bank_file = Bank_file()
-		bank_file.system_account=system_account
+		bank_file.system_account = system_account
 		bank_file.bank_file = request.FILES['bank_file']
-		bank_file.save()
+		if request.FILES['bank_file'].size < settings.MAX_SIZE_FILE:
+			bank_file.save()
+		else:
+			request.session['bank_error'] = 'Error! Max limit 1MB!'
 		anchor = '#bank'
 	except:
 		request.FILES['bank_file'] = ''
 
 	try:
 		financial_file = Financial_file()
-		financial_file.system_account=system_account
+		financial_file.system_account = system_account
 		financial_file.financial_file = request.FILES['financial_file']
-		financial_file.save()
+		if request.FILES['financial_file'].size < settings.MAX_SIZE_FILE:
+			financial_file.save()
+		else:
+			request.session['financial_error'] = 'Error! Max limit 1MB!'
 		anchor = '#financial'
 	except:
 		request.FILES['financial_file'] = ''
 
 	try:
 		processor_file = Processor_file()
-		processor_file.system_account=system_account
+		processor_file.system_account = system_account
 		processor_file.processor_file = request.FILES['processor_file']
-		processor_file.save()
+		if request.FILES['processor_file'].size < settings.MAX_SIZE_FILE:
+			processor_file.save()
+		else:
+			request.session['processor_error'] = 'Error! Max limit 1MB!'
 		anchor = '#processor'
 	except:
 		request.FILES['processor_file'] = ''

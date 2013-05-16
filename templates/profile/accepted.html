@@ -50,8 +50,13 @@
                     <input type="file" class="file-input-area" {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file1" name="bank_file">
                     <a class="button-gray" href="#"  name="bank">Upload</a>
                     <span class="file-name"></span>
-                  </div>
+                  </div>     
                   <ul class="list-files">
+                    <li>                 
+                      <div class="error-file">
+                        {{bank_error}}
+                      </div>
+                    </li>   
                     {% for file in bank_file %}
                     <li>
                       <a href="/remove-bank-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>
@@ -72,8 +77,13 @@
                     <input type="file" class="file-input-area"  {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file2" name="processor_file">
                     <a class="button-gray" href="#"  name="processor">Upload</a>
                     <span class="file-name"></span>
-                  </div>
+                  </div>              
                   <ul class="list-files">
+                    <li>                 
+                      <div class="error-file">
+                        {{processor_error}}
+                      </div>
+                    </li>   
                     {% for file in processor_file %}
                     <li>
                       <a href="/remove-processor-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>
@@ -93,6 +103,11 @@
                     <span class="file-name"></span>
                   </div>
                   <ul class="list-files">
+                    <li>                 
+                      <div class="error-file">
+                        {{financial_error}}
+                      </div>
+                    </li>   
                     {% for file in financial_file %}
                     <li>
                       <a href="/remove-financial-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>

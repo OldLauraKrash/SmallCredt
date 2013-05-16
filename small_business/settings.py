@@ -15,6 +15,9 @@ PROD = False
 
 MANAGERS = ADMINS
 
+# max size file 1MB
+MAX_SIZE_FILE = 1021440
+
 TEMPLATE_PROCESSORS = (
     "django.core.context_processors.auth",
     "django.core.context_processors.debug",
