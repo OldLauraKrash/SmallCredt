@@ -45,9 +45,21 @@
 								<tr class="{% cycle 'odd' '' %}" rel="{{list.id}}">
 									<td class="col01 align-left">{{list.offer_date|date:'Y/m/d'}}</td>
 									<td class="col02">{{list.borrower}}</td>
-									<td class="col03">${{list.amount}}</td>
-									<td class="col04">${{list.amount}}</td>
-									<td class="col05">{{list.discount}}%</td>
+									{% if list.amount != None %}
+										<td class="col03">${{list.amount}}</td>
+									{% else %}
+										<td class="col03">$0</td>
+									{% endif %}
+									{% if list.amount != None %}
+										<td class="col04">${{list.amount}}</td>
+									{% else %}
+										<td class="col04">$0</td>
+									{% endif %}
+									{% if list.discount != '' %}
+										<td class="col05">{{list.discount}}%</td>
+									{% else %}
+										<td class="col05">0%</td>
+									{% endif %}
 									<td class="col06">A</td>
 								</tr>
 							{% endfor %}

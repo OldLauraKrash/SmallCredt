@@ -25,5 +25,8 @@ def get_header_right(request):
 
 @register.inclusion_tag('main/menu_flatpages.html') 
 def menu_flatpages(request):
-	system_account = System_account.objects.get(email=request.session['username'])
+	try:
+		system_account = System_account.objects.get(email=request.session['username'])
+	except:
+		system_account = ''
 	return {'request': request, 'system_account':system_account}

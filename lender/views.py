@@ -11,9 +11,21 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
+# check auth client
+def check_auth(request):
+	try: 
+		if request.session['username']=='':
+			return True
+		else:
+			return False
+	except:
+		return True	
+
 # profile lender
 @render_to('lender/account.html')
 def lender_account(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	try: 
 		lender = Lender.objects.get(system_account=system_account.id)
@@ -29,10 +41,12 @@ def lender_statements(request):
 # portfolio lender
 @render_to('lender/portfolio.html')
 def lender_portfolio(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	try: 
 		lender = Lender.objects.get(system_account=system_account.id)
-		lists = Loan_offer.objects.filter(lender=lender)
+		lists = Loan_offer.objects.filter(lender=lender, amount__gt=0)
 	except:
 		lists = ''
 	return {'request': request, 'lists':lists}
@@ -40,6 +54,8 @@ def lender_portfolio(request):
 # edit lender
 @render_to('lender/edit.html')
 def lender_edit(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	try: 
 		lender = Lender.objects.get(system_account=system_account.id)
@@ -49,7 +65,9 @@ def lender_edit(request):
 
 # marketplace lender
 @render_to('lender/marketplace.html')
-def lender_marketplace(request):	
+def lender_marketplace(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")	
 	borrowers = Borrower.objects.filter(borrower_status = True)
 	lists = []
 	for borrower in borrowers:
@@ -68,6 +86,8 @@ def lender_marketplace(request):
 
 # bid
 def bid(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	loan_offer = Loan_offer()
 	system_account = System_account.objects.get(email=request.session['username'])
 	lender = Lender.objects.get(system_account=system_account.id)
@@ -87,6 +107,8 @@ def bid(request):
 
 # decline
 def decline(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	loan_offer = Loan_offer()
 	system_account = System_account.objects.get(email=request.session['username'])
 	lender = Lender.objects.get(system_account=system_account.id)
@@ -104,6 +126,8 @@ def decline(request):
 # marketplace lender
 @render_to('lender/marketplace_borrower.html')
 def lender_marketplace_borrower(request, id):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	lender = Lender.objects.get(system_account=system_account.id)
 
@@ -119,11 +143,16 @@ def lender_marketplace_borrower(request, id):
 	system_account = System_account.objects.get(id=id)
 	business = Business.objects.get(system_account=system_account)
 	borrower = Borrower.objects.get(system_account=system_account)
+	bank_file = Bank_file.objects.filter(system_account=system_account.id)
+	processor_file = Processor_file.objects.filter(system_account=system_account.id)
+	financial_file =  Financial_file.objects.filter(system_account=system_account.id)
 	business_measure = Business_measure.objects.get(system_account=borrower.system_account)
-	return {'request': request, 'loan_offer':loan_offer, 'business': business, 'system_account': system_account, 'borrower': borrower, 'business_measure':business_measure}
+	return {'request': request, 'bank_file':bank_file, 'financial_file':financial_file, 'processor_file':processor_file, 'loan_offer':loan_offer, 'business': business, 'system_account': system_account, 'borrower': borrower, 'business_measure':business_measure}
 
 # save data lender
 def save_lender(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	try: 
 		lender = Lender.objects.get(system_account=system_account.id)
@@ -173,6 +202,8 @@ def save_lender(request):
 
 # get geography
 def get_geography(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	result = Geography.objects.all()
 	categories = []
 	for category in result:
@@ -181,6 +212,8 @@ def get_geography(request):
 
 # get risk level
 def get_risk_level(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
 	result = Risk_level.objects.all()
 	categories = []
 	for category in result:
