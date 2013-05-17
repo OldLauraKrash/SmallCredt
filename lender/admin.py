@@ -19,3 +19,11 @@ class GeographyAdmin(admin.ModelAdmin):
         return ['name']
 admin.site.register(Geography, GeographyAdmin)
 
+class RiskAdmin(admin.ModelAdmin):
+    list_filter = ['name']
+    list_display = ['name']
+    search_fields = ['name']
+    def get_ordering(self, request):
+        return ['name']
+admin.site.register(Risk, RiskAdmin)
+

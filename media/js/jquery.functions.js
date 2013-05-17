@@ -134,23 +134,11 @@ $(document).ready(function(){
 
     // finish alert
     $('.finish-button').live("click", function(){
-        $('.formError').remove();
-        $('.popup-holder').css({"left": "-9999px"});
-        $('.popup-holder').height(0);
-        $('.popup-holder').show();
-
-        popupbg();
-        $('#finish-alert').css({"left": "-9999px"});
-        $('#finish-alert').show();
-        windowScroll($('#finish-alert .popup').height());
-        $('#finish-alert').hide();
-        $('#finish-alert').css({"left": "0"});
-        $('#finish-alert .popup').css('top',wScroll);
-        $('#finish-alert').fadeIn(200);
-
         $.get('/account-finish/', function(data) {
+            if (data.result == 'ok') {
+                window.location.href = '/account/finish';
+            }
         });
-
         return false;
     });
 
@@ -426,6 +414,27 @@ $(document).ready(function(){
             url: "/get-risk-level/",
             dataType: "json",
             data: {'term': $('.input-risk-level').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        minLength: 0,
+    }).focus(function(){        
+        $(this).autocomplete("search");
+    });
+
+    // autocomplete risk lender
+    $('.input-risk').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/get-risk-lender/",
+            dataType: "json",
+            data: {'term': $('.input-risk').val()},
             success: function( data ) {
                 response( $.map( data.categories, function( item ) {
                     return {

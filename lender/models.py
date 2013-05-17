@@ -5,6 +5,11 @@ class Geography(models.Model):
     name = models.CharField(max_length=255)
     def __unicode__(self):
         return unicode(self.name)
+
+class Risk(models.Model):
+    name = models.CharField(max_length=255)
+    def __unicode__(self):
+        return unicode(self.name)
         
 class Lender(models.Model): 
     suffix = models.CharField(max_length=255)
@@ -24,6 +29,8 @@ class Lender(models.Model):
     industry = models.ForeignKey(Industry, null=True)
     geography = models.ForeignKey(Geography, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    risk = models.ForeignKey(Risk, null=True)
     system_account = models.ForeignKey(System_account)   
     def __unicode__(self):
-        return unicode(self.system_account)	
+        return unicode(self.system_account)
+

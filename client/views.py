@@ -15,11 +15,15 @@ from django.views.decorators.csrf import csrf_exempt
 def check_auth(request):
 	try: 
 		if request.session['username']=='':
-			return True
+			return 0
 		else:
-			return False
+			system_account = System_account.objects.get(email=request.session['username'])
+			if system_account.account_type:
+				return 1
+			else:
+				return 2	
 	except:
-		return True	
+		return 1
 
 # auth on page for profile
 @render_to('profile/auth.html')
@@ -43,11 +47,16 @@ def auth(request):
 # profile client
 @render_to('profile/apply.html')
 def profile(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	business = Business.objects.get(system_account=system_account.id)
 	borrower = Borrower.objects.get(system_account=system_account.id)
+	if borrower.accepted:
+	    return HttpResponseRedirect("/account/finish")
 	try:
 		business_measure.amount = request.GET['amount'] + "000"
 		business_measure.save()
@@ -58,23 +67,47 @@ def profile(request):
 # qualify
 @render_to('profile/qualify.html')
 def qualify(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	business_measure = Business_measure.objects.get(system_account=system_account.id)
 	return {'request': request, 'business_measure':business_measure}
 
+# finish
+@render_to('profile/finish.html')
+def finish_page(request):
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+	return {'request': request}
+
 # accepted
 @render_to('profile/accepted.html')
 def accepted(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	business = Business.objects.get(system_account=system_account.id)
 	borrower = Borrower.objects.get(system_account=system_account.id)
+	if borrower.accepted:
+	    return HttpResponseRedirect("/account/finish")
 	bank_file = Bank_file.objects.filter(system_account=system_account.id)
 	processor_file = Processor_file.objects.filter(system_account=system_account.id)
 	financial_file =  Financial_file.objects.filter(system_account=system_account.id)
+
+
+	if request.method == 'POST' and request.POST:
+		business.ein = request.POST['ein']
+		business.save()
+		borrower.ssn = request.POST['ssn']
+		borrower.save()
 
 	# validation files
 	bank_error = ''
@@ -98,12 +131,6 @@ def accepted(request):
 	except:
 		request.session['processor_error'] = ''
 
-	if request.method == 'POST' and request.POST:
-		business.ein = request.POST['ein']
-		borrower.ssn = request.POST['ssn']
-		borrower.save()
-		business.save()
-
 	return {'request': request,
 			'bank_error':bank_error,
 			'processor_error':processor_error,
@@ -118,18 +145,28 @@ def accepted(request):
 # credit offers for profile
 @render_to('profile/credit-offers.html')
 def credit_offers(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	borrower = Borrower.objects.get(system_account=system_account.id)
-	lists = Loan_offer.objects.filter(borrower=borrower)
+	result = Loan_offer.objects.filter(borrower=borrower)
+	lists = []
+	for value in result:
+		lists.append(dict([('amount', value.amount),
+						   ('company', value.lender.company)]))
 	return {'request': request, 'lists': lists}	
 
 # account for profile
 @render_to('profile/account.html')
 def account(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	borrower = Borrower.objects.get(system_account=system_account.id)
 	business = Business.objects.get(system_account=system_account.id)
@@ -142,14 +179,20 @@ def account(request):
 # statements for profile
 @render_to('profile/statements.html')
 def statements(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	return {'request': request}
 
 # save data for profile page
 def save_profile_main(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	borrower = Borrower.objects.get(system_account=system_account.id)
 	borrower.suffix = request.GET['suffix']
@@ -178,8 +221,11 @@ def save_profile_main(request):
 
 # save data for profile business page
 def save_profile_business(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	business = Business.objects.get(system_account=system_account.id)
 	business.business_name = request.GET['business_name']
@@ -220,8 +266,11 @@ def save_profile_business(request):
 
 # save data for profile credit page
 def save_profile_credit(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	business_measure = Business_measure.objects.get(system_account=system_account.id)
 	business_measure.amount = int(request.GET['amount'])
@@ -236,11 +285,13 @@ def save_profile_credit(request):
 
 # finish account
 def account_finish(request):
-	if check_auth(request):
-		return HttpResponseRedirect("/auth/")
+	if check_auth(request)==0:
+	    return HttpResponseRedirect("/auth/")
+	elif check_auth(request)==1:
+	    return HttpResponseRedirect("/lender/account/")
+
 	system_account = System_account.objects.get(email=request.session['username'])
 	borrower = Borrower.objects.get(system_account=system_account.id)
-	borrower.accepted = 1
 	borrower.save()
 
 	if settings.PROD:
@@ -339,6 +390,16 @@ def get_country(request):
 # get industry
 def get_industry(request):
 	result = Industry.objects.all()
+	categories = []
+	for category in result:
+		categories.append(category.name)	
+	return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )
+
+# get risk level
+def get_risk_level(request):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
+	result = Risk_level.objects.all()
 	categories = []
 	for category in result:
 		categories.append(category.name)	

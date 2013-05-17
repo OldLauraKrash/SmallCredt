@@ -261,6 +261,7 @@
 							<div class="input-holder">
 								<span class="input" style="width: 209 px;"><input type="text"
 									value="{{business_measure.amount}}" placeholder="Loan amount"
+									{% if borrower.borrower_status%} disabled {% endif %}
 									class="validate[required]" id="general-form-profile-credit-loan-amount" name="amount"  /></span>
 							</div>
 						</div>
@@ -273,6 +274,7 @@
 									{% else %}
 										value="{{business_measure.monthly_sales}}"
 									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
 									placeholder="Monthly sales"  
 									class="validate[required]" id="general-form-profile-credit-monthly-sales" 
 									name="monthly_sales" />
@@ -288,6 +290,7 @@
 									{% else %}
 										value="{{business_measure.revenue}}"
 									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
 									placeholder="2012 revenue"
 									name="revenue" class="validate[required]" id="general-form-profile-credit-revenue" /></span>
 							</div>
@@ -301,6 +304,7 @@
 									{% else %}
 										value="{{business_measure.net_profit}}"
 									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
 									placeholder="2012 profit" class="validate[required]" id="general-form-profile-credit-profit"
 									 />
 								</span>

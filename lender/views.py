@@ -192,10 +192,10 @@ def save_lender(request):
 	except:
 		lender.geography = ''
 	try: 
-		risk_level=Risk_level.objects.get(name=request.GET['risk_level'])
-		lender.risk_level=risk_level
+		risk=Risk.objects.get(name=request.GET['risk'])
+		lender.risk=risk
 	except:
-		lender.risk_level = ''
+		lender.risk = ''
 	try: 
 		industry=Industry.objects.get(name=request.GET['industry'])
 		lender.industry=industry
@@ -215,10 +215,10 @@ def get_geography(request):
 	return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )
 
 # get risk level
-def get_risk_level(request):
+def get_risk_lender(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-	result = Risk_level.objects.all()
+	result = Risk.objects.all()
 	categories = []
 	for category in result:
 		categories.append(category.name)	

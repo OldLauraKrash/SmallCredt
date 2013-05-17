@@ -42,18 +42,11 @@
 								<th class="col06">Status</th>
 							</tr>
 							{% for list in lists %}
+								{% if list.amount != None %}
 								<tr class="{% cycle 'odd' '' %}" rel="{{list.id}}">
-									{% if list.amount == None%}
-										<td class="col01">$0</td>
-									{% else %}
-										<td class="col01">${{list.amount }}</td>
-									{% endif %}
-									<td class="col02 align-left">{{list.lender}}</td>
-									{% if list.amount == None%}
-										<td class="col01">$0</td>
-									{% else %}
-										<td class="col01">${{list.amount }}</td>
-									{% endif %}
+									<td class="col01">${{list.amount }}</td>
+									<td class="col02 align-left">{{list.company}}</td>
+									<td class="col01">${{list.amount }}</td>
 									<td class="col04">10%</td>
 									<td class="col05">9 months</td>
 									<td class="col06">
@@ -64,6 +57,7 @@
 										<span class="mark normal" style="display:none;">&nbsp;</span>
 									</td>
 								</tr>
+								{% endif %}
 							{% endfor %}
 						</tbody>
 					</table>
