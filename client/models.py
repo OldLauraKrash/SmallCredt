@@ -3,6 +3,11 @@ from django.db import models
 from time import gmtime, strftime
 import hashlib
 
+class Risk_level(models.Model):
+    name = models.CharField(max_length=255)
+    def __unicode__(self):
+        return unicode(self.name)
+
 class Legal(models.Model):
     name = models.CharField(max_length=255)
     def __unicode__(self):
@@ -49,6 +54,8 @@ class Borrower(models.Model):
     date_of_birth = models.DateTimeField(null=True)
     ssn = models.CharField(max_length=15)
     borrower_status = models.BooleanField()
+    risk_level = models.ForeignKey(Risk_level, null=True)
+    accepted = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
     system_account = models.ForeignKey(System_account)   
     def __unicode__(self):

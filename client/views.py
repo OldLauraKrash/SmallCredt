@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.conf import settings
 from loan.models import *
+import const
 from django.views.decorators.csrf import csrf_exempt
 
 # check auth client
@@ -239,8 +240,12 @@ def account_finish(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
 	borrower = Borrower.objects.get(system_account=system_account.id)
-	borrower.borrower_status = 1
+	borrower.accepted = 1
 	borrower.save()
+
+	if settings.PROD:
+		send_mail(const.FINISH_APPLICATION_THEMA, const.FINISH_APPLICATION_TEXT+' '+str(request.session['username']), const.EMAIL_FROM, [const.FINISH_APPLICATION_EMAIL, const.FINISH_APPLICATION_EMAIL_COPY], fail_silently=False)	
+
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )	
 
 # save files

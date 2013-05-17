@@ -9,4 +9,3 @@ REGISTER_TEXT_EMAIL = 'Register on SmallCreditExchange.com. Please confirm your 
 # register client
 FORGET_THEMA_EMAIL = 'Please follow this link to reset your password'
 FORGET_TEXT_EMAIL = 'Hello from SmallCreditExchange! Please follow this link to reset your password http://smallcreditexchange.com/forget/'
-

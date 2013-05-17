@@ -68,18 +68,20 @@ def lender_edit(request):
 def lender_marketplace(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")	
-	borrowers = Borrower.objects.filter(borrower_status = True)
+	borrowers = Borrower.objects.filter(accepted = True)
 	lists = []
 	for borrower in borrowers:
 		system_account = System_account.objects.get(email=borrower.system_account)
 		business = Business.objects.get(system_account=borrower.system_account)
 		business_measure = Business_measure.objects.get(system_account=borrower.system_account)
 		locale = str(business.city)+', '+str(business.state)
+		risk = borrower.risk_level
 		lists.append(dict([('date', borrower.created),
 							('id', system_account.id), 
 							('amount', business_measure.amount),
 							('industry', business.industry),
 							('locale', locale),
+							('risk', risk),
 							('name', business.business_name)]))
 
 	return {'request': request, 'lists':lists}
@@ -109,7 +111,6 @@ def bid(request):
 def decline(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-	loan_offer = Loan_offer()
 	system_account = System_account.objects.get(email=request.session['username'])
 	lender = Lender.objects.get(system_account=system_account.id)
 
@@ -129,7 +130,10 @@ def lender_marketplace_borrower(request, id):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
-	lender = Lender.objects.get(system_account=system_account.id)
+	try:
+		lender = Lender.objects.get(system_account=system_account)
+	except:
+		lender = ''
 
 	system_account = System_account.objects.get(id=id)
 	borrower = Borrower.objects.get(system_account=system_account)

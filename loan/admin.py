@@ -3,14 +3,6 @@ from django.contrib import admin
 from django.contrib.contenttypes import generic
 from loan.models import *
 
-class Financial_institutionAdmin(admin.ModelAdmin):
-    list_filter = ['financial_institution_name']
-    list_display = ['financial_institution_name']
-    search_fields = ['financial_institution_name']
-    def get_ordering(self, request):
-        return ['financial_institution_name']
-admin.site.register(Financial_institution, Financial_institutionAdmin)
-
 class Loan_offerAdmin(admin.ModelAdmin):
     list_filter = ['lender']
     list_display = ['lender']

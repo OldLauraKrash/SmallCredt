@@ -11,7 +11,6 @@ class System_accountAdmin(admin.ModelAdmin):
         return ['email']
 admin.site.register(System_account, System_accountAdmin)
 
-
 class BorrowerAdmin(admin.ModelAdmin):
     list_filter = ['system_account']
     list_display = ['system_account']
@@ -91,3 +90,12 @@ class Processor_fileAdmin(admin.ModelAdmin):
     def get_ordering(self, request):
         return ['system_account']
 admin.site.register(Processor_file, Processor_fileAdmin)
+
+
+class Risk_levelAdmin(admin.ModelAdmin):
+    list_filter = ['name']
+    list_display = ['name']
+    search_fields = ['name']
+    def get_ordering(self, request):
+        return ['name']
+admin.site.register(Risk_level, Risk_levelAdmin)
