@@ -10,6 +10,7 @@ from django.conf import settings
 from loan.models import *
 import const
 from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 # check auth client
 def check_auth(request):
@@ -109,32 +110,8 @@ def accepted(request):
 		borrower.ssn = request.POST['ssn']
 		borrower.save()
 
-	# validation files
-	bank_error = ''
-	try:
-		bank_error = request.session['bank_error']
-		request.session['bank_error'] = ''
-	except:
-		request.session['bank_error'] = ''
-
-	financial_error = ''
-	try:
-		financial_error = request.session['financial_error']
-		request.session['financial_error'] = ''
-	except:
-		request.session['financial_error'] = ''
-
-	processor_error = ''
-	try:
-		processor_error = request.session['processor_error']
-		request.session['processor_error'] = ''
-	except:
-		request.session['processor_error'] = ''
 
 	return {'request': request,
-			'bank_error':bank_error,
-			'processor_error':processor_error,
-			'financial_error':financial_error, 
 			'business':business, 
 			'borrower':borrower, 
 			'bank_file':bank_file, 
@@ -291,8 +268,6 @@ def account_finish(request):
 	    return HttpResponseRedirect("/lender/account/")
 
 	system_account = System_account.objects.get(email=request.session['username'])
-	borrower = Borrower.objects.get(system_account=system_account.id)
-	borrower.save()
 
 	if settings.PROD:
 		send_mail(const.FINISH_APPLICATION_THEMA, const.FINISH_APPLICATION_TEXT+' '+str(request.session['username']), const.EMAIL_FROM, [const.FINISH_APPLICATION_EMAIL, const.FINISH_APPLICATION_EMAIL_COPY], fail_silently=False)	
@@ -310,8 +285,6 @@ def save_files(request):
 		bank_file.bank_file = request.FILES['bank_file']
 		if request.FILES['bank_file'].size < settings.MAX_SIZE_FILE:
 			bank_file.save()
-		else:
-			request.session['bank_error'] = 'Error! Max limit 1MB!'
 		anchor = '#bank'
 	except:
 		request.FILES['bank_file'] = ''
@@ -322,8 +295,6 @@ def save_files(request):
 		financial_file.financial_file = request.FILES['financial_file']
 		if request.FILES['financial_file'].size < settings.MAX_SIZE_FILE:
 			financial_file.save()
-		else:
-			request.session['financial_error'] = 'Error! Max limit 1MB!'
 		anchor = '#financial'
 	except:
 		request.FILES['financial_file'] = ''
@@ -334,8 +305,6 @@ def save_files(request):
 		processor_file.processor_file = request.FILES['processor_file']
 		if request.FILES['processor_file'].size < settings.MAX_SIZE_FILE:
 			processor_file.save()
-		else:
-			request.session['processor_error'] = 'Error! Max limit 1MB!'
 		anchor = '#processor'
 	except:
 		request.FILES['processor_file'] = ''

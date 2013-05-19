@@ -47,14 +47,14 @@
               </label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area" {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file1" name="bank_file">
+                    <input type="file" class="file-input-area" {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file1" name="bank_file" rel="0">
                     <a class="button-gray" href="#"  name="bank">Upload</a>
                     <span class="file-name"></span>
                   </div>     
                   <ul class="list-files">
                     <li>                 
                       <div class="error-file">
-                        {{bank_error}}
+                        Error! Max limit 1MB!
                       </div>
                     </li>   
                     {% for file in bank_file %}
@@ -74,14 +74,14 @@
               </label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area"  {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file2" name="processor_file">
+                    <input type="file" class="file-input-area"  {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file2" name="processor_file" rel="1">
                     <a class="button-gray" href="#"  name="processor">Upload</a>
                     <span class="file-name"></span>
                   </div>              
                   <ul class="list-files">
                     <li>                 
                       <div class="error-file">
-                        {{processor_error}}
+                        Error! Max limit 1MB!
                       </div>
                     </li>   
                     {% for file in processor_file %}
@@ -98,14 +98,14 @@
                 <label>Financial Statements</label>
                 <div class="input-holder">
                   <div class="file">
-                    <input type="file" class="file-input-area" {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file3" name="financial_file">
+                    <input type="file" class="file-input-area" {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file3" name="financial_file" rel="2">
                     <a class="button-gray" href="#" name="financial">Upload</a>
                     <span class="file-name"></span>
                   </div>
                   <ul class="list-files">
                     <li>                 
                       <div class="error-file">
-                        {{financial_error}}
+                        Error! Max limit 1MB!
                       </div>
                     </li>   
                     {% for file in financial_file %}

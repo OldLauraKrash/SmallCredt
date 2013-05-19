@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 # check auth client
 def check_auth(request):
@@ -96,6 +97,8 @@ def bid(request):
 
 	system_account = System_account.objects.get(id=request.GET['id'])
 	borrower = Borrower.objects.get(system_account=system_account)
+	borrower.created = datetime.now()
+	borrower.save()
 
 	loan_offer = Loan_offer()
 	loan_offer.lender = lender
@@ -104,7 +107,8 @@ def bid(request):
 	loan_offer_daily_repayment_sale = request.GET['daily']
 	loan_offer.discount = request.GET['discount']
 	loan_offer.status = 1
-	loan_offer.save() 	
+	loan_offer.save() 
+
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # decline

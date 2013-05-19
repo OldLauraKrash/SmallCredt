@@ -95,7 +95,13 @@ $(document).ready(function(){
                                             'daily': $('#bid-daily-repayment').val(),                                             
                                         }, function(data) {
             if (data.result == 'ok') {
-
+                $('.link-holder').hide();
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1; //January is 0!
+                var yyyy = today.getFullYear();
+                if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'/'+mm+'/'+dd;
+                $('.finish-date').html('You submitted <br/> your offer on '+today);
             }
         });
         return false;
@@ -106,7 +112,13 @@ $(document).ready(function(){
         $('.link-holder').hide();
         $.get('/lender/marketplace/decline', { 'id': $(this).attr('rel') }, function(data) {
             if (data.result == 'ok') {
-
+                $('.link-holder').hide();
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1; //January is 0!
+                var yyyy = today.getFullYear();
+                if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'/'+mm+'/'+dd;
+                $('.finish-date').html('You submitted <br/> your offer on '+today);
             }
         });
         return false;
@@ -491,8 +503,29 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    function validateSize(fileInput) {
+      var fileObj, size;
+      if ( typeof ActiveXObject == "function" ) { // IE
+        fileObj = (new ActiveXObject("Scripting.FileSystemObject")).getFile(fileInput.value);
+      }else {
+        fileObj = fileInput.files[0];
+      }
+     
+      size = fileObj.size; // Size returned in bytes.
+      if(size > 1 * 1024 * 1024){
+        //fileInput.parentNode.innerHTML = fileInput.parentNode.innerHTML;
+        return false;
+      }
+      return true;
+    }
+
     // file upload
     $('#form-accepted-first-file1, #form-accepted-first-file2, #form-accepted-first-file3').change(function() {
-        $('#accepted-save-files').submit();
+        if (validateSize(this)) {
+            $('.error-file').eq($(this).attr('rel')).hide();
+            $('#accepted-save-files').submit();
+        } else {
+            $('.error-file').eq($(this).attr('rel')).show();
+        }
     });
 });
