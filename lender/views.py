@@ -111,6 +111,18 @@ def bid(request):
 
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
+#lender info
+@render_to('lender/info.html') 
+def info(request, id):
+	if check_auth(request):
+		return HttpResponseRedirect("/auth/")
+	try: 
+		lender = Lender.objects.get(id=id)
+	except:
+		lender = ''
+	return {'request': request, 'lender':lender, 'email':lender.system_account.email}
+
+
 # decline
 def decline(request):
 	if check_auth(request):

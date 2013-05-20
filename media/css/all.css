@@ -1539,3 +1539,6 @@ h2.title-table{
 	color: red;
 	display: none;
 }
+.lender {
+	cursor: pointer;
+}

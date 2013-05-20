@@ -1,0 +1,86 @@
+{% extends 'misc/base.html' %}
+{% block content %}
+    <div class="main-holder">
+      <nav class="nav-holder">
+        <div class="frame">
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile/">Apply</a></li>
+            <li><a href="/account/" class="active">My Account</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="main">
+        <br/>
+        <div class="table-content">
+          <h2 class="title-table">Account Information</h2>
+          <div class="table-info">
+            <table>
+              <tbody>
+                {% if lender.middle_name|length %}  
+                <tr>
+                  <td class="col01">Your name*</td>
+                  <td class="col02">{{lender.suffix}} {{lender.first_name}} {{ lender.middle_name }} {{ lender.last_name }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                  <td class="col01">Email*</td>
+                  <td class="col02"><a href="mailto:{{email}}" class="link-mail">{{email}}</a></td>
+                </tr>
+                {% if lender.cell_phone|length %} 
+                <tr>
+                  <td class="col01">Phone</td>
+                  <td class="col02">{{ lender.cell_phone }} {{ lender.home_phone }}</td>
+                </tr>
+                {% endif %}
+                {% if lender.title|length %} 
+                <tr>
+                  <td class="col01">Title</td>
+                  <td class="col02">{{ lender.title }}</td>
+                </tr>
+                {% endif %}
+                {% if lender.company|length %} 
+                <tr>
+                  <td class="col01">Company</td>
+                  <td class="col02">{{ lender.company }}</td>
+                </tr>
+                {% endif %}
+                {% if lender.street|length %}
+                <tr>
+                  <td class="col01">Address</td>
+                  <td class="col02">{{lender.street}}, {{lender.city}}, {{lender.state}}, {{ lender.zip_code }}, {{ lender.country }}</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+          <h2 class="title-table">Portfolio Criteria</h2>
+          <div class="table-info">
+            <table>
+              <tbody>
+                {% if lender.geography != '' %} 
+                <tr>
+                  <td class="col01">Geography</td>
+                  <td class="col02">{{ lender.geography }}</td>
+                </tr>
+                {% endif %}
+                {% if lender.risk_level != '' %}
+                <tr>
+                  <td class="col01">Risk level</td>
+                  <td class="col02">{{ lender.risk }}</td>
+                </tr>
+                {% endif %}
+                {% if lender.industry != '' %}
+                <tr>
+                  <td class="col01">Industry</td>
+                  <td class="col02">{{ lender.industry }}</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

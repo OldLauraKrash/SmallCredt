@@ -43,7 +43,7 @@
 							</tr>
 							{% for list in lists %}
 								{% if list.amount != None %}
-								<tr class="{% cycle 'odd' '' %}" rel="{{list.id}}">
+								<tr class="{% cycle 'odd' '' %} lender" rel="{{list.lender}}">
 									<td class="col01">${{list.amount }}</td>
 									<td class="col02 align-left">{{list.company}}</td>
 									<td class="col01">${{list.amount }}</td>

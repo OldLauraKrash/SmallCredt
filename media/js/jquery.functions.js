@@ -164,6 +164,12 @@ $(document).ready(function(){
         return false;
     });
 
+    // lender info
+    $('.lender').live("click", function(){
+        window.location.href = '/lender/info/'+$(this).attr('rel');
+        return false;
+    });
+
     // submit lender save
     $('#lender-form-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
