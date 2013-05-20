@@ -75,6 +75,7 @@ $(document).ready(function(){
 		$('.link-holder').removeClass('active');
 		event.stopPropagation();
 	});
+	/*
 	$('.table-general .col06 .link-holder .btn-status').not('.decline').click(function(){
 		$(this).closest('.link-holder').hide();
 		$(this).closest('.link-holder').next().removeClass('delete').addClass('normal').show();
@@ -85,6 +86,7 @@ $(document).ready(function(){
 		$(this).closest('.link-holder').next().removeClass('normal').addClass('delete').show();
 		return false;
 	});
+*/
 });
 function popupbg(){
 	if ($(window).height() < $("#wrapper").height()) {

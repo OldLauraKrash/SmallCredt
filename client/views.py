@@ -133,6 +133,8 @@ def credit_offers(request):
 	lists = []
 	for value in result:
 		lists.append(dict([('amount', value.amount),
+						   ('id', value.id),
+						   ('status', value.status_lender),
 						   ('company', value.lender.company)]))
 	return {'request': request, 'lists': lists}	
 
@@ -283,8 +285,7 @@ def save_files(request):
 		bank_file = Bank_file()
 		bank_file.system_account = system_account
 		bank_file.bank_file = request.FILES['bank_file']
-		if request.FILES['bank_file'].size < settings.MAX_SIZE_FILE:
-			bank_file.save()
+		bank_file.save()
 		anchor = '#bank'
 	except:
 		request.FILES['bank_file'] = ''
@@ -293,8 +294,7 @@ def save_files(request):
 		financial_file = Financial_file()
 		financial_file.system_account = system_account
 		financial_file.financial_file = request.FILES['financial_file']
-		if request.FILES['financial_file'].size < settings.MAX_SIZE_FILE:
-			financial_file.save()
+		financial_file.save()
 		anchor = '#financial'
 	except:
 		request.FILES['financial_file'] = ''
@@ -303,8 +303,7 @@ def save_files(request):
 		processor_file = Processor_file()
 		processor_file.system_account = system_account
 		processor_file.processor_file = request.FILES['processor_file']
-		if request.FILES['processor_file'].size < settings.MAX_SIZE_FILE:
-			processor_file.save()
+		processor_file.save()
 		anchor = '#processor'
 	except:
 		request.FILES['processor_file'] = ''

@@ -20,11 +20,11 @@ class BorrowerAdmin(admin.ModelAdmin):
 admin.site.register(Borrower, BorrowerAdmin)
 
 class BusinessAdmin(admin.ModelAdmin):
-    list_filter = ['system_account']
-    list_display = ['system_account']
-    search_fields = ['system_account']
+    list_filter = ['business_name']
+    list_display = ['business_name']
+    search_fields = ['business_name']
     def get_ordering(self, request):
-        return ['system_account']
+        return ['business_name']
 admin.site.register(Business, BusinessAdmin)
 
 class LegalAdmin(admin.ModelAdmin):

@@ -50,11 +50,19 @@
 									<td class="col04">10%</td>
 									<td class="col05">9 months</td>
 									<td class="col06">
+										{% if list.status == None %}
 										<div class="link-holder">
-											<a href="#" class="btn-status"><span>Accept</span></a>
-											<a href="#" class="btn-status decline"><span>Decline</span></a>
+											<a href="#" class="btn-status accepted-loan" rel="{{list.id}}"><span>Accept</span></a>
+											<a href="#" class="btn-status decline decline-loan" rel="{{list.id}}"><span>Decline</span></a>
 										</div>
 										<span class="mark normal" style="display:none;">&nbsp;</span>
+										{% else %}
+											{% if list.status == 1 %}
+												<span style="" class="mark normal">&nbsp;</span>
+											{% else %}
+												<span style="" class="mark delete">&nbsp;</span>
+											{% endif %}
+										{% endif %}
 									</td>
 								</tr>
 								{% endif %}

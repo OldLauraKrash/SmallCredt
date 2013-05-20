@@ -92,19 +92,19 @@ def get_dir(instance, filename):
 
 class Bank_file(models.Model):
     system_account = models.ForeignKey(System_account)
-    bank_file = models.FileField(upload_to=get_dir)
+    bank_file = models.FileField(upload_to=get_dir, max_length=255)
     def __unicode__(self):
         return unicode(self.system_account) 
 
 class Financial_file(models.Model):
     system_account = models.ForeignKey(System_account)
-    financial_file = models.FileField(upload_to=get_dir)
+    financial_file = models.FileField(upload_to=get_dir, max_length=255)
     def __unicode__(self):
         return unicode(self.system_account) 
 
 class Processor_file(models.Model):
     system_account = models.ForeignKey(System_account)
-    processor_file = models.FileField(upload_to=get_dir)
+    processor_file = models.FileField(upload_to=get_dir, max_length=255)
     def __unicode__(self):
         return unicode(self.system_account)
 

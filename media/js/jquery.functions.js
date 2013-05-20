@@ -186,6 +186,24 @@ $(document).ready(function(){
         window.location.href = '/lender/marketplace/borrower/'+$(this).attr('rel');
     });
 
+    // accepted loan
+    $('.accepted-loan').live("click", function(){
+        $.get('/loan/accepted/', {'id': $(this).attr('rel')}, function(data) {
+        });
+        $(this).closest('.link-holder').hide();
+        $(this).closest('.link-holder').next().removeClass('delete').addClass('normal').show();
+        return false;
+    });    
+
+    // decline loan
+    $('.decline-loan').live("click", function(){
+        $.get('/loan/decline/', {'id': $(this).attr('rel')}, function(data) {
+        });
+        $(this).closest('.link-holder').hide();
+        $(this).closest('.link-holder').next().removeClass('normal').addClass('delete').show();
+        return false;
+    });   
+
     // save profile credit
     $('#general-form-profile-credit-submit').live("click", function(){
         $(this).parent().parent().fadeOut();

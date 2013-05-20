@@ -40,6 +40,8 @@
                 </div>
               </div>
             </div>
+          </form>
+            {% if borrower.ssn != '' %}
             <form action="/profile/save-files/" method="post" enctype="multipart/form-data" id="accepted-save-files">
               {% csrf_token %}
             <div class="row">
@@ -120,10 +122,11 @@
                   <span>
                     Finish
                     <input type="button" value="Finish" />
-                    </form>
                   </span>
                 </div>
             </div>
+            </form>
+            {% endif %}
           </fieldset>
       </div>
     </div>
