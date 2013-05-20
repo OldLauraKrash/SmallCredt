@@ -144,6 +144,16 @@ $(document).ready(function(){
         return false;
     });
 
+    // cancel bid
+    $('.change-bid').live("click", function(){
+        $('.submit-offer').hide();
+        $('.change-bid').hide();
+        $('.link-holder-indent').show();
+        $.get('/loan/cancel/', {'id': $(this).attr('rel')}, function(data) {
+        });
+        return false;
+    }); 
+
     // finish alert
     $('.finish-button').live("click", function(){
         $.get('/account-finish/', function(data) {

@@ -47,7 +47,7 @@ def lender_portfolio(request):
 	system_account = System_account.objects.get(email=request.session['username'])
 	try: 
 		lender = Lender.objects.get(system_account=system_account.id)
-		lists = Loan_offer.objects.filter(lender=lender, amount__gt=0)
+		lists = Loan_offer.objects.filter(lender=lender, enable=True)
 	except:
 		lists = ''
 	return {'request': request, 'lists':lists}
@@ -91,7 +91,6 @@ def lender_marketplace(request):
 def bid(request):
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
-	loan_offer = Loan_offer()
 	system_account = System_account.objects.get(email=request.session['username'])
 	lender = Lender.objects.get(system_account=system_account.id)
 
@@ -106,6 +105,7 @@ def bid(request):
 	loan_offer.amount = request.GET['amount']
 	loan_offer_daily_repayment_sale = request.GET['daily']
 	loan_offer.discount = request.GET['discount']
+	loan_offer.enable = True
 	loan_offer.status = 1
 	loan_offer.save() 
 
@@ -124,6 +124,7 @@ def decline(request):
 	loan_offer = Loan_offer()
 	loan_offer.lender = lender
 	loan_offer.borrower = borrower
+	loan_offer.enable = False
 	loan_offer.status = 2
 	loan_offer.save() 	
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
@@ -143,10 +144,9 @@ def lender_marketplace_borrower(request, id):
 	borrower = Borrower.objects.get(system_account=system_account)
 
 	try:
-		loan_offer = Loan_offer.objects.get(lender=lender, borrower=borrower)
-		loan_offer = False
+		loan_offer = Loan_offer.objects.get(lender=lender, borrower=borrower, enable = True)
 	except:
-		loan_offer = True
+		loan_offer = ''
 
 	system_account = System_account.objects.get(id=id)
 	business = Business.objects.get(system_account=system_account)

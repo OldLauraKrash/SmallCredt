@@ -33,6 +33,7 @@ def check_auth(request):
 def loan_accepted(request):
 	loan_offer = Loan_offer.objects.get(id=request.GET['id'])
 	loan_offer.status_lender = 1
+	loan_offer.enable = True
 	loan_offer.save()
 
 	business = Business.objects.get(system_account=loan_offer.lender.system_account.id)	
@@ -41,6 +42,7 @@ def loan_accepted(request):
 	loan.amount = loan_offer.amount
 	loan.lender = loan_offer.lender
 	loan.bussiness = business
+	loan_offer.enable = True
 	loan.remaining_balance = 0
 	loan.save()
 
@@ -49,9 +51,25 @@ def loan_accepted(request):
 
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
+# loan cancel
+def loan_cancel(request):
+	loan_offer = Loan_offer.objects.get(id=request.GET['id'])
+	loan_offer.enable = False
+	loan_offer.save()
+
+	try:
+		loan = Loan.objects.get(loan_offer=loan_offer)
+		loan.enable = False
+		loan.save()
+	except:
+		loan = ''
+		
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )	
+
 # loan decline
 def loan_decline(request):
 	loan_offer = Loan_offer.objects.get(id=request.GET['id'])
 	loan_offer.status_lender = 2
+	loan_offer.enable = True
 	loan_offer.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )

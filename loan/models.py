@@ -24,7 +24,8 @@ class Loan_offer(models.Model):
     status_lender = models.IntegerField(blank=True, null=True, choices=STATUS_LENDER)
     offer_date = models.DateTimeField(auto_now_add=True) 
     offer_exp_date = models.DateTimeField(auto_now_add=True)
-    status_changed_date = models.DateTimeField(auto_now_add=True)    
+    status_changed_date = models.DateTimeField(auto_now_add=True)
+    enable = models.BooleanField()     
     def __unicode__(self):
         return unicode(self.lender) 
 
@@ -35,10 +36,11 @@ class Loan(models.Model):
     receipt_date  = models.DateTimeField(auto_now_add=True)
     amount = models.IntegerField(blank=True)
     remaining_balance = models.IntegerField(blank=True)
-    credit_rate = models.CharField(max_length=255) 
-    repaid_amount = models.CharField(max_length=255)
-    repaid_term = models.CharField(max_length=255)
+    credit_rate = models.CharField(max_length=255, null=True) 
+    repaid_amount = models.CharField(max_length=255, null=True)
+    repaid_term = models.CharField(max_length=255, null=True)
     daily_repayment_sale = models.CharField(max_length=255)
-    loan_status = models.BooleanField() 
+    loan_status = models.BooleanField()
+    enable = models.BooleanField() 
     def __unicode__(self):
         return unicode(self.bussiness) 
