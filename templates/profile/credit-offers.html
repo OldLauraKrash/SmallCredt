@@ -46,8 +46,8 @@
 								<tr class="{% cycle 'odd' '' %} lender" rel="{{list.lender}}">
 									<td class="col01">${{list.amount }}</td>
 									<td class="col02 align-left">{{list.company}}</td>
-									<td class="col01">${{list.amount }}</td>
-									<td class="col04">10%</td>
+									<td class="col01">${{list.repaid_amount }}</td>
+									<td class="col04">{{list.daily_repayment_sale}}%</td>
 									<td class="col05">9 months</td>
 									<td class="col06">
 										{% if list.status == None %}

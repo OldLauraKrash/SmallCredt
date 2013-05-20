@@ -134,7 +134,9 @@ def credit_offers(request):
 	for value in result:
 		lists.append(dict([('amount', value.amount),
 						   ('id', value.id),
+						   ('repaid_amount', value.repaid_amount),
 						   ('lender', value.lender.id),
+						   ('daily_repayment_sale', value.daily_repayment_sale),
 						   ('status', value.status_lender),
 						   ('company', value.lender.company)]))
 	return {'request': request, 'lists': lists}	

@@ -96,6 +96,7 @@ def bid(request):
 
 	system_account = System_account.objects.get(id=request.GET['id'])
 	borrower = Borrower.objects.get(system_account=system_account)
+	business_measure = Business_measure.objects.get(system_account=system_account)
 	borrower.created = datetime.now()
 	borrower.save()
 
@@ -103,8 +104,10 @@ def bid(request):
 	loan_offer.lender = lender
 	loan_offer.borrower = borrower
 	loan_offer.amount = request.GET['amount']
-	loan_offer_daily_repayment_sale = request.GET['daily']
+	loan_offer.daily_repayment_sale = request.GET['daily']
 	loan_offer.discount = request.GET['discount']
+	loan_offer.repaid_amount = float(request.GET['amount'])*float(request.GET['discount'])
+	loan_offer.estimated_repaid_term = (float(request.GET['amount'])*float(request.GET['discount'])) / int(business_measure.monthly_sales * request.GET['daily']) 
 	loan_offer.enable = True
 	loan_offer.status = 1
 	loan_offer.save() 

@@ -23,7 +23,7 @@
 								<th class="col06">Risk</th>
 							</tr>
 							{% for list in lists %}
-								<tr class="{% cycle 'odd' '' %}" rel="{{list.id}}">
+								<tr class="{% cycle 'odd' '' %} client" rel="{{list.id}}">
 									<td class="col01 align-left">{{list.date|date:'Y/m/d'}}</td>
 									<td class="col02">{{list.name}}</td>
 									<td class="col03">${{list.amount}}</td>

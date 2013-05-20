@@ -42,7 +42,7 @@
 								<th class="col06">Risk</th>
 							</tr>
 							{% for list in lists %}
-								<tr class="{% cycle 'odd' '' %} client" rel="{{list.system_account.id}}">
+								<tr class="{% cycle 'odd' '' %}" rel="{{list.system_account.id}}">
 									<td class="col01 align-left">{{list.offer_date|date:'Y/m/d'}}</td>
 									<td class="col02">{{list.borrower}}</td>
 									{% if list.amount != None %}
