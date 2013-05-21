@@ -57,7 +57,7 @@ def profile(request):
 	business = Business.objects.get(system_account=system_account.id)
 	borrower = Borrower.objects.get(system_account=system_account.id)
 	if borrower.accepted:
-	    return HttpResponseRedirect("/account/finish")
+	    return HttpResponseRedirect("/account/credit-offers/")
 	try:
 		business_measure.amount = request.GET['amount'] + "000"
 		business_measure.save()
@@ -98,7 +98,7 @@ def accepted(request):
 	business = Business.objects.get(system_account=system_account.id)
 	borrower = Borrower.objects.get(system_account=system_account.id)
 	if borrower.accepted:
-	    return HttpResponseRedirect("/account/finish")
+	    return HttpResponseRedirect("/account/credit-offers/")
 	bank_file = Bank_file.objects.filter(system_account=system_account.id)
 	processor_file = Processor_file.objects.filter(system_account=system_account.id)
 	financial_file =  Financial_file.objects.filter(system_account=system_account.id)

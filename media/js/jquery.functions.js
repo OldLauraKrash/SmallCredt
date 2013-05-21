@@ -117,7 +117,7 @@ $(document).ready(function(){
                 var dd = today.getDate();
                 var mm = today.getMonth()+1; //January is 0!
                 var yyyy = today.getFullYear();
-                if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'/'+mm+'/'+dd;
+                if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
                 $('.finish-date').html('You submitted <br/> your offer on '+today);
             }
         });
@@ -135,10 +135,13 @@ $(document).ready(function(){
     $('#general-form-profile-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile").validationEngine('validate')) {
-            $('.ui-datepicker').hide();
-            $.get('/save-profile-main/', $('#general-form-profile').serialize());
-            lineProgress();
-            $('#general-form-profile-business-name-first').focus();
+            $.get('/save-profile-main/', $('#general-form-profile').serialize(), function(data) {
+                if (data.result == 'ok') {
+                    if (lineProgress()==70) {
+                      window.location.href = '/qualify';   
+                    }
+                }
+            });
         }
         $(this).parent().parent().fadeIn();
         return false;
@@ -188,6 +191,7 @@ $(document).ready(function(){
     $('#general-form-profile-business-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-business").validationEngine('validate')) {
+            $('#general-form-profile-credit').fadeIn();
             $('.ui-datepicker').hide();
             $.get('/save-profile-business/', $('#general-form-profile-business').serialize());
             lineProgress();
@@ -224,14 +228,12 @@ $(document).ready(function(){
     $('#general-form-profile-credit-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-credit").validationEngine('validate')) {
+            $('#general-form-profile').fadeIn();
             $.get('/save-profile-credit/', $('#general-form-profile-credit').serialize(), function(data) {
-                if (data.result == 'ok') {
-                    if (lineProgress()==70) {
-                       window.location.href = '/qualify';   
-                    }
-                }
+                lineProgress();
             });
         }
+        $('#general-form-profile-your-name-first').focus();
         $(this).parent().parent().fadeIn();
         return false;
     });

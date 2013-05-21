@@ -108,7 +108,8 @@ def bid(request):
 	loan_offer.daily_repayment_sale = request.GET['daily']
 	loan_offer.discount = request.GET['discount']
 	loan_offer.repaid_amount = float(request.GET['amount'])*float(request.GET['discount'])
-	loan_offer.estimated_repaid_term = round((float(request.GET['amount'])*float(request.GET['discount'])) / float(business_measure.monthly_sales * request.GET['daily'])) 
+	total = round(int(request.GET['amount'])*float(request.GET['discount'])) / round(int(business_measure.monthly_sales) * int(request.GET['daily']))
+	loan_offer.estimated_repaid_term = round(total)
 	loan_offer.enable = True
 	loan_offer.status = 1
 	loan_offer.save() 

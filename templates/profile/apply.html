@@ -7,6 +7,7 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="/profile/" class="active">Apply</a></li>
 						<li><a href="/account/">My Account</a></li>
+            			<li><a href="/account/credit-offers/">Credit offers</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -15,7 +16,187 @@
 				<div class="progress">
 					<span class="line-progress" style="width: 1%;">&nbsp;</span>
 				</div>
-				<form action="#" class="general-form border-none" id="general-form-profile">
+				<form action="#" class="general-form border-none" id="general-form-profile-business">
+					<fieldset>
+						<div class="row">
+							<label>Business name*</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{{business.business_name}}" placeholder="Business name"
+									class="validate[required]"
+									{% if borrower.borrower_status%} disabled {% endif %} 
+									id="general-form-profile-business-name-first" name="business_name" />
+								</span>
+								<span class="input" style="width: 163px;"><input type="text"
+									value="{{business.dba}}" placeholder="DBA"
+									{% if borrower.borrower_status%} disabled {% endif %}
+									id="general-form-profile-business-name-second" name="dba" />
+								</span>
+							</div>
+						</div>
+						<div class="row">
+							<label>Legal form*</label>
+							<div class="input-holder">
+								<span class="input" style="width: 136px;"><input type="text"  class="validate[required]"
+									{% ifequal business.legal_form None %}
+										value=""
+									{% else %}
+										value="{{business.legal_form}}"
+									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
+									placeholder="Legal form"	
+									id="general-form-profile-business-legal-first" name="legal_form" /></span>
+								<span class="input" style="width: 207px;"><input type="text"
+									{% ifequal business.state_of_incorporation None %}
+										value=""
+									{% else %}
+										value="{{business.state_of_incorporation}}"
+									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
+									placeholder="State of incorporation" 
+									class="input-state validate[required]"
+									id="general-form-profile-business-legal-second" name="state_of_incorporation" /></span>
+								<span class="input" style="width: 132px;"><input type="text" 
+									value="{{business.date_founded|date:'Y-m-d'}}" placeholder="YYYY-MM-DD"
+									class="validate[required, custom[date]]"
+									{% if borrower.borrower_status%} disabled {% endif %}
+									id="general-form-profile-business-legal-third" name="date_founded" /></span>
+							</div>
+						</div>
+						<div class="row">
+							<label>Business address*</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209px;"><input type="text"
+									value="{{business.street}}" placeholder="Street"  class="validate[required]"
+									{% if borrower.borrower_status%} disabled {% endif %}
+									id="general-form-profile-business-address-first" name="street" /></span>
+								<span class="input" style="width: 104px;"><input type="text"
+									value="{{business.city}}" placeholder="City" 
+									{% if borrower.borrower_status%} disabled {% endif %} 
+									class="validate[required]" id="general-form-profile-business-address-second" name="city" />
+								</span>
+								<span class="input" style="width: 66px;"><input type="text" 
+									{% if borrower.borrower_status%} disabled {% endif %}
+									{% ifequal business.state None %}
+										value=""
+									{% else %}
+										value="{{business.state}}"
+									{% endifequal %}
+
+									placeholder="State" class="input-state validate[required]"
+									id="general-form-profile-business-address-third" name="state" /></span>
+								<span class="input" style="width: 101px;"><input type="text"
+									value="{{business.zip_code}}" placeholder="Zip code" 
+									class="validate[required]" id="general-form-profile-business-address-four" name="zip_code" /></span>
+								<span class="input" style="width: 75px;"><input type="text"
+
+									{% ifequal business.country None %}
+										value=""
+									{% else %}
+										value="{{business.country}}"
+									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
+									placeholder="Country" class="input-country validate[required]" id="general-form-profile-business-address-country"
+									name="country" 
+									 /></span>
+							</div>
+						</div>
+						<div class="row">
+							<label>Business phone</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209px;"><input type="text" 
+									value="{{business.business_phone}}" placeholder="Business phone"
+									{% if borrower.borrower_status%} disabled {% endif %}
+									name="business_phone" /></span>
+							</div>
+						</div>
+						<div class="row">
+							<label>Industry</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209px;"><input type="text" 
+									{% ifequal business.industry None %}
+										value=""
+									{% else %}
+										value="{{business.industry}}"
+									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
+									placeholder="Industry" class="input-industry validate[required]" id="industry"									
+									name="industry" /></span>
+								<div class="btn-form" style="width: 177px;">
+									<span>
+										Save
+										<input type="submit" value="Save" {% if borrower.borrower_status%} disabled {% endif %} id="general-form-profile-business-submit" />
+									</span>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				<form action="#" class="general-form" id="general-form-profile-credit" {% if business_measure.monthly_sales == None %}style="display:none" {% endif %} >
+					<fieldset>
+						<div class="row">
+							<label>Loan amount*</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209 px;"><input type="text"
+									value="{{business_measure.amount}}" placeholder="Loan amount"
+									{% if borrower.borrower_status%} disabled {% endif %}
+									class="validate[required]" id="general-form-profile-credit-loan-amount" name="amount"  /></span>
+							</div>
+						</div>
+						<div class="row">
+							<label>Monthly sales*</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209px;"><input type="text"
+									{% ifequal business_measure.monthly_sales None %}
+										value=""
+									{% else %}
+										value="{{business_measure.monthly_sales}}"
+									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
+									placeholder="Monthly sales"  
+									class="validate[required]" id="general-form-profile-credit-monthly-sales" 
+									name="monthly_sales" />
+								</span>
+							</div>
+						</div>
+						<div class="row">
+							<label>Revenue 2012*</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209px;"><input type="text"
+									{% ifequal business_measure.revenue None %}
+										value=""
+									{% else %}
+										value="{{business_measure.revenue}}"
+									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
+									placeholder="2012 revenue"
+									name="revenue" class="validate[required]" id="general-form-profile-credit-revenue" /></span>
+							</div>
+						</div>
+						<div class="row">
+							<label>Net profit 2012*</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209px;"><input type="text" name="profit" 
+									{% ifequal business_measure.net_profit None %}
+										value=""
+									{% else %}
+										value="{{business_measure.net_profit}}"
+									{% endifequal %}
+									{% if borrower.borrower_status%} disabled {% endif %}
+									placeholder="2012 profit" class="validate[required]" id="general-form-profile-credit-profit"
+									 />
+								</span>
+								<div class="btn-form" style="width: 177px;">
+									<span>
+										Save
+										<input type="submit" value="Save"id="general-form-profile-credit-submit" />
+									</span>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				<form action="#" class="general-form" id="general-form-profile" {% if borrower.suffix == '' %} style="display:none" {% endif %}>
 					<fieldset>
 						<div class="row">
 							<label>Your name*</label>
@@ -131,187 +312,6 @@
 									<span>
 										Save
 										<input type="submit" value="Save" {% if borrower.borrower_status%} disabled {% endif %} id="general-form-profile-submit" />
-									</span>
-								</div>
-							</div>
-						</div>
-					</fieldset>
-				</form>
-				<form action="#" class="general-form" id="general-form-profile-business">
-					<fieldset>
-						<div class="row">
-							<label>Business name*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" 
-									value="{{business.business_name}}" placeholder="Business name"
-									class="validate[required]"
-									{% if borrower.borrower_status%} disabled {% endif %} 
-									id="general-form-profile-business-name-first" name="business_name" />
-								</span>
-								<span class="input" style="width: 163px;"><input type="text"
-									value="{{business.dba}}" placeholder="DBA"
-									{% if borrower.borrower_status%} disabled {% endif %}
-									class="validate[required]" id="general-form-profile-business-name-second" name="dba" />
-								</span>
-							</div>
-						</div>
-						<div class="row">
-							<label>Legal form*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 136px;"><input type="text"  class="validate[required]"
-
-									{% ifequal business.legal_form None %}
-										value=""
-									{% else %}
-										value="{{business.legal_form}}"
-									{% endifequal %}
-									{% if borrower.borrower_status%} disabled {% endif %}
-									placeholder="Legal form"	
-									id="general-form-profile-business-legal-first" name="legal_form" /></span>
-								<span class="input" style="width: 207px;"><input type="text"
-									{% ifequal business.state_of_incorporation None %}
-										value=""
-									{% else %}
-										value="{{business.state_of_incorporation}}"
-									{% endifequal %}
-									{% if borrower.borrower_status%} disabled {% endif %}
-									placeholder="State of incorporation" 
-									class="input-state validate[required]"
-									id="general-form-profile-business-legal-second" name="state_of_incorporation" /></span>
-								<span class="input" style="width: 132px;"><input type="text" 
-									value="{{business.date_founded|date:'Y-m-d'}}" placeholder="YYYY-MM-DD"
-									class="validate[required, custom[date]]"
-									{% if borrower.borrower_status%} disabled {% endif %}
-									id="general-form-profile-business-legal-third" name="date_founded" /></span>
-							</div>
-						</div>
-						<div class="row">
-							<label>Business address*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text"
-									value="{{business.street}}" placeholder="Street"  class="validate[required]"
-									{% if borrower.borrower_status%} disabled {% endif %}
-									id="general-form-profile-business-address-first" name="street" /></span>
-								<span class="input" style="width: 104px;"><input type="text"
-									value="{{business.city}}" placeholder="City" 
-									{% if borrower.borrower_status%} disabled {% endif %} 
-									class="validate[required]" id="general-form-profile-business-address-second" name="city" />
-								</span>
-								<span class="input" style="width: 66px;"><input type="text" 
-									{% if borrower.borrower_status%} disabled {% endif %}
-									{% ifequal business.state None %}
-										value=""
-									{% else %}
-										value="{{business.state}}"
-									{% endifequal %}
-
-									placeholder="State" class="input-state validate[required]"
-									id="general-form-profile-business-address-third" name="state" /></span>
-								<span class="input" style="width: 101px;"><input type="text"
-									value="{{business.zip_code}}" placeholder="Zip code" 
-									class="validate[required]" id="general-form-profile-business-address-four" name="zip_code" /></span>
-								<span class="input" style="width: 75px;"><input type="text"
-
-									{% ifequal business.country None %}
-										value=""
-									{% else %}
-										value="{{business.country}}"
-									{% endifequal %}
-									{% if borrower.borrower_status%} disabled {% endif %}
-									placeholder="Country" class="input-country validate[required]" id="general-form-profile-business-address-country"
-									name="country" 
-									 /></span>
-							</div>
-						</div>
-						<div class="row">
-							<label>Business phone</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" 
-									value="{{business.business_phone}}" placeholder="Business phone"
-									{% if borrower.borrower_status%} disabled {% endif %}
-									name="business_phone" /></span>
-							</div>
-						</div>
-						<div class="row">
-							<label>Industry</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" 
-									{% ifequal business.industry None %}
-										value=""
-									{% else %}
-										value="{{business.industry}}"
-									{% endifequal %}
-									{% if borrower.borrower_status%} disabled {% endif %}
-									placeholder="Industry" class="input-industry validate[required]" id="industry"									
-									name="industry" /></span>
-								<div class="btn-form" style="width: 177px;">
-									<span>
-										Save
-										<input type="submit" value="Save" {% if borrower.borrower_status%} disabled {% endif %} id="general-form-profile-business-submit" />
-									</span>
-								</div>
-							</div>
-						</div>
-					</fieldset>
-				</form>
-				<form action="#" class="general-form" id="general-form-profile-credit">
-					<fieldset>
-						<div class="row">
-							<label>Loan amount*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209 px;"><input type="text"
-									value="{{business_measure.amount}}" placeholder="Loan amount"
-									{% if borrower.borrower_status%} disabled {% endif %}
-									class="validate[required]" id="general-form-profile-credit-loan-amount" name="amount"  /></span>
-							</div>
-						</div>
-						<div class="row">
-							<label>Monthly sales*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text"
-									{% ifequal business_measure.monthly_sales None %}
-										value=""
-									{% else %}
-										value="{{business_measure.monthly_sales}}"
-									{% endifequal %}
-									{% if borrower.borrower_status%} disabled {% endif %}
-									placeholder="Monthly sales"  
-									class="validate[required]" id="general-form-profile-credit-monthly-sales" 
-									name="monthly_sales" />
-								</span>
-							</div>
-						</div>
-						<div class="row">
-							<label>Revenue 2012*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text"
-									{% ifequal business_measure.revenue None %}
-										value=""
-									{% else %}
-										value="{{business_measure.revenue}}"
-									{% endifequal %}
-									{% if borrower.borrower_status%} disabled {% endif %}
-									placeholder="2012 revenue"
-									name="revenue" class="validate[required]" id="general-form-profile-credit-revenue" /></span>
-							</div>
-						</div>
-						<div class="row">
-							<label>Net profit 2012*</label>
-							<div class="input-holder">
-								<span class="input" style="width: 209px;"><input type="text" name="profit" 
-									{% ifequal business_measure.net_profit None %}
-										value=""
-									{% else %}
-										value="{{business_measure.net_profit}}"
-									{% endifequal %}
-									{% if borrower.borrower_status%} disabled {% endif %}
-									placeholder="2012 profit" class="validate[required]" id="general-form-profile-credit-profit"
-									 />
-								</span>
-								<div class="btn-form" style="width: 177px;">
-									<span>
-										Save
-										<input type="submit" value="Save"id="general-form-profile-credit-submit" />
 									</span>
 								</div>
 							</div>
