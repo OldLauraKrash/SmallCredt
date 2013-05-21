@@ -137,6 +137,7 @@ def credit_offers(request):
 						   ('repaid_amount', value.repaid_amount),
 						   ('lender', value.lender.id),
 						   ('daily_repayment_sale', value.daily_repayment_sale),
+						   ('estimated_repaid_term', int(round(value.estimated_repaid_term))),
 						   ('status', value.status_lender),
 						   ('company', value.lender.company)]))
 	return {'request': request, 'lists': lists}	

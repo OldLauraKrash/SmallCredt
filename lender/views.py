@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
+import const
 
 # check auth client
 def check_auth(request):
@@ -107,10 +108,14 @@ def bid(request):
 	loan_offer.daily_repayment_sale = request.GET['daily']
 	loan_offer.discount = request.GET['discount']
 	loan_offer.repaid_amount = float(request.GET['amount'])*float(request.GET['discount'])
-	loan_offer.estimated_repaid_term = (float(request.GET['amount'])*float(request.GET['discount'])) / int(business_measure.monthly_sales * request.GET['daily']) 
+	loan_offer.estimated_repaid_term = round((float(request.GET['amount'])*float(request.GET['discount'])) / float(business_measure.monthly_sales * request.GET['daily'])) 
 	loan_offer.enable = True
 	loan_offer.status = 1
 	loan_offer.save() 
+
+	if settings.PROD:	
+		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
+		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
 
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
@@ -141,7 +146,12 @@ def decline(request):
 	loan_offer.borrower = borrower
 	loan_offer.enable = False
 	loan_offer.status = 2
-	loan_offer.save() 	
+	loan_offer.save()
+
+	if settings.PROD:	
+		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
+		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
+		 	
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # marketplace lender
