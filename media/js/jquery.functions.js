@@ -561,7 +561,7 @@ $(document).ready(function(){
         filename = $(this).val();
         filename = filename.split('.')[filename.split('.').length-1];
         filename = filename.toLowerCase();
-        arr = [ "docx", "pdf", "jpeg", "png", "xls", "xlsx", "csv", "zip", "rtf", "tx", "jpg"];
+        arr = [ "docx", "pdf", "jpeg", "png", "xls", "xlsx", "csv", "zip", "rtf", "txt", "doc", "jpg"];
         if (arr.indexOf(filename) == -1) {
             $('.error-extension').eq($(this).attr('rel')).show();
             return false;
