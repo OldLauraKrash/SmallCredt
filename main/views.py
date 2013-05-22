@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 import const
 from django.core.mail import send_mail
 from django.conf import settings
+import time
 
 # main page
 @render_to('main/index.html')
@@ -94,10 +95,13 @@ def forget(request, ticket):
 		return HttpResponseRedirect("/")
 			
 	if request.method == 'POST' and request.POST:
+		hash_ticket = hashlib.md5()
+		hash_ticket.update(ticket)
 		system_account = System_account.objects.get(ticket=ticket)
 		password = hashlib.md5()
 		password.update(request.POST['password'])
 		system_account.password = password.hexdigest()
+		system_account.ticket = hash_ticket.hexdigest()
 		system_account.save()
 		return HttpResponseRedirect("/")
 
@@ -105,9 +109,12 @@ def forget(request, ticket):
 
 # active account
 def active_account(request, ticket):
+	hash_ticket = hashlib.md5()
+	hash_ticket.update(ticket)
 	try:
 		system_account = System_account.objects.get(ticket=ticket)
 		system_account.status=True
+		system_account.ticket = hash_ticket.hexdigest()
 		system_account.save()
 		request.session['username'] = system_account.email
 		return HttpResponseRedirect("/profile")

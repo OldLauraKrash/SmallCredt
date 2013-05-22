@@ -129,7 +129,7 @@ def bid(request):
 	loan_offer.daily_repayment_sale = request.GET['daily']
 	loan_offer.discount = request.GET['discount']
 	loan_offer.repaid_amount = int(request.GET['amount'])*float(request.GET['discount'])
-	total = round(int(request.GET['amount'])*float(request.GET['discount'])) / round(int(business_measure.monthly_sales) * int(request.GET['daily']))
+	total = round(int(request.GET['amount'])*float(request.GET['discount'])) / round(int(business_measure.monthly_sales) * int(request.GET['daily'])/100)
 	loan_offer.estimated_repaid_term = int(total)
 	loan_offer.enable = True
 	loan_offer.status = 1
@@ -172,9 +172,9 @@ def decline(request):
 	loan_offer.status = 2
 	loan_offer.save()
 
-	if settings.PROD:	
-		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
+	#if settings.PROD:	
+	#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
+	#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
 		 	
 	return HttpResponse( json.dumps({'result':'ok', 'id':loan_offer.id}), mimetype="application/json" )
 

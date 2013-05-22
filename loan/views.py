@@ -65,9 +65,9 @@ def loan_cancel(request):
 		loan.save()
 	except:
 		loan = ''
-	if settings.PROD:	
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)			
-		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)
+	#if settings.PROD:	
+	#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)			
+	#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )	
 
 # loan decline
