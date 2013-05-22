@@ -1542,3 +1542,9 @@ h2.title-table{
 .lender {
 	cursor: pointer;
 }
+.change-bid {
+	position: absolute;
+	right: 10px;
+	top:10px;
+	cursor: pointer;
+}

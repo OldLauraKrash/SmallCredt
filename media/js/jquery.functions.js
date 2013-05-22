@@ -101,7 +101,8 @@ $(document).ready(function(){
                 var mm = today.getMonth()+1; //January is 0!
                 var yyyy = today.getFullYear();
                 if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'/'+mm+'/'+dd;
-                $('.finish-date').html('You submitted <br/> your offer on '+today);
+                $('.finish-date').html('You submitted <br/> your offer <br/> on '+today);
+                $('.finish-date').append('<a href="#" class="change-bid" rel="'+data.id+'">Change bid</a>');
             }
         });
         return false;
@@ -118,7 +119,8 @@ $(document).ready(function(){
                 var mm = today.getMonth()+1; //January is 0!
                 var yyyy = today.getFullYear();
                 if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
-                $('.finish-date').html('You submitted <br/> your offer on '+today);
+                $('.finish-date').html('You Decline <br/> your offer <br/> on '+today);
+                $('.finish-date').append('<a href="#" class="change-bid" rel="'+data.id+'">Change bid</a>');
             }
         });
         return false;
@@ -149,12 +151,11 @@ $(document).ready(function(){
 
     // cancel bid
     $('.change-bid').live("click", function(){
-        $('.submit-offer').hide();
-        $('.change-bid').hide();
-        $('.link-holder-indent').show();
         $.get('/loan/cancel/', {'id': $(this).attr('rel')}, function(data) {
+            if (data.result == 'ok') {
+                window.location.href = window.location.pathname
+            }
         });
-        return false;
     }); 
 
     // finish alert

@@ -59,11 +59,11 @@
 															<label>Amount, $</label>
 														</div>
 														<div class="row">
-															<span class="input" style="width: 88px;"><input type="text" value="1.1"  id="bid-discount" /></span>
+															<span class="input" style="width: 88px;"><input type="text" value="loan_offer.discount"  id="bid-discount" /></span>
 															<label>Factor Rate, x</label>
 														</div>
 														<div class="row">
-															<span class="input" style="width: 88px;"><input type="text" value="10"  id="bid-daily-repayment" /></span>
+															<span class="input" style="width: 88px;"><input type="text" value="loan_offer.daily_repayment_sale"  id="bid-daily-repayment" /></span>
 															<label>Daily repayment, %</label>
 														</div>
 														<div class="row">
@@ -74,9 +74,13 @@
 											</div>
 										</div>
 										<div class="submit-offer">
-										You submitted <br/> your offer on {{borrower.created|date:'m/d/y'}}
+											{% if loan_offer.status == 1 %}
+												You submitted <br/> your offer<br/> on {{borrower.created|date:'m/d/y'}}
+											{% else %}
+												You Decline <br/> your <br/> offer on {{borrower.created|date:'m/d/y'}}
+											{% endif %}
+											<a href="#" class="change-bid" rel="{{loan_offer.id}}">Change bid</a>
 										</div>
-										<a href="#" class="change-bid" rel="{{loan_offer.id}}">Change bid</a>
 									{% endif %}
 								</td>
 							</tr>
@@ -100,7 +104,7 @@
 							<tbody>
 								<tr>
 									<td class="col01">Your name</td>
-									<td class="col02">{{borrower.suffix}} {{borrower.first_name}} {{borrower.middle_name}} {{borrower.last_name}}</td>
+									<td class="col02">{{borrower.suffix}} {{borrower.first_name}} {{borrower.middle_name}} {{borrower.last_name}} {{borrower.other_name}}</td>
 								</tr>
 								<tr>
 									<td class="col01">Personal address</td>
@@ -128,6 +132,10 @@
 								<tr>
 									<td class="col01">Business name</td>
 									<td class="col02">{{ business.business_name }}</td>
+								</tr>
+								<tr>
+									<td class="col01">DBA</td>
+									<td class="col02">{{ business.dba }}</td>
 								</tr>
 								<tr>
 									<td class="col01">Business address</td>

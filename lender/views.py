@@ -12,6 +12,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 import const
+import sys
 
 # check auth client
 def check_auth(request):
@@ -40,6 +41,14 @@ def lender_account(request):
 def lender_statements(request):
 	return {'request': request}
 
+
+def status_show_lender(x):
+    return {
+        None: 'Outstanding',
+        1: 'Accepted',
+        2: 'Declined'
+    }[x]
+
 # portfolio lender
 @render_to('lender/portfolio.html')
 def lender_portfolio(request):
@@ -48,7 +57,19 @@ def lender_portfolio(request):
 	system_account = System_account.objects.get(email=request.session['username'])
 	try: 
 		lender = Lender.objects.get(system_account=system_account.id)
-		lists = Loan_offer.objects.filter(lender=lender, enable=True)
+		result = Loan_offer.objects.filter(lender=lender, enable=True)
+		lists = []
+
+		for value in result:
+			status = status_show_lender(value.status_lender)
+			business = Business.objects.get(system_account=value.borrower.system_account)
+			lists.append(dict([('offer_date', value.offer_date),
+				('id', value.borrower.system_account.id), 
+				('borrower', business.business_name),
+				('amount', value.amount),
+				('discount', value.discount),
+				('daily_repayment_sale', value.daily_repayment_sale),
+				('status', status)]))
 	except:
 		lists = ''
 	return {'request': request, 'lists':lists}
@@ -107,18 +128,18 @@ def bid(request):
 	loan_offer.amount = request.GET['amount']
 	loan_offer.daily_repayment_sale = request.GET['daily']
 	loan_offer.discount = request.GET['discount']
-	loan_offer.repaid_amount = float(request.GET['amount'])*float(request.GET['discount'])
+	loan_offer.repaid_amount = int(request.GET['amount'])*float(request.GET['discount'])
 	total = round(int(request.GET['amount'])*float(request.GET['discount'])) / round(int(business_measure.monthly_sales) * int(request.GET['daily']))
-	loan_offer.estimated_repaid_term = round(total)
+	loan_offer.estimated_repaid_term = int(total)
 	loan_offer.enable = True
 	loan_offer.status = 1
 	loan_offer.save() 
 
 	if settings.PROD:	
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
+		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
 		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
 
-	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+	return HttpResponse( json.dumps({'result':'ok', 'id':loan_offer.id}), mimetype="application/json" )
 
 #lender info
 @render_to('lender/info.html') 
@@ -146,14 +167,16 @@ def decline(request):
 	loan_offer.lender = lender
 	loan_offer.borrower = borrower
 	loan_offer.enable = False
+	loan_offer.daily_repayment_sale = 0
+	loan_offer.discount = 0
 	loan_offer.status = 2
 	loan_offer.save()
 
 	if settings.PROD:	
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
+		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
 		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
 		 	
-	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+	return HttpResponse( json.dumps({'result':'ok', 'id':loan_offer.id}), mimetype="application/json" )
 
 # marketplace lender
 @render_to('lender/marketplace_borrower.html')

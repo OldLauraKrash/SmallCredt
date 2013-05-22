@@ -38,11 +38,11 @@
 								<th class="col02">Borrower</th>
 								<th class="col03">Amount</th>
 								<th class="col04">Factor Rate</th>
-								<th class="col05">Daily % of Sales*</th>
-								<th class="col06">Risk</th>
+								<th class="col05">Daily % of Sales</th>
+								<th class="col06">Status</th>
 							</tr>
 							{% for list in lists %}
-								<tr class="{% cycle 'odd' '' %} client" rel="{{list.borrower.system_account.id}}">
+								<tr class="{% cycle 'odd' '' %} client" rel="{{list.id}}">
 									<td class="col01 align-left">{{list.offer_date|date:'m/d/y'}}</td>
 									<td class="col02">{{list.borrower}}</td>
 									{% if list.amount != None %}
@@ -50,23 +50,19 @@
 									{% else %}
 										<td class="col03">$0</td>
 									{% endif %}
-									{% if list.amount != None %}
-										<td class="col04">${{list.discount}}</td>
-									{% else %}
-										<td class="col04">$0</td>
-									{% endif %}
+										<td class="col04">{{list.discount}}</td>
 									{% if list.daily_repayment_sale != '' %}
 										<td class="col05">{{list.daily_repayment_sale}}%</td>
 									{% else %}
 										<td class="col05">0%</td>
 									{% endif %}
-									<td class="col06">A</td>
+									<td class="col06">{{list.status}}</td>
 								</tr>
 							{% endfor %}
 						</tbody>
 					</table>
 				</div>
-				<span class="table-text-info">* Effective APR assuming current level of sales.</span>
+				<span class="table-text-info"></span>
 			</div>
 		</div>
 {% endblock %}

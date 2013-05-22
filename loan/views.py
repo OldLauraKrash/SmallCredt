@@ -41,6 +41,7 @@ def loan_accepted(request):
 	loan.loan_offer = loan_offer
 	loan.amount = loan_offer.amount
 	loan.lender = loan_offer.lender
+	loan.daily_repayment_sale = loan_offer.daily_repayment_sale
 	loan.bussiness = business
 	loan_offer.enable = True
 	loan.remaining_balance = 0
@@ -48,7 +49,8 @@ def loan_accepted(request):
 
 	if settings.PROD:	
 		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
+		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
+	
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # loan cancel
@@ -65,7 +67,7 @@ def loan_cancel(request):
 		loan = ''
 	if settings.PROD:	
 		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)			
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)
+		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )	
 
 # loan decline
@@ -76,5 +78,5 @@ def loan_decline(request):
 	loan_offer.save()
 	if settings.PROD:
 		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)		
+		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)		
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
