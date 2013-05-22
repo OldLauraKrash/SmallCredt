@@ -59,7 +59,10 @@
                       <div class="error-file">
                         Error! Max limit 1MB!
                       </div>
-                    </li>   
+                    </li> 
+                    <li>
+                       <div class="error-extension"> No correct extension file </div>
+                    </li>  
                     {% for file in bank_file %}
                     <li>
                       <a href="/remove-bank-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>
@@ -87,6 +90,9 @@
                         Error! Max limit 1MB!
                       </div>
                     </li>   
+                    <li>
+                       <div class="error-extension"> No correct extension file </div>
+                    </li>
                     {% for file in processor_file %}
                     <li>
                       <a href="/remove-processor-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>
@@ -111,6 +117,9 @@
                         Error! Max limit 1MB!
                       </div>
                     </li>   
+                    <li>
+                       <div class="error-extension"> No correct extension file </div>
+                    </li>
                     {% for file in financial_file %}
                     <li>
                       <a href="/remove-financial-file/{{file.id}}/"><img src="{{ MEDIA_URL }}images/cancel.png"></a>

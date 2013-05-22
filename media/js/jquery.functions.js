@@ -558,6 +558,18 @@ $(document).ready(function(){
 
     // file upload
     $('#form-accepted-first-file1, #form-accepted-first-file2, #form-accepted-first-file3').change(function() {
+        filename = $(this).val();
+        filename = filename.split('.')[filename.split('.').length-1];
+        filename = filename.toLowerCase();
+        arr = [ "docx", "pdf", "jpeg", "png", "xls", "xlsx", "csv", "zip", "rtf", "tx", "jpg"];
+        if (arr.indexOf(filename) == -1) {
+            $('.error-extension').eq($(this).attr('rel')).show();
+            return false;
+        } else {
+            $('.error-extension').eq($(this).attr('rel')).hide();            
+        }
+
+
         if (validateSize(this)) {
             $('.error-file').eq($(this).attr('rel')).hide();
             $('#accepted-save-files').submit();

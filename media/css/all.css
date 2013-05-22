@@ -1539,6 +1539,11 @@ h2.title-table{
 	color: red;
 	display: none;
 }
+.error-extension {
+	font-weight: bold;
+	color: red;
+	display: none;	
+}
 .lender {
 	cursor: pointer;
 }

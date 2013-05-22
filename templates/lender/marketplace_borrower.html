@@ -79,7 +79,9 @@
 											{% else %}
 												You Decline <br/> your <br/> offer on {{borrower.created|date:'m/d/y'}}
 											{% endif %}
-											<a href="#" class="change-bid" rel="{{loan_offer.id}}">Change bid</a>
+											{% if loan_offer.status_lender != 1 %}
+												<a href="#" class="change-bid" rel="{{loan_offer.id}}">Change bid</a>
+											{% endif %}
 										</div>
 									{% endif %}
 								</td>
