@@ -1,5 +1,6 @@
 {% extends 'misc/base.html' %}
 {% block content %}
+		{% load humanize %}
 		<div class="main-holder">
 			<nav class="nav-holder">
 				<div class="frame">
@@ -88,7 +89,7 @@
 							</tr>
 							<tr>
 								<td class="col01">Amount:</td>
-								<td class="col02">${{business_measure.amount}}</td>
+								<td class="col02">${{business_measure.amount|intcomma}}</td>
 								<td class="col03">Industry:</td>
 								<td class="col04">{{business.industry}}</td>
 							</tr>
@@ -157,15 +158,15 @@
 								</tr>
 								<tr>
 									<td class="col01">Monthly sales</td>
-									<td class="col02">${{business_measure.monthly_sales}}</td>
+									<td class="col02">${{business_measure.monthly_sales|intcomma}}</td>
 								</tr>
 								<tr>
 									<td class="col01">Revenue 2012</td>
-									<td class="col02">${{business_measure.revenue}}</td>
+									<td class="col02">${{business_measure.revenue|intcomma}}</td>
 								</tr>
 								<tr>
 									<td class="col01">Net profit 2012</td>
-									<td class="col02">${{business_measure.net_profit}}</td>
+									<td class="col02">${{business_measure.net_profit|intcomma}}</td>
 								</tr>
 								{% if bank_file|length  %}
 								<tr>

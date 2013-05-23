@@ -1,5 +1,6 @@
 {% extends 'misc/base.html' %}
 {% block content %}
+		{% load humanize %}
 		<div class="main-holder">
 			<nav class="nav-holder">
 				<div class="frame">
@@ -115,19 +116,19 @@
 								{% if business_measure.monthly_sales != None %}
 								<tr>
 									<td class="col01">Monthly sales</td>
-									<td class="col02">${{business_measure.monthly_sales}}</td>
+									<td class="col02">${{business_measure.monthly_sales|intcomma}}</td>
 								</tr>
 								{% endif %}
 								{% if business_measure.revenue != None %}
 								<tr>
 									<td class="col01">Revenue 2012</td>
-									<td class="col02">${{business_measure.revenue}}</td>
+									<td class="col02">${{business_measure.revenue|intcomma}}</td>
 								</tr>
 								{% endif %}
 								{% if business_measure.net_profit != None %}
 								<tr>
 									<td class="col01">Net profit 2012</td>
-									<td class="col02">${{business_measure.net_profit}}</td>
+									<td class="col02">${{business_measure.net_profit|intcomma}}</td>
 								</tr>
 								{% endif %}
 								{% if bank_file|length  %}
@@ -166,37 +167,6 @@
 							</tbody>
 						</table>
 					</div>
-					<!--
-					<h2 class="title-table">Bank Account</h2>
-					<div class="statement-statistics">
-						<div class="visual">
-							<a href="#"><img src="{{ MEDIA_URL }}images/img03.jpg" alt="" width="526" height="316" /></a>
-						</div>
-						<div class="statistics-block">
-							<h3>Statement Statistics</h3>
-							<table>
-								<tbody>
-									<tr class="odd">
-										<td class="col01">Average monthly chatgebacks</td>
-										<td class="col02">$200</td>
-									</tr>
-									<tr>
-										<td class="col01">Average monthly sales</td>
-										<td class="col02">$100,000</td>
-									</tr>
-									<tr class="odd">
-										<td class="col01">Average monthly credit card sales</td>
-										<td class="col02">$50,000</td>
-									</tr>
-									<tr>
-										<td class="col01">Balance, 2/2/2013</td>
-										<td class="col02">$45,900</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					-->
 				</div>
 			</div>
 		</div>

@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.humanize',
     'django.contrib.messages',
     'django.contrib.flatpages',
     'django.contrib.staticfiles',

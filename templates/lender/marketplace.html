@@ -1,5 +1,6 @@
 {% extends 'misc/base.html' %}
 {% block content %}
+		{% load humanize %}
 		<div class="main-holder">
 			<nav class="nav-holder">
 				<div class="frame">
@@ -26,7 +27,7 @@
 								<tr class="{% cycle 'odd' '' %} client" rel="{{list.id}}">
 									<td class="col01 align-left">{{list.date|date:'m/d/y'}}</td>
 									<td class="col02">{{list.name}}</td>
-									<td class="col03">${{list.amount}}</td>
+									<td class="col03">${{list.amount|intcomma}}</td>
 									<td class="col04">{{list.industry}}</td>
 									<td class="col05">{{list.locale}}</td>
 									<td class="col06">{{list.risk}}</td>
