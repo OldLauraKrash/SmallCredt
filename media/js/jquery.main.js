@@ -70,12 +70,12 @@ $(document).ready(function(){
 		$(this).closest('.link-holder').toggleClass('active');
 		return false;
 	});
+	/*
 	$(document).click(function(event) {
 		if ($(event.target).closest('.link-holder').length) return;
 		$('.link-holder').removeClass('active');
 		event.stopPropagation();
 	});
-	/*
 	$('.table-general .col06 .link-holder .btn-status').not('.decline').click(function(){
 		$(this).closest('.link-holder').hide();
 		$(this).closest('.link-holder').next().removeClass('delete').addClass('normal').show();
@@ -105,6 +105,7 @@ function windowScroll(heightPopup){
 		$(".popup-holder").height(wScroll+heightPopup + 20);
 	}
 }
+/*
 jQuery.fn.fadeGallery = function(_options){
 	var _options = jQuery.extend({
 		slideElements:'ul.slide-list > li',
@@ -231,3 +232,4 @@ jQuery.fn.fadeGallery = function(_options){
 		autoSlide();
 	});
 }
+*/

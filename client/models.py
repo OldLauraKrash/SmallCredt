@@ -31,7 +31,7 @@ class Country(models.Model):
 class System_account(models.Model):
     email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
-    ticket = models.CharField(max_length=255) 
+    ticket = models.CharField(max_length=255, null=True, blank=True) 
     account_type = models.BooleanField(verbose_name="Lender")
     status = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)   

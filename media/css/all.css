@@ -1559,3 +1559,7 @@ h2.title-table{
 	right: 60px;
 	bottom: 10px;	
 }
+.login-revert{
+	cursor:pointer;
+	text-decoration: underline;
+}

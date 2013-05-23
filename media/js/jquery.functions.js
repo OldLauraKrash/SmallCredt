@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+    if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+      $('[type=password').removeAttr('placeholder');
+    }
+
     // revert on login
     $('.login-revert').live("click", function(){
         $(this).parents('.popup-holder').fadeOut(300, function(){
@@ -26,7 +31,7 @@ $(document).ready(function(){
 
     // accepted credit
     $('.accepted-credit').live("click", function(){
-        window.location.href = '/profile/accepted';   
+        $(location).attr('href', '/profile/accepted');  
     });
 
     // register
@@ -34,9 +39,9 @@ $(document).ready(function(){
 		if ($("#form-sign-up").validationEngine('validate')) {
             var amount = $('.ui-slider-handle').html();
             amount = amount.substring(0,amount.length-1);
-            var jqxhr = $.getJSON('/register/', {'email': $('#form-sign-up-email').val(), 'password':$('#form-sign-up-confirm-password').val(), 'amount':amount} ,function(data) {
+           $.get('/register/', {'email': $('#form-sign-up-email').val(), 'password':$('#form-sign-up-confirm-password').val(), 'amount':amount} ,function(data) {
                 if (data['result']=='ok') {
-                    window.location.href = '/profile';
+                    $(location).attr('href', '/profile');
                 } else {
                     $("#form-sign-submit").validationEngine('showPrompt', 'This email is busy', 'error');
                 }
@@ -48,12 +53,12 @@ $(document).ready(function(){
     // login
     $('#form-auth-main-submit').live("click", function(){
         if ($("#form-auth-main").validationEngine('validate')) {
-            var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-main-email').val(), 'password':$('#form-auth-main-password').val()} ,function(data) {
+            $.get('/login/', {'email': $('#form-auth-main-email').val(), 'password':$('#form-auth-main-password').val()} ,function(data) {
                 if (data['result']=='ok') {
                     if (data['lender'])
-                        window.location.href = '/lender/account/';
+                        $(location).attr('href', '/lender/account/');
                     else
-                        window.location.href = '/profile';
+                        $(location).attr('href', '/profile');
                 }  else {
                     $("#form-auth-main-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error');
                 }
@@ -64,9 +69,10 @@ $(document).ready(function(){
     });  
 
     // auth form
-    $('#form-auth-submit').live("click", function(){
+    $('#form-auth-submit').live("click", function(e){
         if ($("#form-auth").validationEngine('validate')) {
-            var jqxhr = $.getJSON('/login/', {'email': $('#form-auth-email').val(), 'password':$('#form-auth-password').val()} ,function(data) {
+            e.preventDefault();
+            $.get('/login/', {'email': $('#form-auth-email').val(), 'password':$('#form-auth-password').val()} ,function(data) {
                 if (data['result']=='ok') {
                     if (data['lender'])
                         window.location.href = '/lender/account/';
@@ -543,7 +549,8 @@ $(document).ready(function(){
     function validateSize(fileInput) {
       var fileObj, size;
       if ( typeof ActiveXObject == "function" ) { // IE
-        fileObj = (new ActiveXObject("Scripting.FileSystemObject")).getFile(fileInput.value);
+        //fileObj = (new ActiveXObject("Scripting.FileSystemObject")).getFile(fileInput.value);
+        return true;
       }else {
         fileObj = fileInput.files[0];
       }
@@ -557,21 +564,20 @@ $(document).ready(function(){
     }
 
     // file upload
-    $('#form-accepted-first-file1, #form-accepted-first-file2, #form-accepted-first-file3').change(function() {
+    $('#form-accepted-first-file1, #form-accepted-first-file2, #form-accepted-first-file3').change(function(e) {
         filename = $(this).val();
         filename = filename.split('.')[filename.split('.').length-1];
         filename = filename.toLowerCase();
         arr = [ "docx", "pdf", "jpeg", "png", "xls", "xlsx", "csv", "zip", "rtf", "txt", "doc", "jpg"];
-        if (arr.indexOf(filename) == -1) {
+        if (jQuery.inArray(filename, arr) == -1) {
             $('.error-extension').eq($(this).attr('rel')).show();
-            return false;
         } else {
             $('.error-extension').eq($(this).attr('rel')).hide();            
         }
 
-
         if (validateSize(this)) {
             $('.error-file').eq($(this).attr('rel')).hide();
+            e.preventDefault();
             $('#accepted-save-files').submit();
         } else {
             $('.error-file').eq($(this).attr('rel')).show();
