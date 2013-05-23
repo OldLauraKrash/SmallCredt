@@ -2,6 +2,8 @@
 from django.contrib import admin
 from django.contrib.contenttypes import generic
 from client.models import *
+import time
+import hashlib
 
 class System_accountAdmin(admin.ModelAdmin):
     list_filter = ['created']
@@ -9,6 +11,19 @@ class System_accountAdmin(admin.ModelAdmin):
     search_fields = ['email']
     def get_ordering(self, request):
         return ['email']
+
+    def save_model(self, request, obj, form, change):
+        millis = str(round(time.time() * 1000))
+        hash_ticket = hashlib.md5()
+        hash_ticket.update(millis)
+        obj.ticket = hash_ticket.hexdigest()
+        obj.save()
+
+        password = hashlib.md5()
+        password.update(obj.password)
+        obj.password = password.hexdigest()
+        obj.save()        
+
 admin.site.register(System_account, System_accountAdmin)
 
 class BorrowerAdmin(admin.ModelAdmin):
