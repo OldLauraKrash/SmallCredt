@@ -1,8 +1,23 @@
 $(document).ready(function(){
 
+    // change status type password
     if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
-      $('[type=password').removeAttr('placeholder');
+      $('[type=password]').removeAttr('placeholder');
+      $('[type=password]').val('Password');
+      $('[type=password]').attr('rel', 'Password');
+      $('[type=password]').addClass('ie-password');      
     }
+
+    // plaholder for ie
+    $(".ie-password").live('focus', function() {
+       if ($(this).val()=='') {
+        $(this).val('Password');
+       }
+       if ($(this).val()==$(this).attr('rel')) {
+         $(this).val('');
+       }       
+    });
+
 
     // revert on login
     $('.login-revert').live("click", function(){
