@@ -16,6 +16,9 @@ import sys
 
 # check auth client
 def check_auth(request):
+  	"""
+    Checking auth the user
+    """
 	try: 
 		if request.session['username']=='':
 			return True
@@ -27,6 +30,21 @@ def check_auth(request):
 # profile lender
 @render_to('lender/account.html')
 def lender_account(request):
+	'''
+	Information lender account
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account` and :model:`lender.Lender`
+
+	**Template:**
+
+	:template:`lender/account.html`
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
@@ -39,9 +57,20 @@ def lender_account(request):
 # statements lender
 @render_to('lender/statements.html')
 def lender_statements(request):
+	'''
+	Lender statements
+
+	**Context**
+
+	``request``
+
+	**Template:**
+
+	:template:`lender/statements.html`
+	'''
 	return {'request': request}
 
-
+# status show lender
 def status_show_lender(x):
     return {
         None: 'Outstanding',
@@ -52,6 +81,22 @@ def status_show_lender(x):
 # portfolio lender
 @render_to('lender/portfolio.html')
 def lender_portfolio(request):
+	'''
+	Lender portfilio page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`lender.Lender`, :model:`loan.Loan_offer`
+	    and :model:`client.Business`
+
+	**Template:**
+
+	:template:`lender/portfolio.html`
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
@@ -77,6 +122,21 @@ def lender_portfolio(request):
 # edit lender
 @render_to('lender/edit.html')
 def lender_edit(request):
+	'''
+	Lender edit page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`lender.Lender`
+
+	**Template:**
+
+	:template:`lender/edit.html`
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
@@ -89,6 +149,21 @@ def lender_edit(request):
 # marketplace lender
 @render_to('lender/marketplace.html')
 def lender_marketplace(request):
+	'''
+	Lender marketplace page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Borrower`, :model:`client.Business`, :model:`client.Business_measure`
+
+	**Template:**
+
+	:template:`lender/marketplace.html`
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")	
 	borrowers = Borrower.objects.filter(accepted = True)
@@ -111,6 +186,18 @@ def lender_marketplace(request):
 
 # bid
 def bid(request):
+	'''
+	Accepting the offer
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Business_measure`, :model:`lender.Lender`
+	    and :model:`loan.Loan_offer` 
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
@@ -135,8 +222,7 @@ def bid(request):
 	loan_offer.status = 1
 	loan_offer.save() 
 
-	if settings.PROD:	
-		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
+	if settings.PROD:
 		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
 
 	return HttpResponse( json.dumps({'result':'ok', 'id':loan_offer.id}), mimetype="application/json" )
@@ -144,6 +230,21 @@ def bid(request):
 #lender info
 @render_to('lender/info.html') 
 def info(request, id):
+	'''
+	Information about lender page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`lender.Lender`
+
+	**Template:**
+
+	:template:`lender/info.html`
+	'''	
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	try: 
@@ -155,6 +256,18 @@ def info(request, id):
 
 # decline
 def decline(request):
+	'''
+	Declining the offer
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, `lender.Lender`, `client.Business_measure`, `lender.Lender`
+	    and `loan.Loan_offer` 
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
@@ -171,16 +284,28 @@ def decline(request):
 	loan_offer.discount = 0
 	loan_offer.status = 2
 	loan_offer.save()
-
-	#if settings.PROD:	
-	#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
-	#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
-		 	
+	 	
 	return HttpResponse( json.dumps({'result':'ok', 'id':loan_offer.id}), mimetype="application/json" )
 
 # marketplace lender
 @render_to('lender/marketplace_borrower.html')
 def lender_marketplace_borrower(request, id):
+	'''
+	Lender marketplace borrower page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Borrower`, :model:`client.Business`, :model:`client.Business_measure`,
+	    :model:`client.Processor_file`, :model:`client.Financial_file`, :model:`client.Financial_file`
+
+	**Template:**
+
+	:template:`lender/marketplace_borrower.html`
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
@@ -208,6 +333,18 @@ def lender_marketplace_borrower(request, id):
 
 # save data lender
 def save_lender(request):
+	'''
+	Save lender's information
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`lender.Lender`, :model:`client.State`, :model:`client.Country`,
+	    :model:`client.Industry`, :model:`lender.Geography` and :model:`lender.Risk`
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	system_account = System_account.objects.get(email=request.session['username'])
@@ -259,6 +396,17 @@ def save_lender(request):
 
 # get geography
 def get_geography(request):
+	'''
+	Get geography list
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`lender.Geography`
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	result = Geography.objects.all()
@@ -269,6 +417,17 @@ def get_geography(request):
 
 # get risk level
 def get_risk_lender(request):
+	'''
+	Get risk list
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`lender.Risk`
+	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	result = Risk.objects.all()

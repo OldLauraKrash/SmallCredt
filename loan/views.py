@@ -16,6 +16,9 @@ import const
 
 # check auth client
 def check_auth(request):
+  	"""
+    Checking auth the user
+    """
 	try: 
 		if request.session['username']=='':
 			return 0
@@ -31,6 +34,18 @@ def check_auth(request):
 
 # loan accepted
 def loan_accepted(request):
+	'''
+	Loan accepted
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`loan.Loan_offer`, :model:`client.Business`
+	    and :model:`loan.Loan`
+	'''
 	loan_offer = Loan_offer.objects.get(id=request.GET['id'])
 	loan_offer.status_lender = 1
 	loan_offer.enable = True
@@ -48,13 +63,25 @@ def loan_accepted(request):
 	loan.save()
 
 	if settings.PROD:	
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
-		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
+		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)	
 	
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # loan cancel
 def loan_cancel(request):
+	'''
+	Loan cancel
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`loan.Loan_offer`, :model:`client.Business`
+	    and :model:`loan.Loan`
+	'''
+
 	loan_offer = Loan_offer.objects.get(id=request.GET['id'])
 	loan_offer.enable = False
 	loan_offer.save()
@@ -65,18 +92,27 @@ def loan_cancel(request):
 		loan.save()
 	except:
 		loan = ''
-	#if settings.PROD:	
-	#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)			
-	#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )	
 
 # loan decline
 def loan_decline(request):
+	'''
+	Loan decline
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`loan.Loan_offer`, :model:`client.Business`
+	    and :model:`loan.Loan`
+	'''
+	
 	loan_offer = Loan_offer.objects.get(id=request.GET['id'])
 	loan_offer.status_lender = 2
 	loan_offer.enable = True
 	loan_offer.save()
 	if settings.PROD:
 		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.lender.system_account.email], fail_silently=False)
-		#send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)		
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )

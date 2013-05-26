@@ -2,17 +2,22 @@ from django.db import models
 from client.models import *
 from lender.models import *
 
-STATUS= (
+# status borrower
+STATUS = (
     (1, 'Bid'),
     (2, 'Decline'),
 )
 
-STATUS_LENDER= (
+# status lender
+STATUS_LENDER = (
     (1, 'Accepted'),
     (2, 'Decline'),
 )
 
-class Loan_offer(models.Model): 
+class Loan_offer(models.Model):
+    """
+    Information about the loan offer, related to :model:`lender.Lender` and :model:`client.Borrower`
+    """
     lender = models.ForeignKey(Lender)
     borrower = models.ForeignKey(Borrower)
     amount = models.FloatField(blank=True, null=True)
@@ -30,6 +35,9 @@ class Loan_offer(models.Model):
         return unicode(self.lender) 
 
 class Loan(models.Model):
+    """
+    Information about the loan, related to :model:`lender.Lender`, :model:`client.Borrower` and :model:`client.Business`
+    """
     bussiness = models.ForeignKey(Business)
     lender = models.ForeignKey(Lender)
     loan_offer = models.ForeignKey(Loan_offer)

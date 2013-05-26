@@ -13,6 +13,21 @@ import time
 # main page
 @render_to('main/index.html')
 def home(request):
+	'''
+	Home page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+
+	**Template:**
+
+	:template:`main/main.html`
+	'''
 	active = False
 	try:
 		if request.session['username'] != '':
@@ -23,6 +38,17 @@ def home(request):
 
 # sign in client
 def login(request):
+	'''
+	Sign in
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+	'''
 	lender = 0
 	result = 'error'
 	password = hashlib.md5()
@@ -42,6 +68,17 @@ def login(request):
 
 # sign up client
 def register(request):
+	'''
+	Sign up
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+	'''
 	# save client
 	password = hashlib.md5()
 	password.update(request.GET['password'])
@@ -78,6 +115,17 @@ def register(request):
 
 # send link on change password
 def forget_send(request):
+	'''
+	Send forget password
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+	'''
 	if settings.PROD:
 		try:
 			system_account = System_account.objects.get(email=request.GET['email'])	
@@ -89,6 +137,21 @@ def forget_send(request):
 # forget password
 @render_to('main/forget.html')
 def forget(request, ticket):
+	'''
+	Reset password page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+
+	**Template:**
+
+	:template:`main/forget.html`
+	'''
 	try:
 		system_account = System_account.objects.get(ticket=ticket)
 	except:
@@ -109,6 +172,18 @@ def forget(request, ticket):
 
 # active account
 def active_account(request, ticket):
+	'''
+	Active account
+
+	**Context**
+
+	``request`` 
+	``ticket`` - ticket hash
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+	'''
 	hash_ticket = hashlib.md5()
 	hash_ticket.update(ticket)
 	try:
@@ -123,5 +198,16 @@ def active_account(request, ticket):
 
 # logout for profile
 def logout(request):
+	'''
+	Logout
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+	'''
 	request.session['username']=''
 	return HttpResponseRedirect("/")

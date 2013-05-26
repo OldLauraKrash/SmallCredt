@@ -2,16 +2,26 @@ from django.db import models
 from client.models import *
 
 class Geography(models.Model):
+    """
+    A geographical list, related to :model:`lender.Lender`
+    """    
     name = models.CharField(max_length=255)
     def __unicode__(self):
         return unicode(self.name)
 
 class Risk(models.Model):
+    """
+    The level of the risk for the lender, related to :model:`lender.Lender`
+    """
     name = models.CharField(max_length=255)
     def __unicode__(self):
         return unicode(self.name)
         
 class Lender(models.Model): 
+    """
+    Infromation about the lender, related to :model:`client.State`, :model:`client.Country`, :model:`lender.Geography` and
+    :model:`lender.Risk`
+    """
     suffix = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     middle_name = models.CharField(max_length=255)

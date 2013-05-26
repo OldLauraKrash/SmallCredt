@@ -14,6 +14,9 @@ from datetime import datetime
 
 # check auth client
 def check_auth(request):
+  	"""
+    Checking auth the user
+    """
 	try: 
 		if request.session['username']=='':
 			return 0
@@ -29,6 +32,21 @@ def check_auth(request):
 # auth on page for profile
 @render_to('profile/auth.html')
 def auth(request):
+	'''
+	Sign in the users
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+
+	**Template:**
+
+	:template:`profile/auth.html`
+	'''
 	result = ''
 	if request.method == 'POST' and request.POST:
 		password = hashlib.md5()
@@ -48,6 +66,22 @@ def auth(request):
 # profile client
 @render_to('profile/apply.html')
 def profile(request):
+	'''
+	Infromation about borrower
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Business`, :model:`client.Borrower`
+	    and :model:`client.Business_measure`
+
+	**Template:**
+
+	:template:`profile/apply.html`
+	'''
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -68,6 +102,21 @@ def profile(request):
 # qualify
 @render_to('profile/qualify.html')
 def qualify(request):
+	'''
+	Qualify page 
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account` and :model:`client.Business_measure`
+
+	**Template:**
+
+	:template:`profile/qualify.html`
+	'''
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -80,6 +129,17 @@ def qualify(request):
 # finish
 @render_to('profile/finish.html')
 def finish_page(request):
+	'''
+	Finish page 
+
+	**Context**
+
+	``request``
+
+	**Template:**
+
+	:template:`profile/finish.html`
+	'''
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -89,6 +149,22 @@ def finish_page(request):
 # accepted
 @render_to('profile/accepted.html')
 def accepted(request):
+	'''
+	Accepted page 
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Business`, :model:`client.Borrower`,
+	    :model:`client.Bank_file`, :model:`client.Processor_file`,  :model:`client.Financial_file`
+
+	**Template:**
+
+	:template:`profile/accepted.html`
+	'''
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -122,6 +198,22 @@ def accepted(request):
 # credit offers for profile
 @render_to('profile/credit-offers.html')
 def credit_offers(request):
+	'''
+	Credit offers page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Borrower`,
+	    :model:`loan.Loan_offer`
+
+	**Template:**
+
+	:template:`profile/credit-offers.html`
+	'''	
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -145,6 +237,22 @@ def credit_offers(request):
 # account for profile
 @render_to('profile/account.html')
 def account(request):
+	'''
+	Account page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Borrower`, :model:`client.Business`, :model:`client.Business_measure`,
+	    :model:`loan.Loan_offer`, `client.Bank_file`, `client.Processor_file` and `client.Financial_file`
+
+	**Template:**
+
+	:template:`profile/account.html`
+	'''	
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -162,6 +270,17 @@ def account(request):
 # statements for profile
 @render_to('profile/statements.html')
 def statements(request):
+	'''
+	Statements page
+
+	**Context**
+
+	``request``
+
+	**Template:**
+
+	:template:`profile/statements.html`
+	'''	
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -171,6 +290,17 @@ def statements(request):
 
 # save data for profile page
 def save_profile_main(request):
+	'''
+	Save information about borrower
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Borrower`, :model:`client.Country`, :model:`client.State` 
+	'''	
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -204,6 +334,18 @@ def save_profile_main(request):
 
 # save data for profile business page
 def save_profile_business(request):
+	'''
+	Save business information about borrower
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Borrower`, :model:`client.Country`, :model:`client.State`
+	    and :model:`client.Industry` 
+	'''	
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -249,6 +391,17 @@ def save_profile_business(request):
 
 # save data for profile credit page
 def save_profile_credit(request):
+	'''
+	Save credit information about borrower
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Business_measure`
+	'''	
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -268,6 +421,17 @@ def save_profile_credit(request):
 
 # finish account
 def account_finish(request):
+	'''
+	Finish acount page
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`
+	'''	
 	if check_auth(request)==0:
 	    return HttpResponseRedirect("/auth/")
 	elif check_auth(request)==1:
@@ -283,6 +447,18 @@ def account_finish(request):
 # save files
 @csrf_exempt
 def save_files(request):
+	'''
+	Saving files
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`client.Financial_file`, :model:`client.Bank_file`
+	    and :model:`client.Processor_file`
+	'''	
 	system_account = System_account.objects.get(email=request.session['username'])
 	anchor = ''
 	try:
@@ -316,6 +492,18 @@ def save_files(request):
 
 # remove bank file
 def remove_bank_file(request, id):
+	'''
+	Remove bank file
+
+	**Context**
+
+	``request``
+	``id``
+
+	``models``
+
+	    An instance of :model:`client.Bank_file`
+	'''	
 	bank_file = Bank_file.objects.get(pk=id)
 	if str(bank_file.system_account) == request.session['username']:
 		bank_file.delete()
@@ -323,6 +511,18 @@ def remove_bank_file(request, id):
 
 # remove processor file
 def remove_processor_file(request, id):
+	'''
+	Remove processor file
+
+	**Context**
+
+	``request``
+	``id``
+
+	``models``
+
+	    An instance of :model:`client.Processor_file`
+	'''	
 	processor_file = Processor_file.objects.get(pk=id)
 	if str(processor_file.system_account) == request.session['username']:
 		processor_file.delete()
@@ -330,6 +530,18 @@ def remove_processor_file(request, id):
 
 # remove financial file
 def remove_financial_file(request, id):
+	'''
+	Remove financial file
+
+	**Context**
+
+	``request``
+	``id``
+
+	``models``
+
+	    An instance of :model:`client.Financial_file`
+	'''	
 	financial_file = Financial_file.objects.get(pk=id)
 	if str(financial_file.system_account) == request.session['username']:
 		financial_file.delete()
@@ -337,6 +549,17 @@ def remove_financial_file(request, id):
 
 # get legal legal_form
 def get_legal_form(request):
+	'''
+	Get legel
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.Legal`
+	'''	
 	result = Legal.objects.all()
 	categories = []
 	for category in result:
@@ -345,6 +568,17 @@ def get_legal_form(request):
 
 # get state
 def get_state(request):
+	'''
+	Get state
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.State`
+	'''	
 	result = State.objects.all()
 	categories = []
 	for category in result:
@@ -353,6 +587,17 @@ def get_state(request):
 
 # get country
 def get_country(request):
+	'''
+	Get country
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.Country`
+	'''	
 	result = Country.objects.all()
 	categories = []
 	for category in result:
@@ -361,6 +606,17 @@ def get_country(request):
 
 # get industry
 def get_industry(request):
+	'''
+	Get industry
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.Industry`
+	'''	
 	result = Industry.objects.all()
 	categories = []
 	for category in result:
@@ -369,6 +625,17 @@ def get_industry(request):
 
 # get risk level
 def get_risk_level(request):
+	'''
+	Get risk level
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.Risk_level`
+	'''	
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")
 	result = Risk_level.objects.all()

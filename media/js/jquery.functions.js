@@ -8,7 +8,7 @@ $(document).ready(function(){
       $('[type=password]').addClass('ie-password');      
     }
 
-    // plaholder for ie
+    // placeholder for ie
     $(".ie-password").live('focus', function() {
        if ($(this).val()=='') {
         $(this).val('Password');
@@ -17,7 +17,6 @@ $(document).ready(function(){
          $(this).val('');
        }       
     });
-
 
     // revert on login
     $('.login-revert').live("click", function(){
@@ -214,7 +213,6 @@ $(document).ready(function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-business").validationEngine('validate')) {
             $('#general-form-profile-credit').fadeIn();
-            $('.ui-datepicker').hide();
             $.get('/save-profile-business/', $('#general-form-profile-business').serialize());
             lineProgress();
             $('#general-form-profile-credit-loan-amount').focus();
@@ -273,8 +271,9 @@ $(document).ready(function(){
         }
 
         $( "#general-form-profile input" ).each(function( index ) {
-            if ($(this).val()!="") 
+            if ($(this).focus().val()!="")
                 countInput++;
+            $('.ui-autocomplete').hide();                
         });
 
         if (countInput > 10)
@@ -282,16 +281,18 @@ $(document).ready(function(){
 
         var countInput = 0;
         $( "#general-form-profile-business input" ).each(function( index ) {
-            if ($(this).val()!="") 
+            if ($(this).focus().val()!="") 
                 countInput++;
+            $('.ui-autocomplete').hide();
         });
         if (countInput > 8)
            width +=20; 
 
         var countInput = 0;
         $( "#general-form-profile-credit input" ).each(function( index ) {
-            if ($(this).val()!="") 
+            if ($(this).focus().val()!="")
                 countInput++;
+            $('.ui-autocomplete').hide();
         });
         if (countInput > 1)
            width +=10; 
@@ -564,8 +565,7 @@ $(document).ready(function(){
     function validateSize(fileInput) {
       var fileObj, size;
       if ( typeof ActiveXObject == "function" ) { // IE
-        //fileObj = (new ActiveXObject("Scripting.FileSystemObject")).getFile(fileInput.value);
-        return true;
+        fileObj = (new ActiveXObject("Scripting.FileSystemObject")).getFile(fileInput.value);
       }else {
         fileObj = fileInput.files[0];
       }
