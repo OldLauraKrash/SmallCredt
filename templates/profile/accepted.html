@@ -33,11 +33,8 @@
                   <span class="input" style="width: 209px;"><input type="text" value="{{business.ein}}" {% if borrower.borrower_status%} disabled {% endif %} placeholder="EIN" id="form-accepted-first-ein" class="validate[required,maxSize[10],minSize[10]]"  name="ein" /></span>
                 </div>
                 <div class="btn-form" style="width: 177px;">
-                  <span>
                     Save
                     <input type="submit" {% if borrower.borrower_status%} disabled {% endif %} value="Save" />
-                    </form>
-                  </span>
                 </div>
               </div>
             </div>

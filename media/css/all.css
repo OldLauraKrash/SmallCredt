@@ -444,7 +444,6 @@ form,fieldset{
 .form-content .btn-apply{
 	cursor:pointer;
 	font-size: 22px;
-	background:url(../images/btn-form.png) no-repeat;
 	width:298px;
 	height:41px;
 	border:0;
@@ -452,7 +451,13 @@ form,fieldset{
 	padding: 0 0 11px;
 	line-height:32px;
 	color:#fff;
+	background: #acc65d;
 	text-align:center;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-khtml-border-radius:10px;
+	-webkit-border-radius:10px;
+	behavior:url(/PIE.htc);
 }
 .outtaHere {
 	position:absolute;
@@ -597,17 +602,17 @@ form,fieldset{
 	color: #fff;
 	position:relative;
 	overflow: hidden;
-	background:url(../images/btn-form-long.png) no-repeat 100% -26px;
+	color:#fff;
+	background: #acc65d;
+	text-align:center;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-khtml-border-radius:10px;
+	-webkit-border-radius:10px;
+	behavior:url(/PIE.htc);
 	padding: 0 8px 0 0;
 }
-.form-popup .btn-form span{
-	text-align:center;
-	cursor: pointer;
-	height: 23px;
-	background:url(../images/btn-form-long.png) no-repeat;
-	padding: 0 8px 0 16px;
-	display:block;
-}
+
 .form-popup .btn-form input{
 	z-index:10;
 	position:absolute;
@@ -778,16 +783,14 @@ h1{
 	color: #fff;
 	position:relative;
 	overflow: hidden;
-	background:url(../images/btn-form-big.png) no-repeat 100% -42px;
-	padding: 0 8px 0 0;
-}
-.general-form .btn-form span{
+	background: #acc65d;
 	text-align:center;
-	cursor: pointer;
-	height: 39px;
-	background:url(../images/btn-form-big.png) no-repeat;
-	padding: 0 8px 0 16px;
-	display:block;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-khtml-border-radius:10px;
+	-webkit-border-radius:10px;
+	padding: 0 8px 0 0;
+	behavior:url(/PIE.htc);
 }
 .general-form .btn-form input{
 	z-index:10;
@@ -817,17 +820,17 @@ h1{
 	color: #fff;
 	position:relative;
 	overflow: hidden;
-	background:url(../images/btn-form-big.png) no-repeat 100% -42px;
+	color:#fff;
+	background: #acc65d;
+	text-align:center;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-khtml-border-radius:10px;
+	-webkit-border-radius:10px;
+	behavior:url(/PIE.htc);
 	padding: 0 8px 0 0;
 }
-.green-link span{
-	text-align:center;
-	cursor: pointer;
-	height: 39px;
-	background:url(../images/btn-form-big.png) no-repeat;
-	padding: 0 12px 0 22px;
-	display:block;
-}
+
 .green-link:hover{
 	text-decoration:none;
 }
@@ -1474,18 +1477,26 @@ h2.title-table{
 	font-size: 22px;
 	line-height: 35px;
 	text-align:center;
-	background:url(../images/upload.png) no-repeat;
 	width:187px;
 	position:relative;
 	overflow:hidden;
 	z-index:10;
 	height:39px;
+	background: #acc65d;
+	text-align:center;
+	color: #fff;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-khtml-border-radius:10px;
+	-webkit-border-radius:10px;
+	padding: 0 8px 0 0;
+	behavior:url(/PIE.htc);
 }
 .file-input-js-active input.file-input-area {
 	font-size: 200px !important;
 }
 .button-gray{
-	color:#000;
+	color:#fff;
 }
 .file-input-js-active .file-input-area{
 	position:absolute;

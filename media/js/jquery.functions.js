@@ -213,9 +213,12 @@ $(document).ready(function(){
         $(this).parent().parent().fadeOut();
         if ($("#general-form-profile-business").validationEngine('validate')) {
             $('#general-form-profile-credit').fadeIn();
-            $.get('/save-profile-business/', $('#general-form-profile-business').serialize());
-            lineProgress();
-            $('#general-form-profile-credit-loan-amount').focus();
+            $.get('/save-profile-business/', $('#general-form-profile-business').serialize(), function(data) {
+                if (data.result == 'ok') {
+                    lineProgress();
+                    $('#general-form-profile-credit-loan-amount').focus();
+                }
+            });
         }
         $(this).parent().parent().fadeIn();
         return false;
@@ -299,11 +302,11 @@ $(document).ready(function(){
 
 
         if ($('#accepted-save-files .list-files').html() != undefined) {
-            
-            if ($('#accepted-save-files .list-files').eq(0).html().length != 40)         
+
+            if ($('#accepted-save-files .list-files').eq(0).find('li').length > 2)         
                 width +=10;
 
-            if ($('#accepted-save-files .list-files').eq(1).html().length != 40)        
+            if ($('#accepted-save-files .list-files').eq(1).find('li').length > 2)      
                 width +=10;
 
             if ($('#form-accepted-first-ein').val()!= undefined)

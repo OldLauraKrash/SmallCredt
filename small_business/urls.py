@@ -1,9 +1,21 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.core.servers.basehttp import FileWrapper
+from django.http import HttpResponse
+from django.conf import settings
+import os
 admin.autodiscover()
+
+def pie_with_headers(request):
+    filename = settings.MEDIA_ROOT + 'css/PIE.htc'
+    wrapper = FileWrapper(open(filename))
+    response = HttpResponse(wrapper, content_type='text/x-component')
+    response['Content-Length'] = os.path.getsize(filename)
+    return response
 
 urlpatterns = patterns('',
     url(r'^$', 'main.views.home', name='home'),
+    (r'^PIE.htc', pie_with_headers, {}),
     url(r'^login/$', 'main.views.login', name='login'),
     url(r'^logout/$', 'main.views.logout', name='logout'), 
     url(r'^forget_send/$', 'main.views.forget_send', name='forget_send'),  
