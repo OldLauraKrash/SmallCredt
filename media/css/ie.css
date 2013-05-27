@@ -1,3 +1,12 @@
 .main-menu a .holder{
 	margin-top: expression(this.parentNode.offsetHeight > this.offsetHeight ? ((this.parentNode.offsetHeight-this.offsetHeight)/2 + "px") : "0");
 }
+
+.ie-finish {
+	margin-top: 50px;
+	margin-left: 800px;
+}
+
+.ie-file {
+ margin-top: -50px;
+}
