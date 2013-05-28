@@ -16,6 +16,33 @@ class Risk(models.Model):
     name = models.CharField(max_length=255)
     def __unicode__(self):
         return unicode(self.name)
+
+class RiskTag(models.Model):
+    """
+    Risks list for lender, related to :model:`lender.Lender`
+    """
+    system_account = models.ForeignKey(System_account)   
+    name = models.CharField(max_length=255)
+    def __unicode__(self):
+        return unicode(self.name)
+
+class GeographyTag(models.Model):
+    """
+    Geography list for lender, related to :model:`lender.Lender`
+    """
+    system_account = models.ForeignKey(System_account)   
+    name = models.CharField(max_length=255)
+    def __unicode__(self):
+        return unicode(self.name)
+
+class IndustryTag(models.Model):
+    """
+    Industries list for lender, related to :model:`lender.Lender`
+    """
+    system_account = models.ForeignKey(System_account)   
+    name = models.CharField(max_length=255)
+    def __unicode__(self):
+        return unicode(self.name)
         
 class Lender(models.Model): 
     """

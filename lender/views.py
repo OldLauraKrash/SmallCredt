@@ -331,6 +331,57 @@ def lender_marketplace_borrower(request, id):
 	business_measure = Business_measure.objects.get(system_account=borrower.system_account)
 	return {'request': request, 'bank_file':bank_file, 'financial_file':financial_file, 'processor_file':processor_file, 'loan_offer':loan_offer, 'business': business, 'system_account': system_account, 'borrower': borrower, 'business_measure':business_measure}
 
+# save tags
+def save_lender_tag(request):
+	'''
+	Save lender lists
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`lender.GeographyList`, :model:`lender.RiskList`, :model:`client.IndustryList`
+	'''
+	if request.GET['type']=='risk':
+		system_account = System_account.objects.get(email=request.session['username'])
+		risk = RiskTag()
+		risk.system_account = system_account
+		risk.name = request.GET['name']
+		risk.save()
+
+	if request.GET['type']=='geography':
+		system_account = System_account.objects.get(email=request.session['username'])
+		geography = GeographyTag()
+		geography.system_account = system_account
+		geography.name = request.GET['name']
+		geography.save()
+
+	if request.GET['type']=='industry':
+		system_account = System_account.objects.get(email=request.session['username'])
+		industry = IndustryTag()
+		industry.system_account = system_account
+		industry.name = request.GET['name']
+		industry.save()
+
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
+# remove item in tags
+def remove_item_tag(request, id):
+	'''
+	Remove item in list
+
+	**Context**
+
+	``request``
+
+	``models``
+
+	    An instance of :model:`client.System_account`, :model:`lender.GeographyList`, :model:`lender.RiskList`, :model:`client.IndustryList`
+	'''
+	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
+
 # save data lender
 def save_lender(request):
 	'''

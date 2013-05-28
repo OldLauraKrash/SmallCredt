@@ -500,13 +500,20 @@ $(document).ready(function(){
             dataType: "json",
             data: {'term': $('.input-industry').val()},
             success: function( data ) {
-                response( $.map( data.categories, function( item ) {
+                response( $.map( data.categories, function( item ) {                    
                     return {
                         label: item,
                         value: item
                     }
-            }));
-        }});
+            }))}
+             })
+        },
+        select: function( event, ui ) {
+            $.get('/lender/save-tag/', {'type':'industry', 'name': ui.item.label}, function(data) {
+                if (data.result == 'ok') {
+                    $('.risk-level-list').append(' '+ui.item.label+' <a href="#" class="remove-item-list">[x]</a>');
+                }
+            });
         },
         minLength: 0,
     }).focus(function(){        
@@ -550,6 +557,13 @@ $(document).ready(function(){
             }));
         }});
         },
+        select: function( event, ui ) {
+            $.get('/lender/save-tag/', {'type':'risk', 'name': ui.item.label}, function(data) {
+                if (data.result == 'ok') {
+                    $('.risk-level-list').append(' '+ui.item.label+' <a href="#" class="remove-item-list">[x]</a>');
+                }
+            });
+        },
         minLength: 0,
     }).focus(function(){        
         $(this).autocomplete("search");
@@ -570,6 +584,13 @@ $(document).ready(function(){
                     }
             }));
         }});
+        },
+        select: function( event, ui ) {
+            $.get('/lender/save-tag/', {'type':'geography', 'name': ui.item.label}, function(data) {
+                if (data.result == 'ok') {
+                    $('.geography-list').append(' '+ui.item.label+' <a href="#" class="remove-item-list">[x]</a>');
+                }
+            });
         },
         minLength: 0,
     }).focus(function(){        
