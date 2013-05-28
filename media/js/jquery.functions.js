@@ -156,6 +156,14 @@ $(document).ready(function(){
     // save profile main
     $('#general-form-profile-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
+        if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+        	$( "#general-form-profile input" ).each(function( index ) {
+			  if ($(this).val() == $(this).attr('placeholder')) {
+				  $(this).val('');
+			  }
+			});
+        	
+        } 
         if ($("#general-form-profile").validationEngine('validate')) {
             $.get('/save-profile-main/', $('#general-form-profile').serialize(), function(data) {
                 if (data.result == 'ok') {
@@ -197,6 +205,14 @@ $(document).ready(function(){
     // submit lender save
     $('#lender-form-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
+        if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+        	$( "#lender-form input" ).each(function( index ) {
+			  if ($(this).val() == $(this).attr('placeholder')) {
+				  $(this).val('');
+			  }
+			});
+        	
+        } 
         if ($("#lender-form").validationEngine('validate')) {
             $.get('/save-lender/', $('#lender-form').serialize(), function(data) {
                 if (data.result == 'ok') {
@@ -211,6 +227,14 @@ $(document).ready(function(){
     // save profile business
     $('#general-form-profile-business-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
+        if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+        	$( "#general-form-profile-business input" ).each(function( index ) {
+			  if ($(this).val() == $(this).attr('placeholder')) {
+				  $(this).val('');
+			  }
+			});
+        	
+        }    
         if ($("#general-form-profile-business").validationEngine('validate')) {
             $('#general-form-profile-credit').fadeIn();
             $.get('/save-profile-business/', $('#general-form-profile-business').serialize(), function(data) {
@@ -250,6 +274,14 @@ $(document).ready(function(){
     // save profile credit
     $('#general-form-profile-credit-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
+        if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+        	$( "#general-form-profile-credit input" ).each(function( index ) {
+			  if ($(this).val() == $(this).attr('placeholder')) {
+				  $(this).val('');
+			  }
+			});
+        	
+        } 
         if ($("#general-form-profile-credit").validationEngine('validate')) {
             $('#general-form-profile').fadeIn();
             $.get('/save-profile-credit/', $('#general-form-profile-credit').serialize(), function(data) {
@@ -568,7 +600,8 @@ $(document).ready(function(){
     function validateSize(fileInput) {
       var fileObj, size;
       if ( typeof ActiveXObject == "function" ) { // IE
-        fileObj = (new ActiveXObject("Scripting.FileSystemObject")).getFile(fileInput.value);
+        //fileObj = (new ActiveXObject("Scripting.FileSystemObject")).getFile(fileInput.value);
+        return true;
       }else {
         fileObj = fileInput.files[0];
       }
@@ -590,6 +623,7 @@ $(document).ready(function(){
         arr = [ "docx", "pdf", "jpeg", "png", "xls", "xlsx", "csv", "zip", "rtf", "txt", "doc", "jpg"];
         if (jQuery.inArray(filename, arr) == -1) {
             $('.error-extension').eq($(this).attr('rel')).show();
+            return false;
         } else {
             $('.error-extension').eq($(this).attr('rel')).hide();            
         }

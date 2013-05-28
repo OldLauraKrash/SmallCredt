@@ -122,10 +122,9 @@
 									{% if borrower.borrower_status%} disabled {% endif %}
 									placeholder="Industry" class="input-industry validate[required]" id="industry"									
 									name="industry" /></span>
-								<div class="btn-form" style="width: 177px;">
+								<div class="btn-form" style="width: 177px;" id="general-form-profile-business-submit">
 									<span>
 										Save
-										<input type="submit" value="Save" {% if borrower.borrower_status%} disabled {% endif %} id="general-form-profile-business-submit" />
 									</span>
 								</div>
 							</div>
@@ -186,10 +185,9 @@
 									placeholder="2012 profit" class="validate[required]" id="general-form-profile-credit-profit"
 									 />
 								</span>
-								<div class="btn-form" style="width: 177px;">
+								<div class="btn-form" style="width: 177px;" id="general-form-profile-credit-submit">
 									<span>
 										Save
-										<input type="submit" value="Save"id="general-form-profile-credit-submit" />
 									</span>
 								</div>
 							</div>
@@ -308,10 +306,9 @@
 									value="{{system_account.email}}" placeholder="Email"
 									{% if borrower.borrower_status%} disabled {% endif %}
 									class="validate[required, custom[email]]" id="general-form-profile-email" name="email" /></span>
-								<div class="btn-form" style="width: 177px;">
+								<div class="btn-form" style="width: 177px;" id="general-form-profile-submit">
 									<span>
 										Save
-										<input type="submit" value="Save" {% if borrower.borrower_status%} disabled {% endif %} id="general-form-profile-submit" />
 									</span>
 								</div>
 							</div>
