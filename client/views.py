@@ -325,7 +325,7 @@ def save_profile_main(request):
 		country=Country.objects.get(name=request.GET['country'])
 		borrower.country=country
 	except:
-		client.country = ''	
+		borrower.country = ''	
 	borrower.home_phone = request.GET['home_phone']
 	borrower.cell_phone = request.GET['cell_phone']
 	borrower.date_of_birth = request.GET['date_of_birth']
@@ -359,12 +359,14 @@ def save_profile_business(request):
 		legal=Legal.objects.get(name=request.GET['legal_form'])
 		business.legal_form=legal
 	except:
-		business.legal_form = ''
+		legal=Legal.objects.all()[0]
+		business.legal_form=legal
 	try: 
 		state_of_incorporation=State.objects.get(name=request.GET['state_of_incorporation'])
 		business.state_of_incorporation=state_of_incorporation
 	except:
-		business.state_of_incorporation = ''
+		state_of_incorporation=State.objects.all()[0]
+		business.state_of_incorporation=state_of_incorporation
 
 	business.date_founded = request.GET['date_founded']
 	business.street = request.GET['street']
@@ -373,19 +375,24 @@ def save_profile_business(request):
 		state=State.objects.get(name=request.GET['state'])
 		business.state=state
 	except:
-		business.state = ''
+		state=State.objects.all()[0]
+		business.state=state
 	business.zip_code = request.GET['zip_code']
 	try: 
 		country=Country.objects.get(name=request.GET['country'])
 		business.country=country
 	except:
-		business.country = ''
+		country=Country.objects.all()[0]
+		business.country=country
+
 	business.business_phone = request.GET['business_phone']
 	try: 
 		industry=Industry.objects.get(name=request.GET['industry'])
 		business.industry=industry
 	except:
-		business.industry = ''
+		industry=Industry.objects.all()[0]
+		business.industry=industry
+		
 	business.save()
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 

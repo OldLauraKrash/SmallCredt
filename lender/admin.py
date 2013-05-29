@@ -27,3 +27,26 @@ class RiskAdmin(admin.ModelAdmin):
         return ['name']
 admin.site.register(Risk, RiskAdmin)
 
+class Risk_tagAdmin(admin.ModelAdmin):
+    list_filter = ['name']
+    list_display = ['name']
+    search_fields = ['name']
+    def get_ordering(self, request):
+        return ['name']
+admin.site.register(Risk_tag, Risk_tagAdmin)
+
+class Geography_tagAdmin(admin.ModelAdmin):
+    list_filter = ['name']
+    list_display = ['name']
+    search_fields = ['name']
+    def get_ordering(self, request):
+        return ['name']
+admin.site.register(Geography_tag, Geography_tagAdmin)
+
+class Industry_tagAdmin(admin.ModelAdmin):
+    list_filter = ['name']
+    list_display = ['name']
+    search_fields = ['name']
+    def get_ordering(self, request):
+        return ['name']
+admin.site.register(Industry_tag, Industry_tagAdmin)

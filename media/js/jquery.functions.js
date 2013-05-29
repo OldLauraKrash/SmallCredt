@@ -148,13 +148,11 @@ $(document).ready(function(){
 
 
     // include validate for forms profile
-    $('#general-form-profile').validationEngine();
-    $('#general-form-profile-business').validationEngine();
-    $('#general-form-profile-credit').validationEngine();
     $('#form-password-reset').validationEngine();
     
     // save profile main
     $('#general-form-profile-submit').live("click", function(){
+        $('#general-form-profile').validationEngine();
         $(this).parent().parent().fadeOut();
         if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
         	$( "#general-form-profile input" ).each(function( index ) {
@@ -224,8 +222,17 @@ $(document).ready(function(){
         return false;
     });
 
+    // remove item tags
+    $('.remove-item-list').live("click", function(){
+        $.get('/lender/remove-item-tag/', {'id': $(this).parent().attr('rel'), 'type': $(this).attr('rel')}, function(data) {       
+        });       
+        $(this).parent().remove(); 
+        return false;
+    });
+
     // save profile business
     $('#general-form-profile-business-submit').live("click", function(){
+        $('#general-form-profile-business').validationEngine();
         $(this).parent().parent().fadeOut();
         if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
         	$( "#general-form-profile-business input" ).each(function( index ) {
@@ -244,6 +251,7 @@ $(document).ready(function(){
                 }
             });
         }
+        $('#general-form-profile-credit-loan-amount').focus();
         $(this).parent().parent().fadeIn();
         return false;
     });
@@ -273,6 +281,8 @@ $(document).ready(function(){
 
     // save profile credit
     $('#general-form-profile-credit-submit').live("click", function(){
+        $('#general-form-profile-credit').validationEngine();
+        $('.ui-menu-item').hide();
         $(this).parent().parent().fadeOut();
         if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
         	$( "#general-form-profile-credit input" ).each(function( index ) {
@@ -286,9 +296,9 @@ $(document).ready(function(){
             $('#general-form-profile').fadeIn();
             $.get('/save-profile-credit/', $('#general-form-profile-credit').serialize(), function(data) {
                 lineProgress();
+                $('#general-form-profile-your-name-first').focus();
             });
         }
-        $('#general-form-profile-your-name-first').focus();
         $(this).parent().parent().fadeIn();
         return false;
     });
@@ -511,7 +521,7 @@ $(document).ready(function(){
         select: function( event, ui ) {
             $.get('/lender/save-tag/', {'type':'industry', 'name': ui.item.label}, function(data) {
                 if (data.result == 'ok') {
-                    $('.risk-level-list').append(' '+ui.item.label+' <a href="#" class="remove-item-list">[x]</a>');
+                    $('.industry-list').append(' '+ui.item.label+' <a href="#" class="remove-item-list">[x]</a>');
                 }
             });
         },
@@ -558,6 +568,7 @@ $(document).ready(function(){
         }});
         },
         select: function( event, ui ) {
+            $('.input-risk').val('');
             $.get('/lender/save-tag/', {'type':'risk', 'name': ui.item.label}, function(data) {
                 if (data.result == 'ok') {
                     $('.risk-level-list').append(' '+ui.item.label+' <a href="#" class="remove-item-list">[x]</a>');

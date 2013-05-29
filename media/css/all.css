@@ -1574,3 +1574,11 @@ h2.title-table{
 	cursor:pointer;
 	text-decoration: underline;
 }
+.btn-form {
+	cursor: pointer;
+	cursor:hand;	
+}
+.btn-form span {
+	cursor: pointer;
+	cursor:hand;
+}

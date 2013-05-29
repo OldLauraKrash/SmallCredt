@@ -111,9 +111,12 @@
 							<label>Geography</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{ lender.geography }}" placeholder="Geography" class="input-geography validate[required]"		 
+									value="" placeholder="Geography" class="input-geography validate[required]"		 
 									id="lender-form-geography" name="geography" /></span>
 									<div class="geography-list">
+										{% for value in geography_tags %}
+											<span rel="{{value.id}}">{{value.name}}<a href="#" class="remove-item-list" rel="geography">[x]</a></span>
+										{% endfor %}
 									</div>
 							</div>
 						</div>
@@ -121,9 +124,12 @@
 							<label>Risk level</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{lender.risk}}" placeholder="Risk level" class="input-risk validate[required]"
+									value="" placeholder="Risk level" class="input-risk validate[required]"
 									id="lender-form-risk-level"  name="risk" /></span>
 									<div class="risk-level-list">
+										{% for value in risk_tags %}
+											<span rel="{{value.id}}">{{value.name}}<a href="#" class="remove-item-list" rel="risk">[x]</a></span>
+										{% endfor %}
 									</div>
 							</div>
 						</div>
@@ -131,9 +137,12 @@
 							<label>Industry</label>
 							<div class="input-holder">
 								<span class="input" style="width: 209px;"><input type="text"
-									value="{{lender.industry}}" placeholder="Industry"  class="input-industry validate[required]"
+									value="" placeholder="Industry"  class="input-industry validate[required]"
 									id="lender-form-industry" name="industry" /></span>
 								<div class="industry-list">
+									{% for value in industry_tags %}
+										<span rel="{{value.id}}">{{value.name}}<a href="#" class="remove-item-list" rel="industry">[x]</a><span>
+									{% endfor %}
 								</div>
 							</div>
 							<div class="btn-form" style="width: 177px; margin-right:50px">

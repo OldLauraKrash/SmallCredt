@@ -77,22 +77,34 @@
           <div class="table-info">
             <table>
               <tbody>
-                {% if lender.geography != '' %} 
+                {% if geography_tags|length > 0 %}
                 <tr>
                   <td class="col01">Geography</td>
-                  <td class="col02">{{ lender.geography }}</td>
+                  <td class="col02">
+                    {% for value in geography_tags %}
+                      {{value.name}}
+                    {% endfor %}
+                  </td>
                 </tr>
                 {% endif %}
-                {% if lender.risk_level != '' %}
+                {% if risk_tags|length > 0 %}
                 <tr>
                   <td class="col01">Risk level</td>
-                  <td class="col02">{{ lender.risk }}</td>
+                  <td class="col02">
+                    {% for value in risk_tags %}
+                      {{value.name}}
+                    {% endfor %}
+                  </td>
                 </tr>
-                {% endif %}
-                {% if lender.industry != '' %}
+                {% endif %}  
+                {% if industry_tags|length > 0 %}
                 <tr>
                   <td class="col01">Industry</td>
-                  <td class="col02">{{ lender.industry }}</td>
+                  <td class="col02">                  
+                    {% for value in industry_tags %}
+                      {{value.name}}
+                    {% endfor %}
+                    </td>
                 </tr>
                 {% endif %}
               </tbody>

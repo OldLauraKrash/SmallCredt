@@ -52,7 +52,10 @@ def lender_account(request):
 		lender = Lender.objects.get(system_account=system_account.id)
 	except:
 		lender = ''
-	return {'request': request, 'lender':lender, 'system_account':system_account}
+	risk_tags = Risk_tag.objects.filter(system_account=system_account)
+	geography_tags = Geography_tag.objects.filter(system_account=system_account.id)
+	industry_tags = Industry_tag.objects.filter(system_account=system_account)	
+	return {'request': request, 'lender':lender, 'risk_tags':risk_tags, 'geography_tags':geography_tags, 'industry_tags':industry_tags, 'system_account':system_account}
 
 # statements lender
 @render_to('lender/statements.html')
@@ -144,7 +147,11 @@ def lender_edit(request):
 		lender = Lender.objects.get(system_account=system_account.id)
 	except:
 		lender = ''
-	return {'request': request, 'lender':lender}
+
+	risk_tags = Risk_tag.objects.filter(system_account=system_account)
+	geography_tags = Geography_tag.objects.filter(system_account=system_account.id)
+	industry_tags = Industry_tag.objects.filter(system_account=system_account)	
+	return {'request': request, 'lender':lender, 'risk_tags': risk_tags, 'industry_tags': industry_tags, 'geography_tags': geography_tags}
 
 # marketplace lender
 @render_to('lender/marketplace.html')
@@ -346,21 +353,21 @@ def save_lender_tag(request):
 	'''
 	if request.GET['type']=='risk':
 		system_account = System_account.objects.get(email=request.session['username'])
-		risk = RiskTag()
+		risk = Risk_tag()
 		risk.system_account = system_account
 		risk.name = request.GET['name']
 		risk.save()
 
 	if request.GET['type']=='geography':
 		system_account = System_account.objects.get(email=request.session['username'])
-		geography = GeographyTag()
+		geography = Geography_tag()
 		geography.system_account = system_account
 		geography.name = request.GET['name']
 		geography.save()
 
 	if request.GET['type']=='industry':
 		system_account = System_account.objects.get(email=request.session['username'])
-		industry = IndustryTag()
+		industry = Industry_tag()
 		industry.system_account = system_account
 		industry.name = request.GET['name']
 		industry.save()
@@ -368,7 +375,7 @@ def save_lender_tag(request):
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # remove item in tags
-def remove_item_tag(request, id):
+def remove_item_tag(request):
 	'''
 	Remove item in list
 
@@ -380,6 +387,29 @@ def remove_item_tag(request, id):
 
 	    An instance of :model:`client.System_account`, :model:`lender.GeographyList`, :model:`lender.RiskList`, :model:`client.IndustryList`
 	'''
+	try: 
+		if request.GET['type']=='risk':
+			risk_tag = Risk_tag.objects.get(pk=request.GET['id'])
+			if str(risk_tag.system_account) == request.session['username']:
+				risk_tag.delete()
+	except:
+		risk_tag = ''
+
+	try: 
+		if request.GET['type']=='industry':
+			industry_tag = Industry_tag.objects.get(pk=request.GET['id'])
+			if str(industry_tag.system_account) == request.session['username']:
+				industry_tag.delete()
+	except:
+		industry_tag = ''
+
+	try:		
+		if request.GET['type']=='geography':
+			geography_tag = Geography_tag.objects.get(pk=request.GET['id'])
+			if str(geography_tag.system_account) == request.session['username']:
+				geography_tag.delete()
+	except:
+		geography_tag = ''
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 
 # save data lender
@@ -427,6 +457,7 @@ def save_lender(request):
 		lender.country=country
 	except:
 		lender.country = ''
+	"""
 	try: 
 		geography=Geography.objects.get(name=request.GET['geography'])
 		lender.geography=geography
@@ -441,7 +472,8 @@ def save_lender(request):
 		industry=Industry.objects.get(name=request.GET['industry'])
 		lender.industry=industry
 	except:
-		lender.industry = ''		
+		lender.industry = ''
+	"""		
 	lender.save()	
 	return HttpResponse( json.dumps({'result':'ok'}), mimetype="application/json" )
 

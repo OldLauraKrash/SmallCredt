@@ -17,7 +17,7 @@ class Risk(models.Model):
     def __unicode__(self):
         return unicode(self.name)
 
-class RiskTag(models.Model):
+class Risk_tag(models.Model):
     """
     Risks list for lender, related to :model:`lender.Lender`
     """
@@ -26,7 +26,7 @@ class RiskTag(models.Model):
     def __unicode__(self):
         return unicode(self.name)
 
-class GeographyTag(models.Model):
+class Geography_tag(models.Model):
     """
     Geography list for lender, related to :model:`lender.Lender`
     """
@@ -35,7 +35,7 @@ class GeographyTag(models.Model):
     def __unicode__(self):
         return unicode(self.name)
 
-class IndustryTag(models.Model):
+class Industry_tag(models.Model):
     """
     Industries list for lender, related to :model:`lender.Lender`
     """
