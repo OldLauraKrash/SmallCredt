@@ -109,6 +109,17 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TINYMCE_DEFAULT_CONFIG = {
+    # custom plugins
+    'plugins': "table,spellchecker,paste,searchreplace",
+    # editor theme
+    'theme': "advanced",
+    # custom CSS file for styling editor area
+    'content_css': MEDIA_URL + "css/custom_tinymce.css",
+    # use absolute urls when inserting links/images
+    'relative_urls': False,
+}
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -144,6 +155,8 @@ INSTALLED_APPS = (
     'main',
     'loan',
     'lender',
+    'tinymce',
+    'flatpages_tinymce',
 )
 
 

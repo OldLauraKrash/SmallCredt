@@ -62,17 +62,17 @@ class Borrower(models.Model):
     Borrower account, related to :model:`client.Risk_level`, :model:`client.Business`, :model:`client.System_account`, 
     :model:`client.State` and :model:`client.Country` 
     """ 
-    suffix = models.CharField(max_length=255)
+    suffix = models.CharField(max_length=255, blank=True)
     first_name = models.CharField(max_length=255)
-    middle_name = models.CharField(max_length=255)
+    middle_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255)
-    other_name = models.CharField(max_length=255)
+    other_name = models.CharField(max_length=255, blank=True)
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = models.ForeignKey(State, null=True)
     zip_code = models.CharField(max_length=255)
     country = models.ForeignKey(Country, null=True)
-    home_phone = models.CharField(max_length=255)
+    home_phone = models.CharField(max_length=255, blank=True)
     cell_phone = models.CharField(max_length=255)
     date_of_birth = models.DateTimeField(null=True)
     ssn = models.CharField(max_length=15)

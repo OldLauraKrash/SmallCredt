@@ -154,7 +154,7 @@ $(document).ready(function(){
     $('#general-form-profile-submit').live("click", function(){
         $('#general-form-profile').validationEngine();
         $(this).parent().parent().fadeOut();
-        if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+        if ($.browser.msie  && parseInt($.browser.version, 10) === 8 || $.browser.msie  && parseInt($.browser.version, 10) === 9) {
         	$( "#general-form-profile input" ).each(function( index ) {
 			  if ($(this).val() == $(this).attr('placeholder')) {
 				  $(this).val('');
@@ -203,7 +203,7 @@ $(document).ready(function(){
     // submit lender save
     $('#lender-form-submit').live("click", function(){
         $(this).parent().parent().fadeOut();
-        if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+        if ($.browser.msie  && parseInt($.browser.version, 10) === 8 || $.browser.msie  && parseInt($.browser.version, 10) === 9) {
         	$( "#lender-form input" ).each(function( index ) {
 			  if ($(this).val() == $(this).attr('placeholder')) {
 				  $(this).val('');
@@ -234,7 +234,7 @@ $(document).ready(function(){
     $('#general-form-profile-business-submit').live("click", function(){
         $('#general-form-profile-business').validationEngine();
         $(this).parent().parent().fadeOut();
-        if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+        if ($.browser.msie  && parseInt($.browser.version, 10) === 8 || $.browser.msie  && parseInt($.browser.version, 10) === 9) {
         	$( "#general-form-profile-business input" ).each(function( index ) {
 			  if ($(this).val() == $(this).attr('placeholder')) {
 				  $(this).val('');
