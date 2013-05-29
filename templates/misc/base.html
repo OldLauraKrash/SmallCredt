@@ -19,6 +19,7 @@
   <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.placeholder.min.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.functions.js"></script>
   <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/ie.css" /><![endif]-->
+  <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/ie.css" /><![endif]-->
   <!--[if lt IE 9]><script type="text/javascript" src="{{ MEDIA_URL }}js/pie.js"></script><![endif]-->
 </head>
 <body>
@@ -26,7 +27,7 @@
     <div class="header-holder">
       <header id="header">
         <span class="head-info">Lenders compete to provide financing to small businesses on best terms</span>
-        <strong class="logo"><a href="/">SmallCreditExchange</a></strong>
+        <strong class="logo"><a href="/" target="_self">SmallCreditExchange</a></strong>
         <strong class="num">1.888.870.4473</strong>
         {% load get_header %} 
         {% get_header_right request %} 
@@ -38,16 +39,16 @@
   <footer id="footer">
     <div class="footer-holder">
       <ul class="footer-nav">
-        <li><a href="/privacy-and-security/">Privacy & Security</a></li>
-        <li><a href="/terms-of-use/">Terms of Use</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/faq/">FAQ</a></li>
-        <li><a href="/rates-and-fees/">Rates & Fees</a></li>
-        <li><a href="/careers/">Careers</a></li>
-        <li><a href="/about/">About</a></li>
-        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/privacy-and-security/" target="_self">Privacy & Security</a></li>
+        <li><a href="/terms-of-use/" target="_self">Terms of Use</a></li>
+        <li><a href="/blog/" target="_self">Blog</a></li>
+        <li><a href="/faq/" target="_self">FAQ</a></li>
+        <li><a href="/rates-and-fees/" target="_self">Rates & Fees</a></li>
+        <li><a href="/careers/" target="_self">Careers</a></li>
+        <li><a href="/about/" target="_self">About</a></li>
+        <li><a href="/contact/" target="_self">Contact</a></li>
       </ul>
-      <a href="http://newline.pro" class="development">Made by New Line<a>
+      <a href="http://newline.pro" class="development" target="_blank">Made by New Line<a>
     </div>
   </footer>
   <div class="popup-holder" id="popup1" style="display:none;">

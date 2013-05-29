@@ -4,18 +4,18 @@
       <nav class="nav-holder">
         <div class="frame">
           <ul class="menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/lender/marketplace/">Marketplace</a></li>
-            <li><a href="/lender/account/" class="active">My Account</a></li>
+            <li><a href="/" target="_self">Home</a></li>
+            <li><a href="/lender/marketplace/" target="_self">Marketplace</a></li>
+            <li><a href="/lender/account/" target="_self" class="active">My Account</a></li>
           </ul>
         </div>
       </nav>
       <div id="main">
-        <a href="/lender/edit/" class="link-exit">Edit</a>
+        <a href="/lender/edit/" target="_self" class="link-exit">Edit</a>
         <ul class="main-list">
           <li>
             <div>
-              <a href="/lender/portfolio/">Portfolio</a>
+              <a href="/lender/portfolio/" target="_self">Portfolio</a>
             </div>
           </li>
           <!--
@@ -27,7 +27,7 @@
           -->
           <li class="last-child">
             <div>
-              <a href="/lender/account/" class="active">Account</a>
+              <a href="/lender/account/" target="_self" class="active">Account</a>
             </div>
           </li>
         </ul>
@@ -44,7 +44,7 @@
                 {% endif %}
                 <tr>
                   <td class="col01">Email*</td>
-                  <td class="col02"><a href="mailto:{{system_account.email}}" class="link-mail">{{system_account.email}}</a></td>
+                  <td class="col02"><a href="mailto:{{system_account.email}}" target="_self" class="link-mail">{{system_account.email}}</a></td>
                 </tr>
                 {% if lender.cell_phone|length %} 
                 <tr>

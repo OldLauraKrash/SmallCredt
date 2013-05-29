@@ -5,9 +5,9 @@
 			<nav class="nav-holder">
 				<div class="frame">
 		          <ul class="menu">
-		            <li><a href="/">Home</a></li>
-		            <li><a href="/lender/marketplace/" class="active">Marketplace</a></li>
-		            <li><a href="/lender/account/">My Account</a></li>
+		            <li><a href="/" target="_self">Home</a></li>
+		            <li><a href="/lender/marketplace/" target="_self" class="active">Marketplace</a></li>
+		            <li><a href="/lender/account/" target="_self">My Account</a></li>
 		          </ul>
 				</div>
 			</nav>
@@ -24,8 +24,8 @@
 									<span class="finish-date"></div>
 									{% if loan_offer == '' %}
 									<div class="link-holder link-holder-indent">
-										<a href="#" class="btn-status"><span>Bid</span></a>
-										<a href="#" class="btn-status decline" rel="{{system_account.id}}" id="decline"><span>Decline</span></a>
+										<a href="#" class="btn-status" target="_self"><span>Bid</span></a>
+										<a href="#" class="btn-status decline" target="_self" rel="{{system_account.id}}" id="decline"><span>Decline</span></a>
 										<div class="bid-drop">
 											<form action="#">
 												<fieldset>
@@ -42,7 +42,7 @@
 														<label>Daily repayment, %</label>
 													</div>
 													<div class="row">
-														<a href="#" class="btn-bid" id="bid" rel="{{system_account.id}}"><span>Done</span></a>
+														<a href="#" target="_self" class="btn-bid" id="bid" rel="{{system_account.id}}"><span>Done</span></a>
 													</div>
 												</fieldset>
 											</form>
@@ -50,8 +50,8 @@
 									</div>
 									{% else %}
 										<div class="link-holder link-holder-indent" style="display:none">
-											<a href="#" class="btn-status"><span>Bid</span></a>
-											<a href="#" class="btn-status decline" rel="{{system_account.id}}" id="decline"><span>Decline</span></a>
+											<a href="#" target="_self" class="btn-status"><span>Bid</span></a>
+											<a href="#" target="_self" class="btn-status decline" rel="{{system_account.id}}" id="decline"><span>Decline</span></a>
 											<div class="bid-drop">
 												<form action="#">
 													<fieldset>
@@ -81,7 +81,7 @@
 												You Decline <br/> your <br/> offer on {{borrower.created|date:'m/d/y'}}
 											{% endif %}
 											{% if loan_offer.status_lender != 1 %}
-												<a href="#" class="change-bid" rel="{{loan_offer.id}}">Change bid</a>
+												<a href="#" target="_self" class="change-bid" rel="{{loan_offer.id}}">Change bid</a>
 											{% endif %}
 										</div>
 									{% endif %}

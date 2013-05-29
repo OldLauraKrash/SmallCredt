@@ -2,18 +2,18 @@
         {% if username != '' %}
         <div class="welcom-block">
             {% if lender != '' %}
-              <a class="welcome" href="/lender/account">Hello, {{lender}}</a>
+              <a class="welcome" target="_self" href="/lender/account">Hello, {{lender}}</a>
             {% else %}
-              <a class="welcome" href="/profile">{{username}}</a>
+              <a class="welcome" target="_self" href="/profile">{{username}}</a>
             {% endif %}
               <div class="welcom-drop">
                   <ul>
                     {% if lender != '' %}
-                      <li><a class="item02" href="/lender/account">Account Settings</a></li>
+                      <li><a class="item02" target="_self" href="/lender/account">Account Settings</a></li>
                     {% else %}
-                      <li><a class="item02" href="/profile">Account Settings</a></li>
+                      <li><a class="item02" target="_self" href="/profile">Account Settings</a></li>
                     {% endif %}
-                    <li><a class="item01" href="/logout">Logout</a></li>
+                    <li><a class="item01" target="_self" href="/logout">Logout</a></li>
                   </ul>
               </div>
         </div>
@@ -30,7 +30,7 @@
               <input type="submit" class="btn-form" value="Sign in" id="form-auth-main-submit" />
             </div>
             <div class="row-link">
-              <span class="link-holder"><a class="register-popup" href="#">Sign up for free</a></span>
+              <span class="link-holder"><a class="register-popup" href="#" >Sign up for free</a></span>
               <span class="link-holder"><a href="#" id="btn-popup1">Forgot ID/Password</a></span>
             </div>
           </fieldset>
