@@ -105,7 +105,7 @@ def lender_portfolio(request):
 	system_account = System_account.objects.get(email=request.session['username'])
 	try: 
 		lender = Lender.objects.get(system_account=system_account.id)
-		result = Loan_offer.objects.filter(lender=lender, enable=True)
+		result = Loan_offer.objects.filter(lender=lender, enable=True).order_by('-offer_date')
 		lists = []
 
 		for value in result:
@@ -173,7 +173,7 @@ def lender_marketplace(request):
 	'''
 	if check_auth(request):
 		return HttpResponseRedirect("/auth/")	
-	borrowers = Borrower.objects.filter(accepted = True)
+	borrowers = Borrower.objects.filter(accepted = True).order_by('-created')
 	lists = []
 	for borrower in borrowers:
 		system_account = System_account.objects.get(email=borrower.system_account)

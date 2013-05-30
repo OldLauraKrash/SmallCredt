@@ -221,7 +221,7 @@ def credit_offers(request):
 
 	system_account = System_account.objects.get(email=request.session['username'])
 	borrower = Borrower.objects.get(system_account=system_account.id)
-	result = Loan_offer.objects.filter(borrower=borrower, enable=True)
+	result = Loan_offer.objects.filter(borrower=borrower, enable=True).order_by('-offer_date')
 	lists = []
 	for value in result:
 		lists.append(dict([('amount', value.amount),
