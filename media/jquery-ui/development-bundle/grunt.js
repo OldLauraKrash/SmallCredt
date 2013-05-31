@@ -97,7 +97,6 @@ function stripBanner( files ) {
 }
 
 function stripDirectory( file ) {
-	// TODO: we're receiving the directive, so we need to strip the trailing >
 	// we should be receving a clean path without the directive
 	return file.replace( /.+\/(.+?)>?$/, "$1" );
 }
@@ -280,13 +279,11 @@ grunt.initConfig({
 	qunit: {
 		files: grunt.file.expandFiles( "tests/unit/**/*.html" ).filter(function( file ) {
 			// disabling everything that doesn't (quite) work with PhantomJS for now
-			// TODO except for all|index|test, try to include more as we go
 			return !( /(all|all-active|index|test|draggable|droppable|selectable|resizable|sortable|dialog|slider|datepicker|tabs|tabs_deprecated|tooltip)\.html$/ ).test( file );
 		})
 	},
 	lint: {
 		ui: grunt.file.expandFiles( "ui/*.js" ).filter(function( file ) {
-			// TODO remove items from this list once rewritten
 			return !( /(mouse|datepicker|draggable|droppable|resizable|selectable|sortable)\.js$/ ).test( file );
 		}),
 		grunt: [ "grunt.js", "build/**/*.js" ],
@@ -294,13 +291,10 @@ grunt.initConfig({
 	},
 	csslint: {
 		// nothing: []
-		// TODO figure out what to check for, then fix and enable
 		base_theme: {
 			src: grunt.file.expandFiles( "themes/base/*.css" ).filter(function( file ) {
-				// TODO remove items from this list once rewritten
 				return !( /(button|datepicker|core|dialog|theme)\.css$/ ).test( file );
 			}),
-			// TODO consider reenabling some of these rules
 			rules: {
 				"import": false,
 				"important": false,
@@ -330,8 +324,6 @@ grunt.initConfig({
 		return {
 			grunt: parserc(),
 			ui: parserc( "ui/" ),
-			// TODO: `evil: true` is only for document.write() https://github.com/jshint/jshint/issues/519
-			// TODO: don't create so many globals in tests
 			tests: parserc( "tests/" )
 		};
 	})()

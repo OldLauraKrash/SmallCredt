@@ -40,6 +40,15 @@
             </div>
           </form>
             {% if borrower.ssn != '' %}
+
+            <div class="row ie-finish">
+                <div class="btn-form" style="width: 177px;">
+                   <a href="/api/connect/first" target="_self" class="green-link connect-api" style="width: 178px; font-size:12px;">
+                    <span>Connect to checking account </span>
+                  </a>
+                </div>
+            </div>
+
             <form action="/profile/save-files/" method="post" enctype="multipart/form-data" id="accepted-save-files">
               {% csrf_token %}
             <div class="row">
