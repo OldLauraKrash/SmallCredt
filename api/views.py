@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*
 from django.http import HttpResponse
 from annoying.decorators import render_to
-
+import simplejson as json
+from api.models import *
 
 # register account through api step first
 @render_to('api/register_step_first.html')
@@ -50,3 +51,19 @@ def register_step_finish(request):
 	:template:`api/register_step_finish.html`
 	'''
     return {'request': request}
+
+# get institutions
+def get_institutions(request):
+    '''
+	Get institutions
+
+	**Context**
+
+	``request``
+	'''
+    result = Institution.objects.filter(name__contains=request.GET['term']).distinct()
+    categories = []
+    for category in result:
+        categories.append(category.name)
+    return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )
+

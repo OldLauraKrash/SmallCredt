@@ -2,33 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/other.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/small_business.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/testrunner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sqlite.db" afterPath="$PROJECT_DIR$/sqlite.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/profile/accepted.html" afterPath="$PROJECT_DIR$/templates/profile/accepted.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/jquery-ui/development-bundle/demos/position/cycler.html" afterPath="$PROJECT_DIR$/media/jquery-ui/development-bundle/demos/position/cycler.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/jquery-ui/development-bundle/external/globalize.js" afterPath="$PROJECT_DIR$/media/jquery-ui/development-bundle/external/globalize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/jquery-ui/development-bundle/grunt.js" afterPath="$PROJECT_DIR$/media/jquery-ui/development-bundle/grunt.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/jquery-ui/development-bundle/jquery-1.8.3.js" afterPath="$PROJECT_DIR$/media/jquery-ui/development-bundle/jquery-1.8.3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/jquery-ui/development-bundle/external/jquery.cookie.js" afterPath="$PROJECT_DIR$/media/jquery-ui/development-bundle/external/jquery.cookie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/jquery-ui/development-bundle/external/qunit.js" afterPath="$PROJECT_DIR$/media/jquery-ui/development-bundle/external/qunit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/js/jquery.functions.js" afterPath="$PROJECT_DIR$/media/js/jquery.functions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/menu_flatpages.html" afterPath="$PROJECT_DIR$/templates/main/menu_flatpages.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/models.py" afterPath="$PROJECT_DIR$/api/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/api/register_step_first.html" afterPath="$PROJECT_DIR$/templates/api/register_step_first.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/small_business/settings.py" afterPath="$PROJECT_DIR$/small_business/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/small_business/urls.py" afterPath="$PROJECT_DIR$/small_business/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="small_business.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1369990012304" ignored="false" />
+    <file path="/Dummy.txt" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1370030653398" ignored="false" />
     <file path="/accepted.html" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1369991915436" ignored="false" />
-    <file path="/views.py" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1369991951520" ignored="false" />
-    <file path="/urls.py" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1369993154347" ignored="false" />
-    <file path="/register_step_first.html" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1369994210532" ignored="false" />
+    <file path="/views.py" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1370031787349" ignored="false" />
+    <file path="/urls.py" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1370032171610" ignored="false" />
+    <file path="/register_step_first.html" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1370031916613" ignored="false" />
     <file path="/register_step_second.html" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1369994685783" ignored="false" />
     <file path="/register_step_finish.html" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1369995054774" ignored="false" />
+    <file path="/settings.py" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1370031182166" ignored="false" />
+    <file path="/models.py" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1370034556435" ignored="false" />
+    <file path="/admin.py" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1370031100577" ignored="false" />
+    <file path="/jquery.functions.js" changelist="6b5aed7e-c91b-41b3-a2a9-eaa9ab20cc8c" time="1370032605093" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,36 +47,25 @@
       <file leaf-file-name="accepted.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/profile/accepted.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="0" selection-start="5738" selection-end="6197" vertical-scroll-proportion="-3.877551">
-              <folding>
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state line="113" column="0" selection-start="5738" selection-end="6197" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register_step_second.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/api/register_step_second.html">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="36" selection-start="0" selection-end="1235" vertical-scroll-proportion="-12.833333">
-              <folding>
-                <element signature="e#707#728#0" expanded="true" />
-                <element signature="e#929#950#0" expanded="true" />
-                <element signature="e#1091#1112#0" expanded="true" />
-              </folding>
+            <state line="53" column="0" selection-start="1032" selection-end="1032" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register_step_finish.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="register_step_finish.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/api/register_step_finish.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="12" selection-start="552" selection-end="552" vertical-scroll-proportion="0.42424244">
+            <state line="11" column="14" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -89,7 +74,7 @@
       <file leaf-file-name="apply.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/profile/apply.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="308" column="4" selection-start="13522" selection-end="13669" vertical-scroll-proportion="-126.25">
+            <state line="308" column="4" selection-start="13522" selection-end="13669" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -98,32 +83,26 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/small_business/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="31" selection-start="4190" selection-end="4190" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
+            <state line="56" column="29" selection-start="3761" selection-end="3761" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/views.py">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="4" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#23#59#0" expanded="true" />
-              </folding>
+            <state line="1" column="47" selection-start="76" selection-end="76" vertical-scroll-proportion="0.028901733">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/views.py">
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lender/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="0" selection-start="1574" selection-end="1620" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#23#59#0" expanded="true" />
-              </folding>
+            <state line="2" column="0" selection-start="57" selection-end="104" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -153,16 +132,18 @@
         <option value="$PROJECT_DIR$/media/jquery-ui/development-bundle/grunt.js" />
         <option value="$PROJECT_DIR$/media/jquery-ui/development-bundle/jquery-1.8.3.js" />
         <option value="$PROJECT_DIR$/templates/profile/accepted.html" />
-        <option value="$PROJECT_DIR$/small_business/urls.py" />
-        <option value="$PROJECT_DIR$/api/views.py" />
         <option value="$PROJECT_DIR$/templates/api/register_step_first.html" />
         <option value="$PROJECT_DIR$/templates/api/register_step_second.html" />
         <option value="$PROJECT_DIR$/templates/api/register_step_finish.html" />
+        <option value="$PROJECT_DIR$/small_business/settings.py" />
+        <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/small_business/urls.py" />
+        <option value="$PROJECT_DIR$/api/models.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
+    <option name="x" value="9" />
     <option name="y" value="22" />
     <option name="width" value="1260" />
     <option name="height" value="690" />
@@ -193,7 +174,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -222,71 +202,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="profile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="small_business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
+              <option name="myItemId" value="lender" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,15 +222,62 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/media" />
+    </key>
+  </component>
   <component name="RunManager" selected="Django server.small_business">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="small_business" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="small_business" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -418,26 +381,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="22" width="1260" height="690" extended-state="0" />
+    <frame x="9" y="22" width="1260" height="690" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982457" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982457" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982457" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24958813" sideWeight="0.67017543" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.261944" sideWeight="0.67017543" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982457" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982457" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982457" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982457" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32982457" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -501,133 +464,114 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/profile/account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/jquery-ui/development-bundle/external/qunit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="73" selection-start="2402" selection-end="2402" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/jquery-ui/development-bundle/jquery-1.8.3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2886" column="22" selection-start="79759" selection-end="79759" vertical-scroll-proportion="0.20948617">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/jquery-ui/development-bundle/grunt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="325" column="33" selection-start="8592" selection-end="8592" vertical-scroll-proportion="0.37747034">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/jquery-ui/development-bundle/external/jquery.cookie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.21361059">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/jquery-ui/development-bundle/external/globalize.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="73" selection-start="5250" selection-end="5250" vertical-scroll-proportion="0.21361059">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/media/jquery-ui/development-bundle/demos/position/cycler.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="18" selection-start="613" selection-end="613" vertical-scroll-proportion="0.22779922">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="1574" selection-end="1620" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#23#59#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="26" column="18" selection-start="613" selection-end="613" vertical-scroll-proportion="0.22779922" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="4" selection-start="3374" selection-end="3374" vertical-scroll-proportion="0.3327032">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/small_business/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="31" selection-start="4190" selection-end="4190" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="4" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#23#59#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="138" column="4" selection-start="3374" selection-end="3374" vertical-scroll-proportion="0.3327032" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/api/register_step_first.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="42" selection-start="0" selection-end="965" vertical-scroll-proportion="-12.5">
-          <folding>
-            <element signature="e#707#728#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="20" column="42" selection-start="0" selection-end="965" vertical-scroll-proportion="-12.5" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/api/register_step_second.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="36" selection-start="0" selection-end="1235" vertical-scroll-proportion="-12.833333">
-          <folding>
-            <element signature="e#707#728#0" expanded="true" />
-            <element signature="e#929#950#0" expanded="true" />
-            <element signature="e#1091#1112#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="25" column="36" selection-start="0" selection-end="1235" vertical-scroll-proportion="-12.833333" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/profile/apply.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="308" column="4" selection-start="13522" selection-end="13669" vertical-scroll-proportion="-126.25">
+        <state line="308" column="4" selection-start="13522" selection-end="13669" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/profile/accepted.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="0" selection-start="5738" selection-end="6197" vertical-scroll-proportion="-3.877551">
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="113" column="0" selection-start="5738" selection-end="6197" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="146" selection-end="171" vertical-scroll-proportion="0.14177693" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/api/register_step_finish.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="12" selection-start="552" selection-end="552" vertical-scroll-proportion="0.42424244">
+        <state line="11" column="14" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://Python/#/Users/kal1sha/Django/django/bin/small_business/api/views.py">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>Python</ID>
+          <OriginalElement>#/Users/kal1sha/Django/django/bin/small_business/api/views.py</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="453.0" y="-862.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lender/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="310" selection-end="342" vertical-scroll-proportion="0.4281525" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/small_business/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="24" selection-end="24" vertical-scroll-proportion="0.04398827">
+          <folding>
+            <element signature="e#24#33#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1032" selection-end="1032" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/small_business/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="29" selection-start="3761" selection-end="3761" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lender/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="30" selection-start="1560" selection-end="1574" vertical-scroll-proportion="0.22924902">
+          <folding>
+            <element signature="e#0#28#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lender/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="57" selection-end="104" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="47" selection-start="76" selection-end="76" vertical-scroll-proportion="0.028901733">
           <folding />
         </state>
       </provider>

@@ -460,6 +460,30 @@ $(document).ready(function(){
         $(this).autocomplete("search");
     });
 
+    $('#search-bank').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "/api/get-institutions",
+            dataType: "json",
+            data: {'term': $('#search-bank').val()},
+            success: function( data ) {
+                response( $.map( data.categories, function( item ) {
+                    return {
+                        label: item,
+                        value: item
+                    }
+            }));
+        }});
+        },
+        select: function( event, ui ) {
+            $(location).attr('href','/api/connect/second/');
+        },
+        minLength: 0,
+    }).focus(function(){
+        $(this).autocomplete("search");
+    });
+
+
     // autocomplete country
     $('#general-form-profile-addresse-country').autocomplete({
         source: function( request, response ) {

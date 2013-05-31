@@ -157,6 +157,7 @@ INSTALLED_APPS = (
     'lender',
     'tinymce',
     'flatpages_tinymce',
+    'api',
 )
 
 
