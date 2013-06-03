@@ -61,9 +61,9 @@ def get_institutions(request):
 
 	``request``
 	'''
-    result = Institution.objects.filter(name__contains=request.GET['term']).distinct()
+    result = Institution.objects.filter(name__contains=request.GET['term']).distinct()[:10]
     categories = []
     for category in result:
-        categories.append(category.name)
+        categories.append(category.name+", "+str(category.url)+"")
     return HttpResponse( json.dumps({'categories':categories}), mimetype="application/json" )
 

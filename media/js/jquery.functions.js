@@ -120,7 +120,7 @@ $(document).ready(function(){
                 var dd = today.getDate();
                 var mm = today.getMonth()+1; //January is 0!
                 var yyyy = today.getFullYear();
-                if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'/'+mm+'/'+dd;
+                if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
                 $('.finish-date').html('You submitted <br/> your offer <br/> on '+today);
                 $('.finish-date').append('<a href="#" class="change-bid" rel="'+data.id+'">Change bid</a>');
             }
@@ -480,7 +480,6 @@ $(document).ready(function(){
         },
         minLength: 0,
     }).focus(function(){
-        $(this).autocomplete("search");
     });
 
 

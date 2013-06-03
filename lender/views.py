@@ -213,7 +213,6 @@ def bid(request):
 	system_account = System_account.objects.get(id=request.GET['id'])
 	borrower = Borrower.objects.get(system_account=system_account)
 	business_measure = Business_measure.objects.get(system_account=system_account)
-	borrower.created = datetime.now()
 	borrower.save()
 
 	loan_offer = Loan_offer()
@@ -226,11 +225,12 @@ def bid(request):
 	total = round(int(request.GET['amount'])*float(request.GET['discount'])) / round(int(business_measure.monthly_sales) * int(request.GET['daily'])/100)
 	loan_offer.estimated_repaid_term = int(total)
 	loan_offer.enable = True
+	loan_offer.offer_exp_date = datetime.now()
 	loan_offer.status = 1
-	loan_offer.save() 
+	loan_offer.save()
 
 	if settings.PROD:
-		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)	
+		send_mail(const.LOAN_THEMA, const.LOAN_TEXT, const.EMAIL_FROM, [loan_offer.borrower.system_account.email], fail_silently=False)
 
 	return HttpResponse( json.dumps({'result':'ok', 'id':loan_offer.id}), mimetype="application/json" )
 
@@ -289,6 +289,7 @@ def decline(request):
 	loan_offer.enable = False
 	loan_offer.daily_repayment_sale = 0
 	loan_offer.discount = 0
+	loan_offer.offer_exp_date = datetime.now()
 	loan_offer.status = 2
 	loan_offer.save()
 	 	
@@ -433,6 +434,7 @@ def save_lender(request):
 		lender = Lender.objects.get(system_account=system_account.id)
 	except:
 		lender = Lender()
+		lender.offer_date = datetime.now()
 		lender.system_account=system_account	
 		lender.save()
 	lender = Lender.objects.get(system_account=system_account.id)

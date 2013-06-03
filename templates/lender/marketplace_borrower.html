@@ -76,9 +76,9 @@
 										</div>
 										<div class="submit-offer">
 											{% if loan_offer.status == 1 %}
-												You submitted <br/> your offer<br/> on {{borrower.created|date:'m/d/y'}}
+												You submitted <br/> your offer<br/> on {{loan_offer.offer_exp_date|date:'m/d/y'}}
 											{% else %}
-												You Decline <br/> your <br/> offer on {{borrower.created|date:'m/d/y'}}
+												You Decline <br/> your <br/> offer on {{loan_offer.offer_exp_date|date:'m/d/y'}}
 											{% endif %}
 											{% if loan_offer.status_lender != 1 %}
 												<a href="#" target="_self" class="change-bid" rel="{{loan_offer.id}}">Change bid</a>
