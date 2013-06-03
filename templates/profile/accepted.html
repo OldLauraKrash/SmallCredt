@@ -40,15 +40,6 @@
             </div>
           </form>
             {% if borrower.ssn != '' %}
-
-            <div class="row ie-finish">
-                <div class="btn-form" style="width: 177px;">
-                   <a href="/api/connect/first" target="_self" class="green-link connect-api" style="width: 178px; font-size:12px;">
-                    <span>Connect to checking account </span>
-                  </a>
-                </div>
-            </div>
-
             <form action="/profile/save-files/" method="post" enctype="multipart/form-data" id="accepted-save-files">
               {% csrf_token %}
             <div class="row">
@@ -77,9 +68,20 @@
                     {% endfor %}
                   </ul>
               </div>
+              <div class="register-or-block ie-register-block">
+                <span class="register-or-block-text">or</span>
+              </div>
+              <div class="register-center-block ie-register-center-block">
+                <span><span class="register-center-block-text">Register your business checking account</span> <br/>(We do not share your banking information)</span>
+              </div>
+              <div class="btn-form ie-btn-form" style="width: 177px;  margin-top: -80px;">            
+                <a href="/api/connect/first" target="_self" class="green-link connect-api" style="width: 178px;">
+                  <span>Register</span>
+                </a>
+              </div>
             </div>
             <br/>          
-            <div class="row">
+            <div class="row ie-center">
               <label>
                 Processor account*
                 <span class="label-info">This information is not shared <br />with third parties*.</span>

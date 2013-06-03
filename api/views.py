@@ -61,7 +61,7 @@ def get_institutions(request):
 
 	``request``
 	'''
-    result = Institution.objects.filter(name__contains=request.GET['term']).distinct()[:10]
+    result = Institution.objects.filter(name__contains=request.GET['term']).distinct()[:20]
     categories = []
     for category in result:
         categories.append(category.name+", "+str(category.url)+"")
