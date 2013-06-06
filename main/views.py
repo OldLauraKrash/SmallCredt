@@ -213,6 +213,6 @@ def logout(request):
 	return HttpResponseRedirect("/")
 
 # 404 page
-@render_to('main/error.html')
+@render_to('404.html')
 def page_not_found(request):
 	return {'request': request}
