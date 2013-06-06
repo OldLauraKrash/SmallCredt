@@ -124,7 +124,8 @@ def qualify(request):
 
 	system_account = System_account.objects.get(email=request.session['username'])
 	business_measure = Business_measure.objects.get(system_account=system_account.id)
-	return {'request': request, 'business_measure':business_measure}
+	money = business_measure.monthly_sales*2
+	return {'request': request, 'business_measure':business_measure, 'money':money}
 
 # finish
 @render_to('profile/finish.html')

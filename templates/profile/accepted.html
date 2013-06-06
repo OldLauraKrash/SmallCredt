@@ -32,7 +32,7 @@
                 <div class="input-holder">
                   <span class="input" style="width: 209px;"><input type="text" value="{{business.ein}}" {% if borrower.borrower_status%} disabled {% endif %} placeholder="EIN" id="form-accepted-first-ein" class="validate[required,maxSize[10],minSize[10]]"  name="ein" /></span>
                 </div>
-                <div class="btn-form" style="width: 177px;">
+                <div class="btn-form" style="width: 177px; margin-top: -40px;">
                     Save
                     <input type="submit" {% if borrower.borrower_status%} disabled {% endif %} value="Save" />
                 </div>
@@ -43,8 +43,7 @@
             <form action="/profile/save-files/" method="post" enctype="multipart/form-data" id="accepted-save-files">
               {% csrf_token %}
             <div class="row">
-              <label>Bank account*<span class="label-info">This information is not shared <br />with third parties*.</span>
-              </label>
+              <label>Bank Statements*</label>
                 <div class="input-holder ie-input-holder">
                   <div class="file ie-file">
                     <input type="file" class="file-input-area" {% if borrower.borrower_status%} disabled {% endif %} style="opacity: 0;" id="form-accepted-first-file1" name="bank_file" rel="0">
@@ -73,18 +72,19 @@
               </div>
               <div class="register-center-block ie-register-center-block">
                 <span><span class="register-center-block-text">Register your business checking account</span> <br/>(We do not share your banking information)</span>
-              </div>
-              <div class="btn-form ie-btn-form" style="width: 177px;  margin-top: -80px;">            
-                <a href="/api/connect/first" target="_self" class="green-link connect-api" style="width: 178px;">
+              </div> 
+              <div class="register-btn ie-register-btn">
+                <div class="btn-form ie-btn-form">            
+                  <a href="/api/connect/first" target="_self" class="green-link connect-api" style="width: 165px;">
                   <span>Register</span>
-                </a>
+                  </a>
+                </div>
               </div>
             </div>
             <br/>          
             <div class="row ie-center">
               <label>
-                Processor account*
-                <span class="label-info">This information is not shared <br />with third parties*.</span>
+                Processor Statements*
               </label>
                 <div class="input-holder ie-input-holder">
                   <div class="file ie-file">
@@ -137,7 +137,7 @@
                   </ul>
                 </div>
             </div>
-            <div class="row ie-finish">
+            <div class="row ie-finish finish-button">
                 <div class="btn-form finish-button" style="width: 177px; display:none">
                    <a href="#" target="_self" class="green-link" style="width: 178px;">
                     <span>Finish</span>

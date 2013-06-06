@@ -135,7 +135,7 @@ form,fieldset{
 	left: 4px;
 	background:url(../images/logo.png) no-repeat;
 	width:318px;
-	height:32px;
+	height:40px;
 	overflow:hidden;
 	margin:0;
 	text-indent:-9999px;
@@ -1584,23 +1584,48 @@ h2.title-table{
 	cursor:hand;
 }
 .register-or-block {
+	position: absolute;
+	top: 190px;
 	margin-left:530px; 
-	margin-top: -50px;
 }
 .register-or-block-text {
 	font-size: 18px; 
 	color: #000;
 }
 .register-center-block {
+	position: absolute;
+	top: 190px;
 	margin-left:560px; 
 	width: 250px; 
-	margin-top: -40px;
 }
 .register-center-block-text {
 	font-size: 18px; 
 	color: #000;
 }
 .register-btn {
-	width: 177px;  
-	margin-top: -80px;
+	position: absolute;
+	top: 190px;
+	margin-left:817px;
+	width: 167px; 
+}
+.finish-button {
+	position: absolute;	
+	margin-top:-105px;
+}
+.error-image {
+	padding-top: 50px;
+	width: 300px;
+	height: 200px;
+}
+.error-text {
+	position: absolute;
+	top: 100px;
+	left: 430px;
+	color: #000;
+}
+.error-button {
+	position: absolute;
+	top: 160px;
+	left: 400px;
+	width: 300px;
 }

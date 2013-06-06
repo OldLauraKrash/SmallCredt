@@ -211,3 +211,8 @@ def logout(request):
 	'''
 	request.session['username']=''
 	return HttpResponseRedirect("/")
+
+# 404 page
+@render_to('main/error.html')
+def page_not_found(request):
+	return {'request': request}

@@ -13,14 +13,22 @@ def pie_with_headers(request):
     response['Content-Length'] = os.path.getsize(filename)
     return response
 
+def sitemap_with_headers(request):
+    filename = settings.MEDIA_ROOT + 'sitemap.xml'
+    wrapper = FileWrapper(open(filename))
+    response = HttpResponse(wrapper, content_type='text/xml')
+    response['Content-Length'] = os.path.getsize(filename)
+    return response
+
 urlpatterns = patterns('',
     url(r'^$', 'main.views.home', name='home'),
-    (r'^PIE.htc', pie_with_headers, {}),
+    url(r'^PIE.htc', pie_with_headers, {}),
     url(r'^login/$', 'main.views.login', name='login'),
     url(r'^logout/$', 'main.views.logout', name='logout'), 
     url(r'^forget_send/$', 'main.views.forget_send', name='forget_send'),  
     url(r'^forget/([-\w]*)/$', 'main.views.forget', name='forget'), 
-    url(r'^active/([-\w]*)/$', 'main.views.active_account', name='active_account'),        
+    url(r'^active/([-\w]*)/$', 'main.views.active_account', name='active_account'),
+    url(r'^page_not_found/$', 'main.views.page_not_found', name='page_not_found'),             
     url(r'^auth/$', 'client.views.auth', name='auth'),   
     url(r'^profile/$', 'client.views.profile', name='profile'),
     url(r'^account/credit-offers/$', 'client.views.credit_offers', name='credit_offers'),
@@ -70,6 +78,7 @@ urlpatterns = patterns('',
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root':'./media/'}),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^robots.txt$', 'django.views.static.serve', {'document_root': "./media/", 'path': "robots.txt"}),
-    url(r'^sitemap.xml$', 'django.views.static.serve', {'document_root': "./media/", 'path': "sitemap.xml"}),
+    url(r'^sitemap.xml', sitemap_with_headers, {}),
 )
+handler500 = 'main.views.page_not_found'
+handler404 = 'main.views.page_not_found'

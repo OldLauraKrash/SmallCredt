@@ -1,5 +1,6 @@
 {% extends 'misc/base.html' %}
 {% block content %}
+    {% load humanize %}
     <div class="main-holder">
       <nav class="nav-holder">
         <div class="frame">
@@ -11,7 +12,7 @@
         </div>
       </nav>
       <div id="main">
-        <span class="content-info"><span class="mark">&nbsp;</span>You qualify for ${{business_measure.preliminary_offer}} of financing, <br />but we need to confirm a few more details about you and your business for a final approval.</span>
+        <span class="content-info"><span class="mark">&nbsp;</span>You qualify for ${{money|intcomma}} of financing, <br />but we need to confirm a few more details about you and your business for a final approval.</span>
         <div class="row-link">
           <a href="#" target="_self" class="green-link accepted-credit" style="width: 178px;">
             <span>Continue</span>

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from annoying.decorators import render_to
 import simplejson as json
 from api.models import *
+from django.db.models import Q
 
 # register account through api step first
 @render_to('api/register_step_first.html')
@@ -61,7 +62,7 @@ def get_institutions(request):
 
 	``request``
 	'''
-    result = Institution.objects.filter(name__contains=request.GET['term']).distinct()[:20]
+    result = Institution.objects.filter(name__icontains=request.GET['term']).distinct()[:20]
     categories = []
     for category in result:
         categories.append(category.name+", "+str(category.url)+"")
