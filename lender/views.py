@@ -453,12 +453,14 @@ def save_lender(request):
 		state=State.objects.get(name=request.GET['state'])
 		lender.state=state
 	except:
-		lender.state = ''
+		state=State.objects.all()[0]
+		lender.state=state
 	try: 
 		country=Country.objects.get(name=request.GET['country'])
 		lender.country=country
 	except:
-		lender.country = ''
+		country=Country.objects.all()[0]
+		lender.country=country
 	"""
 	try: 
 		geography=Geography.objects.get(name=request.GET['geography'])

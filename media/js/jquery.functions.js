@@ -690,4 +690,15 @@ $(document).ready(function(){
             $('.error-file').eq($(this).attr('rel')).show();
         }
     });
+
+    // targer
+    var pathname = $(window.parent.location).attr('href');
+    if (pathname.split('/')[4] == 'accepted') {
+        class_name = '.'+pathname.split('#')[1];
+        $('html,body').animate({
+        scrollTop: $(class_name).offset().top},
+        'slow');
+    }
+
+
 });

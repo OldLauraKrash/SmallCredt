@@ -93,6 +93,7 @@ def register(request):
 	# save param borrower
 	borrower = Borrower()
 	borrower.system_account=system_account
+	borrower.score=0
 	borrower.save()
 
 	# save param Business
@@ -105,6 +106,7 @@ def register(request):
 	business_measure.system_account=system_account
 	business_measure.preliminary_offer = 0
 	business_measure.amount = request.GET['amount'] + "000"
+	business_measure.cash=0
 	business_measure.save()
 
 	# send message on email
