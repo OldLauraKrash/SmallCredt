@@ -185,6 +185,7 @@ def accepted(request):
 		business.ein = request.POST['ein']
 		business.save()
 		borrower.ssn = request.POST['ssn']
+		borrower.score = request.POST['score']
 		borrower.save()
 
 
@@ -420,6 +421,7 @@ def save_profile_credit(request):
 	business_measure.amount = int(request.GET['amount'])
 	business_measure.monthly_sales = int(request.GET['monthly_sales'])
 	business_measure.revenue = int(request.GET['revenue'])
+	business_measure.cash = int(request.GET['cash'])
 	if request.GET['profit']!='':
 		business_measure.net_profit = int(request.GET['profit'])
 	else:

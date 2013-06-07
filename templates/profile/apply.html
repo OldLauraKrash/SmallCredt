@@ -185,6 +185,16 @@
 									placeholder="2012 profit" class="validate[required]" id="general-form-profile-credit-profit"
 									 />
 								</span>
+							</div>
+						</div>
+						<div class="row">
+							<label>Do you have unpaid Cash Advance with any party?*</label>
+							<div class="input-holder">
+								<span class="input" style="width: 209px;"><input type="text" name="cash" 
+									placeholder="Amount outstanding" class="validate[required,custom[integer],min[0]]" id="general-form-profile-cash" value="{{business_measure.cash}}"
+									 />
+								</span>
+								Please enter 0 if your answer is "No"
 								<div class="btn-form" style="width: 177px;" id="general-form-profile-credit-submit">
 									<span>
 										Save

@@ -80,6 +80,7 @@ class Borrower(models.Model):
     risk_level = models.ForeignKey(Risk_level, null=True)
     accepted = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
+    score = models.CharField(max_length=255) 
     system_account = models.ForeignKey(System_account)   
     def __unicode__(self):
         return unicode(self.system_account)
@@ -154,6 +155,7 @@ class Business_measure(models.Model):
     monthly_sales = models.IntegerField(blank=True, null=True)
     revenue = models.IntegerField(blank=True, null=True)
     net_profit = models.IntegerField(blank=True, null=True)
+    cash = models.IntegerField(blank=True, null=True)
     system_account = models.ForeignKey(System_account)
     def __unicode__(self):
         return unicode(self.system_account)	

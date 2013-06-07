@@ -1565,12 +1565,6 @@ h2.title-table{
 	top:10px;
 	cursor: pointer;
 }
-.development {
-	color: #fff;
-	position: absolute;
-	right: 60px;
-	bottom: 10px;	
-}
 .login-revert{
 	cursor:pointer;
 	text-decoration: underline;
@@ -1585,7 +1579,7 @@ h2.title-table{
 }
 .register-or-block {
 	position: absolute;
-	top: 190px;
+	top: 240px;
 	margin-left:530px; 
 }
 .register-or-block-text {
@@ -1594,7 +1588,7 @@ h2.title-table{
 }
 .register-center-block {
 	position: absolute;
-	top: 190px;
+	top: 240px;
 	margin-left:560px; 
 	width: 250px; 
 }
@@ -1604,13 +1598,13 @@ h2.title-table{
 }
 .register-btn {
 	position: absolute;
-	top: 190px;
+	top: 240px;
 	margin-left:817px;
 	width: 167px; 
 }
 .finish-button {
 	position: absolute;	
-	margin-top:-105px;
+	margin-top:-75px;
 }
 .error-image {
 	padding-top: 50px;
@@ -1628,4 +1622,16 @@ h2.title-table{
 	top: 160px;
 	left: 400px;
 	width: 300px;
+}
+.development {
+	color: #fff;
+	font-size: 14px;
+	position: absolute;
+	margin-left: -70px;
+	bottom: 0px;
+	border-top: dashed;
+	border-right: dashed;
+	border-left: dashed;
+	border-width: 1px;	
+	padding: 5px;
 }

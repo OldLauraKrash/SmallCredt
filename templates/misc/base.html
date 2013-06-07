@@ -29,6 +29,13 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-39155132-2', 'smallcredt.com');
     ga('send', 'pageview');
+
+    var _gaq = _gaq || [];
+    var pluginUrl = 
+     '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+    _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+    _gaq.push(['_setAccount', 'UA-XXXXXX-Y']);
+    _gaq.push(['_trackPageview']);
   </script>
   <!-- End google analytics -->
 </head>
@@ -56,9 +63,11 @@
         <li><a href="/pages/rates-and-fees/" target="_self">Rates & Fees</a></li>
         <li><a href="/pages/careers/" target="_self">Careers</a></li>
         <li><a href="/pages/about/" target="_self">About</a></li>
-        <li><a href="/pages/contact/" target="_self">Contact</a></li>
+        <li>
+        	<a href="/pages/contact/" target="_self">Contact</a>
+        	<a href="#" class="development" style="color:#fff" target="_blank">Made by New Line<a>        
+        </li>
       </ul>
-      <a href="http://newline.pro" class="development" target="_blank">Made by New Line<a>
     </div>
   </footer>
   <div class="popup-holder" id="popup1" style="display:none;">

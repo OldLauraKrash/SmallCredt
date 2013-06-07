@@ -22,6 +22,12 @@
           <fieldset>
             <div class="">
               <div class="row">
+                <label>Your credit score*</label>
+                <div class="input-holder">
+                  <span class="input" style="width: 209px;"><input type="text" value="{{borrower.score}}" {% if borrower.borrower_status%} disabled {% endif %} placeholder="Your credit score" id="form-accepted-score" class="validate[required,maxSize[3],minSize[3]]" name="score"  /></span>
+                </div>
+              </div>
+              <div class="row">
                 <label>Social Security Number*</label>
                 <div class="input-holder">
                   <span class="input" style="width: 209px;"><input type="text" value="{{borrower.ssn}}" {% if borrower.borrower_status%} disabled {% endif %} placeholder="Social Security" id="form-accepted-first-security" class="validate[required,maxSize[9],minSize[9]]" name="ssn"  /></span>
@@ -67,6 +73,7 @@
                     {% endfor %}
                   </ul>
               </div>
+              <!---
               <div class="register-or-block ie-register-block">
                 <span class="register-or-block-text">or</span>
               </div>
@@ -80,6 +87,7 @@
                   </a>
                 </div>
               </div>
+              -->
             </div>
             <br/>          
             <div class="row ie-center">

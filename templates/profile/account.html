@@ -63,6 +63,12 @@
 									<td class="col02">{{borrower.ssn}}</td>
 								</tr>
 								{% endif %}
+								{% if borrower.score != '' %}
+								<tr>
+									<td class="col01">Score #</td>
+									<td class="col02">{{borrower.score}}</td>
+								</tr>
+								{% endif %}
 							</tbody>
 						</table>
 					</div>
@@ -129,6 +135,12 @@
 								<tr>
 									<td class="col01">Net profit 2012</td>
 									<td class="col02">${{business_measure.net_profit|intcomma}}</td>
+								</tr>
+								{% endif %}
+								{% if business_measure.cash != None %}
+								<tr>
+									<td class="col01">Case advance</td>
+									<td class="col02">${{business_measure.cash|intcomma}}</td>
 								</tr>
 								{% endif %}
 								{% if bank_file|length  %}

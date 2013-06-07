@@ -120,9 +120,14 @@
 								<tr>
 									<td class="col01">Email</td>
 									<td class="col02"><a href="mailto:{{ system_account.email }}" class="link-mail">{{ system_account.email }}</a></td>
-								</tr><tr>
+								</tr>
+								<tr>
 									<td class="col01">Social Security #</td>
 									<td class="col02">{{borrower.ssn}}</td>
+								</tr>
+								<tr>
+									<td class="col01">Score #</td>
+									<td class="col02">{{borrower.score}}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -171,6 +176,10 @@
 								<tr>
 									<td class="col01">Net profit 2012</td>
 									<td class="col02">${{business_measure.net_profit|intcomma}}</td>
+								</tr>
+								<tr>
+									<td class="col01">Cash advance</td>
+									<td class="col02">${{business_measure.cash|intcomma}}</td>
 								</tr>
 								{% if bank_file|length  %}
 								<tr>
