@@ -35,7 +35,7 @@
 							<tbody>
 								{% if borrower.first_name != '' %}
 								<tr>
-									<td class="col01">Your name</td>
+									<td class="col01">Owner name</td>
 									<td class="col02">{{borrower.suffix}} {{borrower.first_name}} {{borrower.middle_name}} {{borrower.last_name}} {{borrower.other_name}}</td>
 								</tr>
 								{% endif %}	
@@ -139,7 +139,7 @@
 								{% endif %}
 								{% if business_measure.net_profit != None %}
 								<tr>
-									<td class="col01">Net profit 2012</td>
+									<td class="col01">Monthly credit card sales</td>
 									<td class="col02">${{business_measure.net_profit|intcomma}}</td>
 								</tr>
 								{% endif %}
