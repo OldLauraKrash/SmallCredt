@@ -106,7 +106,7 @@
 						<table>
 							<tbody>
 								<tr>
-									<td class="col01">Your name</td>
+									<td class="col01">Owner name</td>
 									<td class="col02">{{borrower.suffix}} {{borrower.first_name}} {{borrower.middle_name}} {{borrower.last_name}} {{borrower.other_name}}</td>
 								</tr>
 								<tr>
@@ -115,7 +115,7 @@
 								</tr>
 								<tr>
 									<td class="col01">Personal phone</td>
-									<td class="col02">{{ borrower.home_phone }} {{ borrower.cell_phone }}</td>
+									<td class="col02">{{ borrower.home_phone }}, {{ borrower.cell_phone }}</td>
 								</tr>
 								<tr>
 									<td class="col01">Email</td>
@@ -174,7 +174,7 @@
 									<td class="col02">${{business_measure.revenue|intcomma}}</td>
 								</tr>
 								<tr>
-									<td class="col01">Net profit 2012</td>
+									<td class="col01">Monthly credit card sales</td>
 									<td class="col02">${{business_measure.net_profit|intcomma}}</td>
 								</tr>
 								<tr>
@@ -183,7 +183,7 @@
 								</tr>
 								{% if bank_file|length  %}
 								<tr>
-									<td class="col01">Bank account</td>
+									<td class="col01">Bank statements</td>
 									<td class="col02">
 				                    	{% for file in bank_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.bank_file}}" class="filename filename-account">{% split_filename file.bank_file %}</a>
@@ -194,7 +194,7 @@
 								{% endif %}								
 								{% if processor_file|length  %}
 								<tr>
-									<td class="col01">Processor account</td>
+									<td class="col01">Processor statements</td>
 									<td class="col02">
 				                    	{% for file in processor_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.processor_file}}" class="filename filename-account">{% split_filename file.processor_file %}</a>
@@ -205,7 +205,7 @@
 								{% endif %}	
 								{% if financial_file|length  %}
 								<tr>
-									<td class="col01">Financial Statements</td>
+									<td class="col01">Financial statements</td>
 									<td class="col02">
 				                    	{% for file in financial_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.financial_file}}" class="filename filename-account">{% split_filename file.financial_file %}</a>
