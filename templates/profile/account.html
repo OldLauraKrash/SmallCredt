@@ -60,7 +60,7 @@
 								{% if borrower.date_of_birth != '' %}
 								<tr>
 								<td class="col01">Date of Birth</td>
-								<td class="col02">{{ borrower.date_of_birth }}</td>
+								<td class="col02">{{ borrower.date_of_birth|date:'Y-m-d' }}</td>
 								</tr>
 								{% endif %}
 								{% if borrower.ssn != '' %}
