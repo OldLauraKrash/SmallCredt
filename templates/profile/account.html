@@ -48,13 +48,19 @@
 								{% if borrower.cell_phone != '' %}		
 								<tr>
 									<td class="col01">Personal phone</td>
-									<td class="col02">{{ borrower.home_phone }} {{ borrower.cell_phone }}</td>
+									<td class="col02">{{ borrower.home_phone }}, {{ borrower.cell_phone }}</td>
 								</tr>
 								{% endif %}
 								{% if borrower.email != '' %}
 								<tr>
 									<td class="col01">Email</td>
 									<td class="col02"><a href="mailto:{{ system_account.email }}" class="link-mail">{{ system_account.email }}</a></td>
+								</tr>
+								{% endif %}
+								{% if borrower.date_of_birth != '' %}
+								<tr>
+								<td class="col01">Date of Birth</td>
+								<td class="col02">{{ borrower.date_of_birth }}</td>
 								</tr>
 								{% endif %}
 								{% if borrower.ssn != '' %}
@@ -145,7 +151,7 @@
 								{% endif %}
 								{% if bank_file|length  %}
 								<tr>
-									<td class="col01">Bank account</td>
+									<td class="col01">Bank statements</td>
 									<td class="col02">
 				                    	{% for file in bank_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.bank_file}}" class="filename filename-account">{% split_filename file.bank_file %}</a>
@@ -156,7 +162,7 @@
 								{% endif %}								
 								{% if processor_file|length  %}
 								<tr>
-									<td class="col01">Processor account</td>
+									<td class="col01">Processor statements</td>
 									<td class="col02">
 				                    	{% for file in processor_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.processor_file}}" class="filename filename-account">{% split_filename file.processor_file %}</a>
@@ -167,7 +173,7 @@
 								{% endif %}	
 								{% if financial_file|length  %}
 								<tr>
-									<td class="col01">Financial Statements</td>
+									<td class="col01">Financial statements</td>
 									<td class="col02">
 				                    	{% for file in financial_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.financial_file}}" class="filename filename-account">{% split_filename file.financial_file %}</a>
