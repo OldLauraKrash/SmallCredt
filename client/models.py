@@ -71,7 +71,7 @@ class Borrower(models.Model):
     city = models.CharField(max_length=255)
     state = models.ForeignKey(State, null=True)
     zip_code = models.CharField(max_length=255)
-    country = models.ForeignKey(Country, null=True)
+    country = models.ForeignKey(Country, blank=True, null=True)
     home_phone = models.CharField(max_length=255, blank=True)
     cell_phone = models.CharField(max_length=255)
     date_of_birth = models.DateTimeField(null=True)
@@ -80,7 +80,7 @@ class Borrower(models.Model):
     risk_level = models.ForeignKey(Risk_level, null=True)
     accepted = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
-    score = models.CharField(max_length=255) 
+    score = models.CharField(blank=True, max_length=255) 
     system_account = models.ForeignKey(System_account)   
     def __unicode__(self):
         return unicode(self.system_account)
@@ -155,7 +155,7 @@ class Business_measure(models.Model):
     monthly_sales = models.IntegerField(blank=True, null=True)
     revenue = models.IntegerField(blank=True, null=True)
     net_profit = models.IntegerField(blank=True, null=True)
-    cash = models.IntegerField(blank=True, null=True)
+    cash = models.CharField(max_length=255, blank=True) 
     system_account = models.ForeignKey(System_account)
     def __unicode__(self):
         return unicode(self.system_account)	

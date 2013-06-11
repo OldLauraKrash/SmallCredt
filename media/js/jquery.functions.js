@@ -45,7 +45,7 @@ $(document).ready(function(){
 
     // accepted credit
     $('.accepted-credit').live("click", function(){
-        $(location).attr('href', '/profile/accepted');  
+        $(location).attr('href', '/profile/accepted/');  
     });
 
     // register
@@ -109,7 +109,7 @@ $(document).ready(function(){
     // bid 
     $('#bid').live("click", function(){
         $('.link-holder').hide();
-        $.get('/lender/marketplace/bid', { 'id': $(this).attr('rel'), 
+        $.get('/lender/marketplace/bid/', { 'id': $(this).attr('rel'), 
                                             'amount': $('#bid-amount').val(), 
                                             'discount': $('#bid-discount').val(),
                                             'daily': $('#bid-daily-repayment').val(),                                             
@@ -131,7 +131,7 @@ $(document).ready(function(){
     // decline
     $('#decline').live("click", function(){
         $('.link-holder').hide();
-        $.get('/lender/marketplace/decline', { 'id': $(this).attr('rel') }, function(data) {
+        $.get('/lender/marketplace/decline/', { 'id': $(this).attr('rel') }, function(data) {
             if (data.result == 'ok') {
                 $('.link-holder').hide();
                 var today = new Date();
@@ -214,7 +214,7 @@ $(document).ready(function(){
         if ($("#lender-form").validationEngine('validate')) {
             $.get('/save-lender/', $('#lender-form').serialize(), function(data) {
                 if (data.result == 'ok') {
-                window.location.href = '/lender/account';
+                window.location.href = '/lender/account/';
                 }
             });
         }
@@ -401,7 +401,7 @@ $(document).ready(function(){
     $("#general-form-profile-business-legal-first").autocomplete({
         source: function( request, response ) {
         $.ajax({
-            url: "/get-legal-form",
+            url: "/get-legal-form/",
             dataType: "json",
             data: {'term': $( "#general-form-profile-business-legal-first" ).val()},
             success: function( data ) {
@@ -422,7 +422,7 @@ $(document).ready(function(){
     $('#general-form-profile-business-address-third').autocomplete({
         source: function( request, response ) {
         $.ajax({
-            url: "/get-state",
+            url: "/get-state/",
             dataType: "json",
             data: {'term': $('#general-form-profile-business-address-third').val()},
             success: function( data ) {
@@ -443,7 +443,7 @@ $(document).ready(function(){
     $('#general-form-profile-addresse-third').autocomplete({
         source: function( request, response ) {
         $.ajax({
-            url: "/get-state",
+            url: "/get-state/",
             dataType: "json",
             data: {'term': $('#general-form-profile-addresse-third').val()},
             success: function( data ) {
@@ -463,7 +463,7 @@ $(document).ready(function(){
     $('#search-bank').autocomplete({
         source: function( request, response ) {
         $.ajax({
-            url: "/api/get-institutions",
+            url: "/api/get-institution/s",
             dataType: "json",
             data: {'term': $('#search-bank').val()},
             success: function( data ) {
@@ -487,7 +487,7 @@ $(document).ready(function(){
     $('#general-form-profile-addresse-country').autocomplete({
         source: function( request, response ) {
         $.ajax({
-            url: "/get-country",
+            url: "/get-country/",
             dataType: "json",
             data: {'term': $('#general-form-profile-addresse-country').val()},
             success: function( data ) {
@@ -508,7 +508,7 @@ $(document).ready(function(){
     $('#general-form-profile-business-address-country').autocomplete({
         source: function( request, response ) {
         $.ajax({
-            url: "/get-country",
+            url: "/get-country/",
             dataType: "json",
             data: {'term': $('#general-form-profile-business-address-country').val()},
             success: function( data ) {
@@ -529,7 +529,7 @@ $(document).ready(function(){
     $('.input-industry').autocomplete({
         source: function( request, response ) {
         $.ajax({
-            url: "/get-industry",
+            url: "/get-industry/",
             dataType: "json",
             data: {'term': $('.input-industry').val()},
             success: function( data ) {
@@ -635,7 +635,7 @@ $(document).ready(function(){
     $('#general-form-profile-business-legal-second').autocomplete({
         source: function( request, response ) {
         $.ajax({
-            url: "/get-state",
+            url: "/get-state/",
             dataType: "json",
             data: {'term': $('.input-state').val()},
             success: function( data ) {
