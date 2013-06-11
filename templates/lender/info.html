@@ -19,18 +19,18 @@
               <tbody>
                 {% if lender.middle_name|length %}  
                 <tr>
-                  <td class="col01">Your name*</td>
+                  <td class="col01">Name</td>
                   <td class="col02">{{lender.suffix}} {{lender.first_name}} {{ lender.middle_name }} {{ lender.last_name }}</td>
                 </tr>
                 {% endif %}
                 <tr>
-                  <td class="col01">Email*</td>
+                  <td class="col01">Email</td>
                   <td class="col02"><a href="mailto:{{email}}" target="_self" class="link-mail">{{email}}</a></td>
                 </tr>
                 {% if lender.cell_phone|length %} 
                 <tr>
                   <td class="col01">Phone</td>
-                  <td class="col02">{{ lender.cell_phone }} {{ lender.home_phone }}</td>
+                  <td class="col02">{{ lender.cell_phone }}, {{ lender.home_phone }}</td>
                 </tr>
                 {% endif %}
                 {% if lender.title|length %} 

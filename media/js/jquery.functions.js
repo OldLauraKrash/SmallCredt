@@ -57,9 +57,9 @@ $(document).ready(function(){
                 if (data['result']=='ok') {
                     $(location).attr('href', '/profile');
                 } else {
-                    $("#form-sign-submit").validationEngine('showPrompt', 'This email is busy', 'error');
+                    $("#form-sign-submit").validationEngine('showPrompt', 'This account already exists', 'error');
                 }
-            }).fail(function() { $("#form-sign-submit").validationEngine('showPrompt', 'This email is busy', 'error'); });
+            }).fail(function() { $("#form-sign-submit").validationEngine('showPrompt', 'This account already exists', 'error'); });
 		}
 		return false;
 	});
@@ -74,9 +74,9 @@ $(document).ready(function(){
                     else
                         $(location).attr('href', '/profile');
                 }  else {
-                    $("#form-auth-main-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error');
+                    $("#form-auth-main-password").validationEngine('showPrompt', 'Sorry, wrong password :(', 'error');
                 }
-            }).fail(function() { $("#form-auth-main-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error'); });
+            }).fail(function() { $("#form-auth-main-password").validationEngine('showPrompt', 'Sorry, wrong password :(', 'error'); });
 
         }
         return false;
@@ -93,9 +93,9 @@ $(document).ready(function(){
                     else
                         window.location.href = '/profile';
                 }  else {
-                   $("#form-auth-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error');
+                   $("#form-auth-password").validationEngine('showPrompt', 'Sorry, wrong password :(', 'error');
                 }
-            }).fail(function() { $("#form-auth-password").validationEngine('showPrompt', 'Your email doesn’t match your password', 'error'); });
+            }).fail(function() { $("#form-auth-password").validationEngine('showPrompt', 'Sorry, wrong password :(', 'error'); });
         }
         return false;
     });
@@ -139,7 +139,7 @@ $(document).ready(function(){
                 var mm = today.getMonth()+1; //January is 0!
                 var yyyy = today.getFullYear();
                 if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
-                $('.finish-date').html('You Decline <br/> your offer <br/> on '+today);
+                $('.finish-date').html('You declined <br/> on <br/> '+today);
                 $('.finish-date').append('<a href="#" class="change-bid" rel="'+data.id+'">Change bid</a>');
             }
         });

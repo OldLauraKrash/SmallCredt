@@ -8,7 +8,7 @@
 						<li><a href="/" target="_self">Home</a></li>
 						<li><a href="/profile/" target="_self">Apply</a></li>
 						<li><a href="/account/" target="_self" class="active">My Account</a></li>
-            			<li><a href="/account/credit-offers/" target="_self">Credit offers</a></li>
+            			<li><a href="/account/credit-offers/" target="_self">Credit Offers</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -35,7 +35,7 @@
 							<tbody>
 								{% if borrower.first_name != '' %}
 								<tr>
-									<td class="col01">Your name</td>
+									<td class="col01">Owner name</td>
 									<td class="col02">{{borrower.suffix}} {{borrower.first_name}} {{borrower.middle_name}} {{borrower.last_name}} {{borrower.other_name}}</td>
 								</tr>
 								{% endif %}	
@@ -48,13 +48,19 @@
 								{% if borrower.cell_phone != '' %}		
 								<tr>
 									<td class="col01">Personal phone</td>
-									<td class="col02">{{ borrower.home_phone }} {{ borrower.cell_phone }}</td>
+									<td class="col02">{{ borrower.home_phone }}, {{ borrower.cell_phone }}</td>
 								</tr>
 								{% endif %}
 								{% if borrower.email != '' %}
 								<tr>
 									<td class="col01">Email</td>
 									<td class="col02"><a href="mailto:{{ system_account.email }}" class="link-mail">{{ system_account.email }}</a></td>
+								</tr>
+								{% endif %}
+								{% if borrower.date_of_birth != '' %}
+								<tr>
+								<td class="col01">Date of Birth</td>
+								<td class="col02">{{ borrower.date_of_birth|date:'Y-m-d' }}</td>
 								</tr>
 								{% endif %}
 								{% if borrower.ssn != '' %}
@@ -133,7 +139,7 @@
 								{% endif %}
 								{% if business_measure.net_profit != None %}
 								<tr>
-									<td class="col01">Net profit 2012</td>
+									<td class="col01">Monthly credit card sales</td>
 									<td class="col02">${{business_measure.net_profit|intcomma}}</td>
 								</tr>
 								{% endif %}
@@ -145,7 +151,7 @@
 								{% endif %}
 								{% if bank_file|length  %}
 								<tr>
-									<td class="col01">Bank account</td>
+									<td class="col01">Bank statements</td>
 									<td class="col02">
 				                    	{% for file in bank_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.bank_file}}" class="filename filename-account">{% split_filename file.bank_file %}</a>
@@ -156,7 +162,7 @@
 								{% endif %}								
 								{% if processor_file|length  %}
 								<tr>
-									<td class="col01">Processor account</td>
+									<td class="col01">Processor statements</td>
 									<td class="col02">
 				                    	{% for file in processor_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.processor_file}}" class="filename filename-account">{% split_filename file.processor_file %}</a>
@@ -167,7 +173,7 @@
 								{% endif %}	
 								{% if financial_file|length  %}
 								<tr>
-									<td class="col01">Financial Statements</td>
+									<td class="col01">Financial statements</td>
 									<td class="col02">
 				                    	{% for file in financial_file %}
 				                      		<a href="{{ MEDIA_URL }}{{file.financial_file}}" class="filename filename-account">{% split_filename file.financial_file %}</a>
