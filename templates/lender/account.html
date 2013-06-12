@@ -36,7 +36,7 @@
           <div class="table-info">
             <table>
               <tbody>
-                {% if lender.middle_name|length %}  
+                {% if lender.first_name|length %}  
                 <tr>
                   <td class="col01">Name</td>
                   <td class="col02">{{lender.suffix}} {{lender.first_name}} {{ lender.middle_name }} {{ lender.last_name }}</td>
@@ -82,7 +82,7 @@
                   <td class="col01">Geography</td>
                   <td class="col02">
                     {% for value in geography_tags %}
-                      {{value.name}}
+                      {{value.name}},
                     {% endfor %}
                   </td>
                 </tr>
@@ -92,7 +92,7 @@
                   <td class="col01">Risk level</td>
                   <td class="col02">
                     {% for value in risk_tags %}
-                      {{value.name}}
+                      {{value.name}},
                     {% endfor %}
                   </td>
                 </tr>
@@ -102,7 +102,7 @@
                   <td class="col01">Industry</td>
                   <td class="col02">                  
                     {% for value in industry_tags %}
-                      {{value.name}}
+                      {{value.name}},
                     {% endfor %}
                     </td>
                 </tr>
