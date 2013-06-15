@@ -23,7 +23,7 @@ $(document).ready(function(){
 		$('#popup1').fadeIn(200);
 		return false;
 	});
-	$('#popup1 .btn-form input').click(function(){
+	$('#reset-password').click(function(){
 		$.getJSON('/forget_send/',{'email': $('#form-forget-email').val()}, function(data) {
 			$('#popup1').fadeOut(300, function(){
 				$('#popup1').css({"left": "-9999px"});
