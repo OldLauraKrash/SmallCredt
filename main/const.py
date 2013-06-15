@@ -3,7 +3,7 @@ from django.conf import settings
 
 # register client
 EMAIL_FROM = 'no-reply@smallcredt.com'
-REGISTER_THEMA_EMAIL = 'Thank you for registering with SmallCreditExchange.com'
+REGISTER_THEMA_EMAIL = 'Thank you for registering with SmallCredt.com'
 REGISTER_TEXT_EMAIL = 'Register on SmallCreditExchange.com. Please confirm your email by following this link http://smallcredt.com/active/'
 
 # register client
