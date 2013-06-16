@@ -98,7 +98,7 @@
 								{% if business.date_founded != None %}
 								<tr>
 									<td class="col01">Legal form</td>
-									<td class="col02">{{ business.legal_form }}, {{ business.state_of_incorporation }}, {{ business.date_founded|date:'m/d/y' }}</td>
+									<td class="col02">{{ business.legal_form }}, {{ business.state_of_incorporation }}, {{ business.date_founded }}</td>
 								</tr>
 								{% endif %}
 								{% if business.street != '' %}

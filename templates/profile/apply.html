@@ -56,9 +56,14 @@
 									placeholder="State of incorporation" 
 									class="input-state validate[required]"
 									id="general-form-profile-business-legal-second" name="state_of_incorporation" /></span>
-								<span class="input" style="width: 180px;"><input type="text" 
-									value="{{business.date_founded|date:'Y-m-d'}}" placeholder="Year founded"
-									class="validate[required]"
+								<span class="input" style="width: 180px;"><input type="text"
+									{% ifequal business.date_founded None %}
+										value=""
+									{% else %}
+										value="{{business.date_founded}}"
+									{% endifequal %}
+									placeholder="Year founded"
+									class="validate[required,maxSize[4],minSize[4]]"
 									{% if borrower.borrower_status%} disabled {% endif %}
 									id="general-form-profile-business-legal-third" name="date_founded" /></span>
 							</div>

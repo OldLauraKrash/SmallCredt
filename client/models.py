@@ -94,7 +94,7 @@ class Business(models.Model):
     ein = models.CharField(max_length=15)
     legal_form = models.ForeignKey(Legal, null=True)
     state_of_incorporation = models.ForeignKey(State, null=True, related_name='state_of_incorporation')
-    date_founded = models.DateTimeField(null=True)
+    date_founded = models.IntegerField(null=True)
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = models.ForeignKey(State, null=True, related_name='state')
